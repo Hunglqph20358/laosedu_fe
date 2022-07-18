@@ -1,0 +1,33 @@
+@media only screen and (max-width: 768px) {
+  div .responsive-element {
+    width: 100% !important;
+  }
+  div .responsive-condition {
+    flex-direction: column !important;
+  }
+  .responsive-label {
+    margin-bottom: 0px !important;
+  }
+  .responsive-search {
+    margin-top: 0px !important;
+  }
+}
+
+.form-control {
+  padding: 0 0 0 15px;
+  width: 100%;
+}
+
+
+.position-input-children {
+  position: absolute;
+  top: 0;
+  top: 60%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+.error-validate{
+  color: red;
+  font-weight: 500;
+}

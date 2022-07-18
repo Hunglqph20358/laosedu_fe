@@ -1,0 +1,35 @@
+kt-base {
+	opacity: 0;
+	height: 100%;
+
+	.grid-root {
+		height: 100%;
+	}
+}
+
+.page-loaded {
+	kt-base {
+		opacity: 1;
+		transition: opacity 1s ease-in-out;
+	}
+}
+#kt_wrapper{
+	position: relative;
+}
+.bg-ovef{
+	left: 0px;
+	right: 0px;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.4);
+	z-index: 9;
+	position: fixed;
+	top: 65px;
+	overflow: hidden;
+	display: none;
+}
+.custom-bg{
+  // background-image: url(../../../../assets/media/img/imgbg.PNG);
+  background-repeat: no-repeat;
+  background-position-x: 93%;
+  background-position-y: 5px;
+}

@@ -1,0 +1,85 @@
+<section *ngIf="teacher" class="logged-in-teacher">
+  <div class="logged-in-teacher__avatar" style="display: flex; align-items: center">
+    <img [alt]="teacher.fullName" [src]="teacher.avatar || '/assets/media/users/blank.png'"/>
+  </div>
+  <div class="logged-in-teacher__details">
+    <h3 class="logged-in-teacher__full-name">
+      <span [matTooltip]="teacher.fullName">
+        {{teacher.fullName | truncate}}
+      </span>
+    </h3>
+    <div class="logged-in-teacher__info">
+      <div class="row">
+        <div class="col-lg-4 col-md-12">
+          <div class="logged-in-teacher__table-alike">
+            <div>
+              <div class="logged-in-teacher__key">{{'TEACHING_TIMETABLE.CODE' | translate}}</div>
+              <div class="logged-in-teacher__value logged-in-teacher__value--blue">
+                <span [matTooltip]="teacher.code">
+                  #{{teacher.code | truncate:30}}
+                </span>
+              </div>
+            </div>
+            <div>
+              <div class="logged-in-teacher__key">{{'TEACHING_TIMETABLE.STATUS' | translate}}</div>
+              <div [ngStyle]="{color: teacher.status | statusColor}"
+                   class="logged-in-teacher__value logged-in-teacher__value--status">
+                <span [matTooltip]="teacher.status | status | translate">
+                  {{teacher.status | status | translate | truncate}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <div class="logged-in-teacher__table-alike">
+            <div>
+              <div class="logged-in-teacher__key">{{'TEACHING_TIMETABLE.START_DATE' | translate}}</div>
+              <div class="logged-in-teacher__value">
+                <span [matTooltip]="(teacher.startDate
+                  ? (teacher.startDate | localDate:('TEACHING_TIMETABLE.START_DATE_FORMAT' | translate))
+                  : ('TEACHING_TIMETABLE.UNKNOWN' | translate))
+                  ">
+                  {{(teacher.startDate
+                  ? (teacher.startDate | localDate:('TEACHING_TIMETABLE.START_DATE_FORMAT' | translate))
+                  : ('TEACHING_TIMETABLE.UNKNOWN' | translate))
+                  }}
+                </span>
+              </div>
+            </div>
+            <div>
+              <div class="logged-in-teacher__key">{{'TEACHING_TIMETABLE.CONTACT_TYPE' | translate}}</div>
+              <div class="logged-in-teacher__value">
+                <span [matTooltip]="teacher.contractType | contact | translate">
+                  {{teacher.contractType | contact | translate }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <div class="logged-in-teacher__table-alike">
+            <div>
+              <div class="logged-in-teacher__key">{{'TEACHING_TIMETABLE.PHONE' | translate}}</div>
+              <div class="logged-in-teacher__value">
+                <span [matTooltip]="teacher.phone">
+                  {{teacher.phone || 'TEACHING_TIMETABLE.UNKNOWN' | translate | truncate}}
+                </span>
+              </div>
+            </div>
+            <div>
+              <div class="logged-in-teacher__key">{{'TEACHING_TIMETABLE.EMAIL' | translate}}</div>
+              <div class="logged-in-teacher__value">
+                <span [matTooltip]="teacher.email">
+                  {{teacher.email || 'TEACHING_TIMETABLE.UNKNOWN' | translate | truncate:30}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

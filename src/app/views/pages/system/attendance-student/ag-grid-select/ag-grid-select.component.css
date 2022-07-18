@@ -1,0 +1,46 @@
+/*.select-op[ng-reflect-model="C"]{*/
+/*  color: #52BD94;*/
+/*}*/
+/*.select-op[ng-reflect-model="K"]{*/
+/*  color: #D14343;*/
+/*}*/
+/*.select-op[ng-reflect-model="P"]{*/
+/*    color: #F3A412;*/
+/*}*/
+.select-op{
+    color: black;
+}
+.p{
+    color: #F3A412;
+}
+.c{
+    color: #52BD94;
+}
+.k{
+    color: #D14343;
+}
+
+select{
+    position: absolute;
+    width: 59px;
+    height: 32px;
+    left: 10px;
+    top: 12px;
+
+    /* Neutral/Background White - N0 */
+    display: inline-block;
+    /*background: #FFFFFF;*/
+    /* Neutral/Border Normal - N400 */
+    border: 1px solid #D8DAE5;
+    box-sizing: border-box;
+    /*padding-left: 3px;*/
+    border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='18' viewBox='0 0 24 24' width='18' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+    padding-left: 10px;
+}

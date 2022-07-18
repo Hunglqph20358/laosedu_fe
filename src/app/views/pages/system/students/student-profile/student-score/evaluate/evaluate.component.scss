@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    height: 56px;
+    padding: 10px;
+    background: transparent;
+    padding-left: 0;
+}
+
+.justify-center {
+    justify-content: center;
+}

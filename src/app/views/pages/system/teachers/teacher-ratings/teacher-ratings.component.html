@@ -1,0 +1,371 @@
+<div style="position: relative; height: 100%">
+  <div id="loadpagepr" [ngClass]="{'page-loading-class' : isLoading}" >
+    <div id="loadpage" class="bee-spinner-sc"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <div class="menu-action-subject" style="display: flex; align-items: center">
+        <h3 class="pl-3">{{'TEACHER_RATING.INFO' | translate}}</h3>
+        <div class="list-action-subject">
+          <button class="btn-action-subject blue"
+                  (keydown.enter)="openModalUploadSampleFile(templateUploadSampleFile)" (click)="openModalUploadSampleFile(templateUploadSampleFile)"
+                  *ngIf="justAdmin">
+            <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2.70312 2.97656H7.29688C7.87843 2.97656 8.35156 2.50343 8.35156 1.92188V1.05469C8.35156 0.473133 7.87843 0 7.29688 0H2.70312C2.12157 0 1.64844 0.473133 1.64844 1.05469V1.92188C1.64844 2.50343 2.12157 2.97656 2.70312 2.97656Z"
+                fill="white"/>
+              <path
+                d="M9.05469 1.57715V1.92173C9.05469 2.89098 8.26613 3.67954 7.29688 3.67954H2.70312C1.73387 3.67954 0.945312 2.89098 0.945312 1.92173V1.57715C0.571625 1.90087 0.335938 2.37843 0.335938 2.9061V10.242C0.335938 11.2113 1.12449 11.9999 2.09375 11.9999H7.90625C8.87551 11.9999 9.66406 11.2113 9.66406 10.242V2.9061C9.66406 2.37843 9.42838 1.90087 9.05469 1.57715ZM3.41108 8.98068C3.52393 9.13867 3.48734 9.35823 3.32935 9.47111C3.26741 9.51534 3.19602 9.53662 3.1253 9.53662C3.01562 9.53662 2.90755 9.48543 2.83892 9.38938L2.65625 9.13363L2.47358 9.38938C2.40495 9.48543 2.29688 9.53662 2.1872 9.53662C2.11646 9.53662 2.04509 9.51536 1.98315 9.47111C1.82516 9.35826 1.78857 9.13867 1.90142 8.98068L2.2242 8.52878L1.90142 8.07688C1.78857 7.91889 1.82516 7.69933 1.98315 7.58645C2.14114 7.4736 2.3607 7.51019 2.47358 7.66818L2.65625 7.92391L2.83892 7.66816C2.9518 7.51016 3.17134 7.47358 3.32935 7.58643C3.48734 7.69928 3.52393 7.91887 3.41108 8.07686L3.0883 8.52876L3.41108 8.98068ZM3.76986 5.4752L2.83236 6.59786C2.76514 6.67834 2.66602 6.72407 2.56255 6.72407C2.54905 6.72407 2.53552 6.7233 2.52193 6.72173C2.4042 6.70806 2.30127 6.63597 2.24818 6.52998L1.87318 5.78153C1.7862 5.60795 1.85642 5.39671 2.03 5.30973C2.2036 5.22276 2.41482 5.29298 2.5018 5.46655L2.63649 5.73538L3.23014 5.02448C3.35462 4.87544 3.57631 4.85554 3.72533 4.97997C3.87437 5.10445 3.89429 5.32616 3.76986 5.4752ZM7.8125 8.90987H5.75C5.55584 8.90987 5.39844 8.75247 5.39844 8.55831C5.39844 8.36416 5.55584 8.20675 5.75 8.20675H7.8125C8.00666 8.20675 8.16406 8.36416 8.16406 8.55831C8.16406 8.75247 8.00666 8.90987 7.8125 8.90987ZM7.8125 6.16274H5.75C5.55584 6.16274 5.39844 6.00534 5.39844 5.81118C5.39844 5.61702 5.55584 5.45962 5.75 5.45962H7.8125C8.00666 5.45962 8.16406 5.61702 8.16406 5.81118C8.16406 6.00534 8.00666 6.16274 7.8125 6.16274Z"
+                fill="white"/>
+            </svg>
+            {{'TEACHER_RATING.FILE0' | translate}}
+          </button>
+          <button [disabled]="disableIsMe()" class="btn-action-subject blue"
+                  (keydown.enter)="openModal(templateImport, true)" (click)="openModal(templateImport, true)"
+                  *ngIf="[0, 1, 2].includes(role)">
+            <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2.70312 2.97656H7.29688C7.87843 2.97656 8.35156 2.50343 8.35156 1.92188V1.05469C8.35156 0.473133 7.87843 0 7.29688 0H2.70312C2.12157 0 1.64844 0.473133 1.64844 1.05469V1.92188C1.64844 2.50343 2.12157 2.97656 2.70312 2.97656Z"
+                fill="white"/>
+              <path
+                d="M9.05469 1.57715V1.92173C9.05469 2.89098 8.26613 3.67954 7.29688 3.67954H2.70312C1.73387 3.67954 0.945312 2.89098 0.945312 1.92173V1.57715C0.571625 1.90087 0.335938 2.37843 0.335938 2.9061V10.242C0.335938 11.2113 1.12449 11.9999 2.09375 11.9999H7.90625C8.87551 11.9999 9.66406 11.2113 9.66406 10.242V2.9061C9.66406 2.37843 9.42838 1.90087 9.05469 1.57715ZM3.41108 8.98068C3.52393 9.13867 3.48734 9.35823 3.32935 9.47111C3.26741 9.51534 3.19602 9.53662 3.1253 9.53662C3.01562 9.53662 2.90755 9.48543 2.83892 9.38938L2.65625 9.13363L2.47358 9.38938C2.40495 9.48543 2.29688 9.53662 2.1872 9.53662C2.11646 9.53662 2.04509 9.51536 1.98315 9.47111C1.82516 9.35826 1.78857 9.13867 1.90142 8.98068L2.2242 8.52878L1.90142 8.07688C1.78857 7.91889 1.82516 7.69933 1.98315 7.58645C2.14114 7.4736 2.3607 7.51019 2.47358 7.66818L2.65625 7.92391L2.83892 7.66816C2.9518 7.51016 3.17134 7.47358 3.32935 7.58643C3.48734 7.69928 3.52393 7.91887 3.41108 8.07686L3.0883 8.52876L3.41108 8.98068ZM3.76986 5.4752L2.83236 6.59786C2.76514 6.67834 2.66602 6.72407 2.56255 6.72407C2.54905 6.72407 2.53552 6.7233 2.52193 6.72173C2.4042 6.70806 2.30127 6.63597 2.24818 6.52998L1.87318 5.78153C1.7862 5.60795 1.85642 5.39671 2.03 5.30973C2.2036 5.22276 2.41482 5.29298 2.5018 5.46655L2.63649 5.73538L3.23014 5.02448C3.35462 4.87544 3.57631 4.85554 3.72533 4.97997C3.87437 5.10445 3.89429 5.32616 3.76986 5.4752ZM7.8125 8.90987H5.75C5.55584 8.90987 5.39844 8.75247 5.39844 8.55831C5.39844 8.36416 5.55584 8.20675 5.75 8.20675H7.8125C8.00666 8.20675 8.16406 8.36416 8.16406 8.55831C8.16406 8.75247 8.00666 8.90987 7.8125 8.90987ZM7.8125 6.16274H5.75C5.55584 6.16274 5.39844 6.00534 5.39844 5.81118C5.39844 5.61702 5.55584 5.45962 5.75 5.45962H7.8125C8.00666 5.45962 8.16406 5.61702 8.16406 5.81118C8.16406 6.00534 8.00666 6.16274 7.8125 6.16274Z"
+                fill="white"/>
+            </svg>
+            {{'TEACHER_RATING.FILE1' | translate}}
+          </button>
+          <button [disabled]="disableNotMe()" class="btn-action-subject gray"
+                  (keydown.enter)="openModalTemplate(managerRate1)" (click)="openModalTemplate(managerRate1)"
+                  *ngIf="[1, 2].includes(role)">
+            <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2.70312 2.97656H7.29688C7.87843 2.97656 8.35156 2.50343 8.35156 1.92188V1.05469C8.35156 0.473133 7.87843 0 7.29688 0H2.70312C2.12157 0 1.64844 0.473133 1.64844 1.05469V1.92188C1.64844 2.50343 2.12157 2.97656 2.70312 2.97656Z"
+                fill="white"/>
+              <path
+                d="M9.05469 1.57715V1.92173C9.05469 2.89098 8.26613 3.67954 7.29688 3.67954H2.70312C1.73387 3.67954 0.945312 2.89098 0.945312 1.92173V1.57715C0.571625 1.90087 0.335938 2.37843 0.335938 2.9061V10.242C0.335938 11.2113 1.12449 11.9999 2.09375 11.9999H7.90625C8.87551 11.9999 9.66406 11.2113 9.66406 10.242V2.9061C9.66406 2.37843 9.42838 1.90087 9.05469 1.57715ZM3.41108 8.98068C3.52393 9.13867 3.48734 9.35823 3.32935 9.47111C3.26741 9.51534 3.19602 9.53662 3.1253 9.53662C3.01562 9.53662 2.90755 9.48543 2.83892 9.38938L2.65625 9.13363L2.47358 9.38938C2.40495 9.48543 2.29688 9.53662 2.1872 9.53662C2.11646 9.53662 2.04509 9.51536 1.98315 9.47111C1.82516 9.35826 1.78857 9.13867 1.90142 8.98068L2.2242 8.52878L1.90142 8.07688C1.78857 7.91889 1.82516 7.69933 1.98315 7.58645C2.14114 7.4736 2.3607 7.51019 2.47358 7.66818L2.65625 7.92391L2.83892 7.66816C2.9518 7.51016 3.17134 7.47358 3.32935 7.58643C3.48734 7.69928 3.52393 7.91887 3.41108 8.07686L3.0883 8.52876L3.41108 8.98068ZM3.76986 5.4752L2.83236 6.59786C2.76514 6.67834 2.66602 6.72407 2.56255 6.72407C2.54905 6.72407 2.53552 6.7233 2.52193 6.72173C2.4042 6.70806 2.30127 6.63597 2.24818 6.52998L1.87318 5.78153C1.7862 5.60795 1.85642 5.39671 2.03 5.30973C2.2036 5.22276 2.41482 5.29298 2.5018 5.46655L2.63649 5.73538L3.23014 5.02448C3.35462 4.87544 3.57631 4.85554 3.72533 4.97997C3.87437 5.10445 3.89429 5.32616 3.76986 5.4752ZM7.8125 8.90987H5.75C5.55584 8.90987 5.39844 8.75247 5.39844 8.55831C5.39844 8.36416 5.55584 8.20675 5.75 8.20675H7.8125C8.00666 8.20675 8.16406 8.36416 8.16406 8.55831C8.16406 8.75247 8.00666 8.90987 7.8125 8.90987ZM7.8125 6.16274H5.75C5.55584 6.16274 5.39844 6.00534 5.39844 5.81118C5.39844 5.61702 5.55584 5.45962 5.75 5.45962H7.8125C8.00666 5.45962 8.16406 5.61702 8.16406 5.81118C8.16406 6.00534 8.00666 6.16274 7.8125 6.16274Z"
+                fill="white"/>
+            </svg>
+            {{'TEACHER_RATING.FILE2' | translate}}
+          </button>
+          <button [disabled]="disableApprove()" class="btn-action-subject orange"
+                  (keydown.enter)="openModalTemplate(approve1)" (click)="openModalTemplate(approve1)"
+                  *ngIf="[2].includes(role)">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M8.80078 6.42188C7.26288 6.42188 6.01172 7.67304 6.01172 9.21094C6.01172 10.7488 7.26288 12 8.80078 12C10.3516 12 11.6133 10.7488 11.6133 9.21094C11.6133 7.67304 10.3516 6.42188 8.80078 6.42188ZM9.65679 8.87351L8.71929 9.99851C8.65207 10.0792 8.55286 10.125 8.44924 10.125C8.43577 10.125 8.42224 10.1242 8.40867 10.1227C8.29083 10.109 8.18782 10.0368 8.13476 9.93066L7.75976 9.18066C7.67292 9.00701 7.74333 8.79581 7.91698 8.709C8.09062 8.62212 8.30182 8.69255 8.38866 8.86622L8.52326 9.13542L9.11663 8.42337C9.24094 8.27423 9.46263 8.2541 9.61177 8.37834C9.76095 8.50266 9.7811 8.72433 9.65679 8.87351Z"
+                fill="white"/>
+              <path
+                d="M8.64926 2.0028L7.22281 0.527672C7.22213 0.526969 7.22142 0.526242 7.22074 0.525539C6.89231 0.191555 6.4353 0 5.96695 0H1.44141C0.859852 0 0.386719 0.473133 0.386719 1.05469V10.1719C0.386719 10.7534 0.859852 11.2266 1.44141 11.2266H5.95055C5.54641 10.6567 5.30859 9.96113 5.30859 9.21094C5.30859 7.28534 6.87518 5.71875 8.80078 5.71875C8.91942 5.71875 9.03668 5.7247 9.15234 5.73616V3.23391C9.15234 2.77057 8.97368 2.33344 8.64926 2.0028ZM4.11328 7.85156H2.23828C2.04412 7.85156 1.88672 7.69416 1.88672 7.5C1.88672 7.30584 2.04412 7.14844 2.23828 7.14844H4.11328C4.30744 7.14844 4.46484 7.30584 4.46484 7.5C4.46484 7.69416 4.30744 7.85156 4.11328 7.85156ZM4.11328 5.97656H2.23828C2.04412 5.97656 1.88672 5.81916 1.88672 5.625C1.88672 5.43084 2.04412 5.27344 2.23828 5.27344H4.11328C4.30744 5.27344 4.46484 5.43084 4.46484 5.625C4.46484 5.81916 4.30744 5.97656 4.11328 5.97656ZM4.11328 4.10156H2.23828C2.04412 4.10156 1.88672 3.94416 1.88672 3.75C1.88672 3.55584 2.04412 3.39844 2.23828 3.39844H4.11328C4.30744 3.39844 4.46484 3.55584 4.46484 3.75C4.46484 3.94416 4.30744 4.10156 4.11328 4.10156ZM6.36328 5.97656H5.98828C5.79413 5.97656 5.63672 5.81916 5.63672 5.625C5.63672 5.43084 5.79413 5.27344 5.98828 5.27344H6.36328C6.55744 5.27344 6.71484 5.43084 6.71484 5.625C6.71484 5.81916 6.55744 5.97656 6.36328 5.97656ZM6.36328 4.10156H5.98828C5.79413 4.10156 5.63672 3.94416 5.63672 3.75C5.63672 3.55584 5.79413 3.39844 5.98828 3.39844H6.36328C6.55744 3.39844 6.71484 3.55584 6.71484 3.75C6.71484 3.94416 6.55744 4.10156 6.36328 4.10156Z"
+                fill="white"/>
+            </svg>
+            {{'TEACHER_RATING.FILE3' | translate}}
+          </button>
+        </div>
+      </div>
+      <div class="row search-subject m-0" [formGroup]="form" *ngIf="form">
+        <div class="col-md-10 col-sm-12 p-0" style="flex-wrap: wrap;">
+          <div class="col-md-3 pr-md-1" style="padding-right: 0px;">
+            <label>{{'TEACHER_RATING.DEPT' | translate}}</label>
+            <nz-tree-select
+              style="width: 100%; max-width: 100%; font-size: 12px!important;"
+              [nzNodes]="listDept"
+              [nzDefaultExpandAll]="true"
+              tabindex="0"
+              #tree
+              (keydown.enter)="tree.openDropdown()"
+              nzPlaceHolder="{{ 'TEACHER.PLACEHOLDER_SELECT' | translate }}"
+              formControlName="deptId"
+              nzShowSearch
+              [nzShowIcon]="true"
+            ></nz-tree-select>
+          </div>
+          <div class="col-md-3 pr-md-1" style="padding-right: 0px;">
+            <label>{{'TEACHER_RATING.SCORE' | translate}}</label>
+            <ng-select style="font-size: 12px!important;" [items]="listScoreRating" bindLabel="name" bindValue="code"
+                       formControlName="score" [searchable]="false" [clearable]="false">
+            </ng-select>
+          </div>
+          <div class="col-md-3 pr-md-1" style="padding-right: 0px;">
+            <label>{{'TEACHER_RATING.STATUS' | translate}}</label>
+            <ng-select style="font-size: 12px!important;" [items]="listRate" bindLabel="name" bindValue="code"
+                       formControlName="status" [searchable]="false" [clearable]="false">
+            </ng-select>
+          </div>
+          <div class="col-md-3 pr-md-1" style="padding-right: 0px;">
+            <label>{{'TEACHER_RATING.TEACHER_NAME' | translate}}</label>
+            <input matInput class="index-focus" type="text" tabindex="0" style="font-size: 12px!important;"
+                   placeholder="{{ 'TEACHER.PLACEHOLDER_INPUT' | translate }}" formControlName="teacherName" (keydown.enter)="searchEvent(1)">
+          </div>
+        </div>
+        <div class="col-md-2 float-right p-0">
+          <button class="w-100 btn-action-subject orange" style="font-size: 12px; margin-top: 10px;"
+                  (click)="searchEvent(1)">{{'TEACHER_RATING.SEARCH' | translate}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="custom-scrollbar horizontally row table-school table-class-room w-100 mt-5 pl-3">
+      <ag-grid-angular
+        [suppressRowTransform]="true" [suppressRowClickSelection]="true"
+        style="width: 100%; height: 545px;"
+        class="ag-theme-balham" [rowData]="dataGrid " [columnDefs]="columnDefs"
+        [headerHeight]="headerHeight"
+        [rowSelection]="'multiple'" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+        (rowSelected)="onRowSelected($event)" [frameworkComponents]="frameworkComponents"
+        [rowHeight]="rowHeight" (gridReady)="onGridReady($event)"
+        (gridSizeChanged)="gridSizeChanged($event)">
+      </ag-grid-angular>
+    </div>
+    <div class="sy-paging w-100 row align-items-center" *ngIf="totalRecord >0">
+      <span class="sy-paging-result">{{first}}-{{last}} {{ 'TEACHER_RATING.OF' | translate }} {{totalRecord}} {{ 'TEACHER_RATING.RESULT' | translate }}</span>
+      <ul>
+        <li><i class="fas fa-angle-double-left arrow" style="transform: translateX(18px);" (click)="page(1)"></i></li>
+        <li><i class="fas fa-angle-left arrow" (click)="prev()"></i></li>
+        <li class="sy-page"
+            [class.sy-highlight]="i === this._page"
+            [class.sy-dots]="i === '...'"
+            *ngFor="let i of rangeWithDots"
+            (click)="i !== '...' && page(i)">
+          {{ i }}
+        </li>
+        <li><i class="fas fa-angle-right arrow" (click)="next()"></i></li>
+        <li><i class="fas fa-angle-double-right arrow" style="transform: translateX(-18px);" (click)="page(totalPage)"></i></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <ng-template #templateUploadSampleFile>
+    <div class="modal-content modal-dialog-custom">
+      <div class="modal-header" style="    flex-direction: column;">
+        <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER_RATING.IMPORT.SAMPLE_FILE.TITLE' | translate }}</h4>
+      </div>
+      <div class="modal-body" style="padding: 15px 10px !important;">
+        <div class="row">
+          <div class="title-list-file">
+            <p style="font-size: 12px; display: flex; width: 100%;">
+              {{ 'TEACHER_RATING.IMPORT.SAMPLE_FILE.CURRENT_SAMPLE' | translate }}:
+
+              <a tabindex="0" class="not-focus three-dots" (keydown.enter)="currentSampleFileName ? exportTemplate() : ''" (click)="currentSampleFileName ? exportTemplate() : ''"
+                style="cursor: pointer;" [title]="currentSampleFileName" [class.cursor-default]="!currentSampleFileName">
+                {{currentSampleFileName || 'TEACHER_RATING.IMPORT.SAMPLE_FILE.HAS_NOT' | translate }}
+              </a>
+            </p>
+          </div>
+          <div class="upload-file">
+            <input #file type="file" id="upload-file" style="display: none;"
+                   (change)="upload(file.files, file)">
+            <label for="upload-file" tabindex="0" class="btn-action-subject index-focus file" (keydown.enter)="file.click()">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7.69882 7.5628L6.29258 5.45342C6.16212 5.25771 5.83801 5.25771 5.70755 5.45342L4.30131 7.5628C4.22954 7.67061 4.2227 7.80931 4.2838 7.92364C4.3449 8.03797 4.46403 8.10938 4.59381 8.10938H4.94537V10.5703C4.94537 10.7646 5.10261 10.9219 5.29693 10.9219H6.70318C6.8975 10.9219 7.05474 10.7646 7.05474 10.5703V8.10938H7.4063C7.53607 8.10938 7.65521 8.03797 7.71633 7.92364C7.77746 7.80931 7.77056 7.67061 7.69882 7.5628Z"
+                  fill="white"/>
+                <path
+                  d="M10.206 4.11183C10.1751 3.69169 10.0045 3.29975 9.70413 2.99935C9.24981 2.54503 8.56588 2.40917 7.96511 2.57689C7.38742 1.64796 6.39362 1.07812 5.29689 1.07812C3.64824 1.07812 2.29041 2.34532 2.14861 3.98642C0.918471 4.29713 0 5.41738 0 6.70314C0 8.25393 1.28515 9.51564 2.83594 9.51564H4.2422V8.75245C3.99774 8.66627 3.79004 8.49152 3.66369 8.25496C3.48001 7.91197 3.50026 7.49725 3.71588 7.17315L5.12249 5.06342C5.31439 4.77537 5.64261 4.60372 6.00001 4.60372C6.35741 4.60372 6.68563 4.77537 6.87754 5.06342L8.28379 7.1728C8.49974 7.49725 8.51999 7.91197 8.33631 8.25496C8.20996 8.49152 8.00226 8.66627 7.7578 8.75245V9.51564H9.16406C10.7148 9.51564 12 8.25393 12 6.70314C12 5.54286 11.2722 4.53645 10.206 4.11183Z"
+                  fill="white"/>
+              </svg>
+              {{'TEACHER_RATING.IMPORT.DOWNLOAD' | translate}}
+            </label>
+            <span class="dingdang">{{'TEACHER_RATING.IMPORT.VALIDATE' | translate}}</span>
+          </div>
+          <div class="info-file" *ngIf="fileName">
+            <div class="file-name " [title]="fileName">{{fileName}}</div>
+            <div class="delete-file index-focus" tabindex="0" (keydown.enter)="removeFile()"
+                 (click)="removeFile()">{{'TEACHER_RATING.IMPORT.DELETE' | translate}}</div>
+          </div>
+          <div class="prosess-bar" *ngIf="fileName"></div>
+          <div class="size-file pb-4" *ngIf="fileSize">
+            <!-- {{fileSize/1024}} KB of {{fileSize/1024}} KB (Đã tải lên 100%) -->
+
+            {{ 'COMMON.UPLOADED' | translate:{sizeFile: fileSize/1024} }}
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="btn-action">
+          <button type="button" class="btn-action-subject btn-md btn-gray index-focus" id="cancelBtn" (click)="closeModalRef()"
+                  tabindex="0">{{'TEACHER_RATING.IMPORT.CANCEL' | translate}}</button>
+          <button type="button" class="btn-action-subject btn-md btn-or index-focus" [disabled]="isShowImport" (click)="uploadSampleFile()"
+                  tabindex="0">{{'TEACHER_RATING.IMPORT.OK' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #templateImport>
+    <div class="modal-content modal-dialog-custom">
+      <div class="modal-header" style="    flex-direction: column;">
+        <h4 class="modal-title"
+            style="text-align: center;">{{(isMe ? 'TEACHER_RATING.IMPORT.IS_ME.TITLE' : 'TEACHER_RATING.IMPORT.NOT_ME.TITLE') | translate}}</h4>
+        <p *ngIf="isMe" class="des mx-3">{{'TEACHER_RATING.IMPORT.IS_ME.DESC' | translate}} {{ years}}</p>
+        <div class="desc"><p *ngIf="!isMe" class="des mx-3">{{'TEACHER_RATING.IMPORT.NOT_ME.DESC' | translate}} <b
+          style="color: #606374">{{(rowCheckedList.length > 0 ? (rowCheckedList[0].fullName) : '') }}</b>  {{'TEACHER_RATING.IN_YEAR' | translate}} {{years}}
+        </p></div>
+
+        <!--      <button type="button" class="close" tabindex="0" (click)="cancelImport()" aria-label="Close">-->
+        <!--        <span aria-hidden="true">&times;</span>-->
+        <!--      </button>-->
+      </div>
+      <div class="modal-body" style="padding: 15px 10px !important;">
+        <div class="row">
+          <div class="title-list-file">
+            <p
+              style="font-size: 14px">{{ (isMe ? 'TEACHER_RATING.IMPORT.UPLOAD' : 'TEACHER_RATING.IMPORT.IS_UPLOAD') | translate}}</p>
+            <div *ngIf="isMe">
+              <p>{{(isMe ? 'TEACHER_RATING.IMPORT.TEMPLATE' : 'TEACHER_RATING.IMPORT.IS_TEMPLATE') | translate}}</p>
+              <a tabindex="0" class="index-focus" (keydown.enter)="exportTemplate()" (click)="exportTemplate()"
+                 style="cursor: pointer;">[{{'TEACHER_RATING.IMPORT.CLICK_DOWNLOAD' | translate}}]</a>
+            </div>
+          </div>
+          <div class="upload-file">
+            <input #file type="file" id="upload-file" style="display: none;"
+                   (change)="upload(file.files, file)">
+            <label for="upload-file" tabindex="0" class="btn-action-subject index-focus file" (keydown.enter)="file.click()">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7.69882 7.5628L6.29258 5.45342C6.16212 5.25771 5.83801 5.25771 5.70755 5.45342L4.30131 7.5628C4.22954 7.67061 4.2227 7.80931 4.2838 7.92364C4.3449 8.03797 4.46403 8.10938 4.59381 8.10938H4.94537V10.5703C4.94537 10.7646 5.10261 10.9219 5.29693 10.9219H6.70318C6.8975 10.9219 7.05474 10.7646 7.05474 10.5703V8.10938H7.4063C7.53607 8.10938 7.65521 8.03797 7.71633 7.92364C7.77746 7.80931 7.77056 7.67061 7.69882 7.5628Z"
+                  fill="white"/>
+                <path
+                  d="M10.206 4.11183C10.1751 3.69169 10.0045 3.29975 9.70413 2.99935C9.24981 2.54503 8.56588 2.40917 7.96511 2.57689C7.38742 1.64796 6.39362 1.07812 5.29689 1.07812C3.64824 1.07812 2.29041 2.34532 2.14861 3.98642C0.918471 4.29713 0 5.41738 0 6.70314C0 8.25393 1.28515 9.51564 2.83594 9.51564H4.2422V8.75245C3.99774 8.66627 3.79004 8.49152 3.66369 8.25496C3.48001 7.91197 3.50026 7.49725 3.71588 7.17315L5.12249 5.06342C5.31439 4.77537 5.64261 4.60372 6.00001 4.60372C6.35741 4.60372 6.68563 4.77537 6.87754 5.06342L8.28379 7.1728C8.49974 7.49725 8.51999 7.91197 8.33631 8.25496C8.20996 8.49152 8.00226 8.66627 7.7578 8.75245V9.51564H9.16406C10.7148 9.51564 12 8.25393 12 6.70314C12 5.54286 11.2722 4.53645 10.206 4.11183Z"
+                  fill="white"/>
+              </svg>
+              {{'TEACHER_RATING.IMPORT.DOWNLOAD' | translate}}
+            </label>
+            <span class="dingdang">{{'TEACHER_RATING.IMPORT.VALIDATE' | translate}}</span>
+          </div>
+          <div class="info-file" *ngIf="fileName">
+            <div class="file-name " title="{{fileName}}">{{fileName}}</div>
+            <div class="delete-file index-focus" tabindex="0" (keydown.enter)="removeFile()"
+                 (click)="removeFile()">{{'TEACHER_RATING.IMPORT.DELETE' | translate}}</div>
+          </div>
+          <div class="prosess-bar" *ngIf="fileName"></div>
+          <div class="size-file pb-4" *ngIf="fileSize">
+            <!-- {{fileSize/1024}} KB of {{fileSize/1024}} KB (Đã tải lên 100%) -->
+            {{ 'COMMON.UPLOADED' | translate:{sizeFile: fileSize} }}
+          </div>
+          <div class="col-md-12 p-0" *ngIf="!isMe">
+            <label class="required">{{'TEACHER_RATING.IMPORT_SCORE' | translate}}</label>
+            <ng-select style="font-size: 12px" [items]="listScoreRatingDefault" bindLabel="name" bindValue="code"
+                       [searchable]="false" [(ngModel)]="scorePopup" [clearable]="false">
+            </ng-select>
+            <div style="color: red" *ngIf="!scorePopup && isSubmitImport">{{ 'TEACHER_RATING.IMPORT.SCORE_BLANK' | translate }}</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="btn-action">
+          <button type="button" class="btn-action-subject btn-md btn-gray index-focus" id="cancelBtn" (click)="isMe ? closeModalRef() : openModalTemplate(managerRate1)"
+                  tabindex="0">{{'TEACHER_RATING.IMPORT.CANCEL' | translate}}</button>
+          <button type="button" class="btn-action-subject btn-md btn-or index-focus" [disabled]="isShowImport" (click)="importFile()"
+                  tabindex="0">{{'TEACHER_RATING.IMPORT.OK' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #templateApprove>
+    <div class="modal-content modal-dialog-custom">
+      <div class="modal-header" style="    flex-direction: column;">
+        <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER_RATING.IMPORT.APPROVE.TITLE' | translate}}</h4>
+        <p style="font-size: 14px">{{ 'TEACHER_RATING.IMPORT.APPROVE.DESC' | translate}}</p>
+
+      </div>
+      <div class="modal-footer" style="padding: 10px 0">
+        <div class="btn-action">
+          <button type="button" class="btn-action-subject btn-md btn-gray index-focus" id="cancelBtnApprove"
+                  (click)="openModalTemplate(approve1)">{{'TEACHER_RATING.IMPORT.CANCEL' | translate}}</button>
+          <button type="button" class="btn-action-subject btn-md btn-or index-focus"
+                  (click)="approve()">{{'TEACHER_RATING.IMPORT.CONFIRM' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #managerRate1>
+    <div class="modal-content modal-dialog-custom">
+      <div *ngIf="nestedModal" class="background"></div>
+      <div class="modal-header" style="flex-direction: column;">
+        <h4 class="modal-title" style="text-align: center;"> {{ 'TEACHER_RATING.MANAGE_FORM.TITLE' | translate }}</h4>
+        <p class="sub-title">
+          {{ 'TEACHER_RATING.MANAGE_FORM.SUB_TITLE' | translate }}
+          <br>
+          <span>{{rowCheckedList[0].fullName}}</span> {{ 'TEACHER_RATING.IN_YEAR' | translate }} <span>[{{years}}]</span>
+        </p>
+      </div>
+
+      <div class="modal-body">
+        <span class="manager-rate-text">{{ 'TEACHER_RATING.MANAGE_FORM.TITLE_BODY' | translate }}:</span>
+        <a class="download" href="javascript:;" (click)="downloadFile(false)">[{{ 'TEACHER_RATING.CLICK_TO_DOWNLOAD_SELF' | translate }} {{rowCheckedList[0].fullName}}]</a>
+      </div>
+
+      <div class="modal-footer">
+        <div class="btn-action">
+          <button [hidden]="rowCheckedList[0].statusCode === 'NotApprove'" type="button" class="btn-action-subject btn-md btn-gray index-focus" style="width: 147px;" id="cancelBtnApprove"
+                  (click)="openModalReject(rejectRate, false)">{{ 'TEACHER_RATING.REJECT.RATE' | translate }}</button>
+          <button type="button" class="btn-action-subject btn-md btn-or index-focus"
+                  (click)="openModal(templateImport, false)">{{ 'TEACHER_RATING.RATE' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #rejectRate>
+    <div class="modal-content modal-dialog-custom" style="height: 300px;">
+      <div class="modal-header" style="flex-direction: column;">
+        <h4 *ngIf="!isApprove" class="modal-title" style="text-align: center; color: #101840;">{{ 'TEACHER_RATING.REJECT.RATE' | translate }}</h4>
+        <h4 *ngIf="isApprove" class="modal-title" style="text-align: center; color: #101840;">{{ 'TEACHER_RATING.REJECT.APPROVE2' | translate }}</h4>
+      </div>
+
+      <div class="modal-body">
+        <span *ngIf="!isApprove" class="reason-text required">{{ 'TEACHER_RATING.REJECT.INPUT_REASON_RATE' | translate }}</span>
+        <span *ngIf="isApprove" class="reason-text required">{{ 'TEACHER_RATING.REJECT.INPUT_REASON_APPROVE' | translate }}</span>
+        <textarea class="reason-not-rate" [(ngModel)]="reason">
+        </textarea>
+      </div>
+
+      <div class="modal-footer" style="padding: 10px 0">
+        <div class="btn-action">
+          <button type="button" class="btn-action-subject btn-md btn-gray index-focus" id="cancelBtnApprove"
+                  (click)="isApprove ? openModalTemplate(approve1) : openModalTemplate(managerRate1)">{{'TEACHER_RATING.IMPORT.CANCEL' | translate}}</button>
+          <button type="button" class="btn-action-subject btn-md btn-or index-focus"
+                  (click)="reject()">{{'TEACHER_RATING.IMPORT.OK' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #approve1>
+    <div class="modal-content modal-dialog-custom">
+      <div *ngIf="nestedModal" class="background"></div>
+      <div class="modal-header" style="flex-direction: column;">
+        <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER_RATING.APPROVE_FORM.TITLE' | translate }}</h4>
+        <p class="sub-title" style="width: 76%;">
+          {{ 'TEACHER_RATING.APPROVE_FORM.SUB_TITLE' | translate }} <span>[{{years}}]</span>
+        </p>
+      </div>
+
+      <div class="modal-body">
+        <div class="info">
+          <span class="basic">{{ 'TEACHER_RATING.IS_RATED' | translate }}:</span>
+          <span class="user">{{rowCheckedList[0].teacherCode }} - {{rowCheckedList[0].fullName}}</span>
+        </div>
+        <div class="info">
+          <span class="basic">{{ 'TEACHER_RATING.RATER' | translate }}:</span>
+          <span class="user">{{rowCheckedList[0].assessor}} - {{rowCheckedList[0].assessorName}}</span>
+        </div>
+        <a class="download" href="javascript:;" (click)="downloadFile(true)">[{{ 'TEACHER_RATING.CLICK_TO_DOWNLOAD_RATE' | translate }} {{rowCheckedList[0].fullName}}]</a>
+      </div>
+
+      <div class="modal-footer">
+        <div class="btn-action">
+          <button type="button" class="btn-action-subject btn-md btn-gray index-focus" style="width: 147px;" id="cancelBtnApprove"
+                  (click)="openModalReject(rejectRate, true)">{{ 'TEACHER_RATING.REJECT.APPROVE' | translate }}</button>
+          <button type="button" class="btn-action-subject btn-md btn-or index-focus"
+                  (click)="openModalApprove(templateApprove)">{{ 'TEACHER_RATING.FILE3' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
+</div>

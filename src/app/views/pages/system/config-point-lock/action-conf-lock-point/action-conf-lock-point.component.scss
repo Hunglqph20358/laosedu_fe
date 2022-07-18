@@ -1,0 +1,74 @@
+.action-shool:hover i {
+  color: #F26522;
+}
+
+.title-action {
+  cursor: pointer;
+}
+
+.btn-action-sc {
+  width: 94px;
+  height: 27px;
+  cursor: pointer;
+  padding-left: 10px;
+
+  svg {
+    margin-right: 6px;
+  }
+
+  border-radius: 2px;
+}
+
+.edit {
+  background: #F3F6FF;
+  margin-bottom: 8px;
+}
+
+.delete {
+  background: #F3F6FF;
+}
+
+ul {
+  display: none;
+  margin-left: 0px;
+  z-index: 99999999;
+  position: absolute;
+  left: -113px;
+  top: -12px;
+  width: 114px;
+  background: #FFFFFF;
+  //box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  padding: 10px;
+  list-style: none;
+}
+
+.action-shool {
+  position: relative;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.action-shool::before {
+  content: '';
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 0;
+  left: -17px;
+}
+.action-shool:hover ul {
+  display: block;
+}
+.last-ele {
+  margin-left: 0px;
+  z-index: 99999999;
+  position: absolute;
+  left: -113px;
+  top: -54px;
+  width: 114px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  padding: 10px;
+  list-style: none;
+}

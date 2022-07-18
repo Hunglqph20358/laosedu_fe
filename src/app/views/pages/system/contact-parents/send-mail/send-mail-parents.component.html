@@ -1,0 +1,173 @@
+<article id="send-mail" style="position: relative; height: 100%;" class="pl-14 pr-10">
+  <div id="loadpagepr" [ngClass]="{'page-loading-class' : loading}" >
+    <div id="loadpage" class="bee-spinner-sc"></div>
+  </div>
+  <div class="row" style="position:relative;">
+    <div class="col-md-4">
+      <div class="tree-view mb-5 tree-view-1">
+        <kt-tree-view
+          [config]="config1"
+          [items]="items1"
+          selectAllTitle="{{ 'PARENT_CONTACT.SEND_MAIL.ALL_PARENT' | translate }}"
+          [total]="listTreeViewParentRaw['studentRegisterTotal']"
+          (selectByGroupValueChange)="selectByGroupValueChange($event)"
+          (reloadData)="onReloadData($event)"
+          (valueChange)="treeviewValueChange($event)">
+        </kt-tree-view>
+      </div>
+      <div class="tree-view mb-5 tree-view-2">
+        <kt-tree-view [config]="config2"
+                      [items]="items2"
+                      selectAllTitle="{{ 'PARENT_CONTACT.SEND_MAIL.CONTACT_GROUP' | translate }}"
+                      (valueChange)="groupTeacherValueChange($event)"
+        ></kt-tree-view>
+        <div class="dropdown-divider" style="margin-bottom: 0;margin-right: -7px;"></div>
+        <div style="padding: 16px; margin-right: -7px">
+          <div class="create-group-btn" (click)="navigateTo()">
+            <svg width="12" class="mr-2" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" width="2" height="12" rx="1" fill="#3366FF"/>
+              <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="#3366FF"/>
+            </svg>
+            {{ 'PARENT_CONTACT.SEND_MAIL.CREATE_CONTACT_GROUP' | translate }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="mail-form h-100 d-flex flex-column justify-content-between" [formGroup]="mailFormGroup">
+        <div>
+          <div class="form-header">
+            <span class="text-uppercase font-size-18" style="color: #101840; font-weight: 700">{{ 'PARENT_CONTACT.SEND_MAIL.RECEIVER' | translate }}: </span>
+            <span class="text-uppercase font-size-18" style="color: #696F8C; font-weight: 700">{{listRecipientTeacher().length}} {{ 'PARENT_CONTACT.SEND_MAIL.PARENT_STUDENT' | translate }}</span>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="mt-5">
+            <strong class="mb-2 d-block" style="color: #474D66;font-size: 14px;line-height: 24px; font-family: Inter; font-weight: 600 !important;">{{ 'PARENT_CONTACT.SEND_MAIL.LIST_RECEIVER' | translate }}</strong>
+            <div class="list-recipient" *ngIf="sendType() === '4'">
+              <span class="custom-class" #listTeacher style="font-weight: 600 !important;font-size: 12px !important;line-height: 20px !important; color: #101840 !important; margin-top: 3px">{{listRecipientTeacher()?.join(', ')}}</span>
+              <span class="see-more" *ngIf="shouldShowBtn(listTeacher)" (click)="openDialog()" style="color: #3366FF;font-weight: 500;font-size: 12px;line-height: 20px; margin-top: 3px;">{{ 'PARENT_CONTACT.SEND_MAIL.SEE_MORE' | translate }}</span>
+            </div>
+            <div class="list-recipient" *ngIf="sendType() === '0'">
+              <span class="group-item text-bold mr-2 custom-class">{{ 'PARENT_CONTACT.SEND_MAIL.ALL_PARENT' | translate }}</span>
+            </div>
+            <div class="list-recipient" style="overflow-x: auto; overflow-y: hidden" *ngIf="sendType() === '2' || sendType() === '3' || sendType() === '1'">
+              <div style="display: flex; align-items: center;" class="group-item text-bold mr-2" *ngFor="let item of listRecipientGroup()">
+                <span id="group" class="group-namegv custom-class">{{item.groupName || item.name}}</span>
+                <svg class="mx-2 cursor-pointer" width="10" height="10" viewBox="0 0 10 10" fill="none" (click)="removeGroup(item)">
+                  <path d="M8.5 1L1 8.5" stroke="#B0B7C3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M1 1L8.5 8.5" stroke="#B0B7C3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <i style="color: red; font-weight: 400;font-size: 14px;line-height: 24px;  display: flex; justify-content: flex-end;" *ngIf="listRecipientGroup().length === 1 && roleGVCN === 1 && this.isView2 === true">Số tin nhắn đã gửi cho toàn thể lớp: {{totalSMSGroup}}</i>          </div>
+          <div class="mt-5">
+            <strong class="mb-2 d-block" style="color: #474D66;font-weight: 600;font-size: 14px;line-height: 24px !important;">{{ 'PARENT_CONTACT.SEND_MAIL.TYPE_MESSAGE.LABEL' | translate }}</strong>
+            <ng-select [items]="mailTypes" style="font-size: 12px; width: 200px; font-weight: 400; color: #101840; line-height: 16px!important;" [bindLabel]="'label'" [bindValue]="'value'" [clearable]="false" formControlName="mailType" [markFirst]="true" [searchable]="false"
+              [matTooltip]="selectedLabel" (change)="onChangeLabel($event.value)">
+              <ng-template ng-option-tmp let-item="item">
+                <div [matTooltip]="item.label" ktTooltipDirective style="font-size: 12px; font-weight: 400; color: #101840; line-height: 16px !important;">{{item.label}}</div>
+              </ng-template>
+            </ng-select>
+          </div>
+
+          <div class="mt-5">
+            <strong class="mb-2 d-block" style="color: #474D66;font-weight: 600;font-size: 14px;line-height: 24px;">{{ 'PARENT_CONTACT.SEND_MAIL.SMS_CONTENT.LABEL' | translate }} <span style="color:red">*</span></strong>
+            <div class="mail-title" [matTooltip]="mailFormGroup.value.smsContent" [matTooltipClass]="'tooltip-class'">
+              <input class="form-control" type="text" style="font-size: 12px; font-weight: 400; color: #101840; line-height: 16px!important;" formControlName="smsContent" (keyup)="onChangeValue()" (keydown)="keydown($event)" (blur)="mailFormGroup.get('smsContent').patchValue(mailFormGroup.value.smsContent?.trim())"/>
+              <div *ngIf="(mailFormGroup.get('smsContent').touched || mailFormGroup.get('smsContent').dirty) && mailFormGroup.get('smsContent').invalid ">
+                <small class="required" *ngIf="mailFormGroup.get('smsContent').errors?.length">{{ 'PARENT_CONTACT.SEND_MAIL.SMS_CONTENT.NOTIFY.LENGTH' | translate }}</small>
+              </div>
+              <div>
+                <small class="required sms-content" *ngIf="this.onChangeValue()">{{ 'PARENT_CONTACT.SEND_MAIL.SMS_CONTENT.NOTIFY.UNICODE' | translate }}</small>
+              </div>
+            </div>
+
+            <div class="checkbox d-flex justify-content-between align-items-center mt-2">
+              <mat-checkbox formControlName="allowUnicode" [disabled]="true"><strong style="margin-left: -6px;color: #101840;font-weight: 500;font-size: 14px;line-height: 24px; font-family: Inter !important;">{{ 'PARENT_CONTACT.SEND_MAIL.ALLOW_UNICODE' | translate}}</strong></mat-checkbox>
+              <i style="color: #696F8C; font-weight: 400;font-size: 14px;line-height: 24px;">{{ 'PARENT_CONTACT.SEND_MAIL.NUMBER_CHAR' | translate}}: {{mailFormGroup.value.smsContent? mailFormGroup.value.smsContent?.trim()?.length : 0}}/ {{ 'PARENT_CONTACT.SEND_MAIL.NUMBER_SMS' | translate }}: {{countSMS()}}</i>
+            </div>
+          </div>
+
+
+          <div class="mt-5">
+            <strong class="mb-2 d-block" style="color: #474D66;font-weight: 600;font-size: 14px;line-height: 24px !important;">{{ 'PARENT_CONTACT.SEND_MAIL.NOTIFICATION_TITLE.LABEL' | translate }}<span style="color:red"> *</span></strong>
+            <div class="mail-title">
+              <input class="form-control" matTooltip="{{mailFormGroup.value.title?.trim()}}" style="background-color:#F4F6FA; font-weight: 400; font-size: 12px; line-height: 16px; font-family: Inter; color:#101840 !important;" type="text" formControlName="title" (blur)="mailFormGroup.get('title').patchValue(mailFormGroup.value.title?.trim())" [matTooltipClass]="'tooltip-class'"/>
+            </div>
+          </div>
+          <div class="mt-5">
+            <strong class="mb-2 d-block" style="color: #474D66;font-weight: 600;font-size: 14px;line-height: 24px;">{{ 'PARENT_CONTACT.SEND_MAIL.NOTIFICATION_CONTENT.LABEL' | translate }}</strong>
+            <div class="mail-title">
+              <kendo-editor formControlName="content" (focus)="log('focusIn')" (blur)="log('focusOut')" style="height: 300px;">
+                <kendo-toolbar>
+                  <kendo-toolbar-buttongroup>
+                    <kendo-toolbar-button kendoEditorBoldButton></kendo-toolbar-button>
+                    <kendo-toolbar-button kendoEditorItalicButton></kendo-toolbar-button>
+                    <kendo-toolbar-button
+                      kendoEditorUnderlineButton
+                    ></kendo-toolbar-button>
+                    <kendo-toolbar-button
+                      kendoEditorStrikethroughButton
+                    ></kendo-toolbar-button>
+                  </kendo-toolbar-buttongroup>
+                  <kendo-toolbar-buttongroup>
+                    <kendo-toolbar-button
+                      kendoEditorAlignLeftButton
+                    ></kendo-toolbar-button>
+                    <kendo-toolbar-button
+                      kendoEditorAlignCenterButton
+                    ></kendo-toolbar-button>
+                    <kendo-toolbar-button
+                      kendoEditorAlignRightButton
+                    ></kendo-toolbar-button>
+                    <kendo-toolbar-button
+                      kendoEditorAlignJustifyButton
+                    ></kendo-toolbar-button>
+                  </kendo-toolbar-buttongroup>
+                  <kendo-toolbar-buttongroup>
+                    <kendo-toolbar-button
+                      kendoEditorInsertUnorderedListButton
+                    ></kendo-toolbar-button>
+                    <kendo-toolbar-button
+                      kendoEditorInsertOrderedListButton
+                    ></kendo-toolbar-button>
+                    <kendo-toolbar-button kendoEditorIndentButton></kendo-toolbar-button>
+                    <kendo-toolbar-button kendoEditorOutdentButton></kendo-toolbar-button>
+                  </kendo-toolbar-buttongroup>
+                </kendo-toolbar>
+              </kendo-editor>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <strong class="mb-2 d-block" style="color: #474D66;font-weight: 600;font-size: 14px;line-height: 24px;">{{ 'PARENT_CONTACT.SEND_MAIL.ATTACH_FILE' | translate }}</strong>
+            <div class="file-upload">
+              <div class="upload-btn-area">
+                <label class="upload-btn" style="font-size: 12px; font-weight: 600; line-height: 16px; height: 28px;" for="files">
+                  <svg class="mb-1 mr-1" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.69882 7.5628L6.29258 5.45342C6.16212 5.25771 5.83801 5.25771 5.70755 5.45342L4.30131 7.5628C4.22954 7.67061 4.2227 7.80931 4.2838 7.92364C4.3449 8.03797 4.46403 8.10938 4.59381 8.10938H4.94537V10.5703C4.94537 10.7646 5.10261 10.9219 5.29693 10.9219H6.70318C6.8975 10.9219 7.05474 10.7646 7.05474 10.5703V8.10938H7.4063C7.53607 8.10938 7.65521 8.03797 7.71633 7.92364C7.77746 7.80931 7.77056 7.67061 7.69882 7.5628Z" fill="white"/>
+                    <path d="M10.206 4.11183C10.1751 3.69169 10.0045 3.29975 9.70413 2.99935C9.24981 2.54503 8.56588 2.40917 7.96511 2.57689C7.38742 1.64796 6.39362 1.07812 5.29689 1.07812C3.64824 1.07812 2.29041 2.34532 2.14861 3.98642C0.918471 4.29713 0 5.41738 0 6.70314C0 8.25393 1.28515 9.51564 2.83594 9.51564H4.2422V8.75245C3.99774 8.66627 3.79004 8.49152 3.66369 8.25496C3.48001 7.91197 3.50026 7.49725 3.71588 7.17315L5.12249 5.06342C5.31439 4.77537 5.64261 4.60372 6.00001 4.60372C6.35741 4.60372 6.68563 4.77537 6.87754 5.06342L8.28379 7.1728C8.49974 7.49725 8.51999 7.91197 8.33631 8.25496C8.20996 8.49152 8.00226 8.66627 7.7578 8.75245V9.51564H9.16406C10.7148 9.51564 12 8.25393 12 6.70314C12 5.54286 11.2722 4.53645 10.206 4.11183Z" fill="white"/>
+                  </svg>
+                  {{ 'PARENT_CONTACT.SEND_MAIL.CHOOSE_FILE' | translate }}
+                </label>
+                <input type="file" id="files" name="files" (change)="onFileChange($event)" class="d-none" multiple accept=".xlsx,.xls, .doc, .docx,.ppt, .pptx,.pdf, .jpg, .jpeg, .png"/>
+                <span class="file-attachment-text"> {{ 'PARENT_CONTACT.SEND_MAIL.EXTENSION_FILE' | translate }}</span></div>
+              <div class="list-file-area mt-2">
+                <div *ngFor="let file of mailFormGroup.value.files; index as i" class="w-50 d-flex justify-content-between my-2">
+                  <div class="d-flex" style="width: calc(100% - 12px)">
+                    <span matTooltip ktTooltipDirective style="font-size: 14px; margin-left: 12px; font-weight: 500; line-height: 24px; color: #474D66">{{file.name}} </span>
+                    <span class="mx-3" style="font-size: 14px; font-weight: 500; line-height: 24px; color: #8F95B2">({{(file.size/1024).toFixed(2)}}KB)</span>
+                  </div>
+                  <i class="fa fa-times text-danger cursor-pointer" (click)="removeFile(i)"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-5 text-center">
+          <button style="color: #696F8C; background: #E6E8F0; border-radius: 4px; width: 113px; height: 40px; font-weight: 600;" class="btn ml-3 text-nowrap" (click)="resetPageData()">{{ 'COMMON.CANCEL' | translate }}</button>
+          <button [disabled]="!checkDisplayButtonSend || mailFormGroup.invalid" [ngClass]="checkDisplayButtonSend? 'class1 btn ml-3 px-8 text-white text-nowrap':'class2 btn ml-3 px-8 text-white text-nowrap'" (click)="sendMail()">{{ 'PARENT_CONTACT.SEND_MAIL.SEND' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

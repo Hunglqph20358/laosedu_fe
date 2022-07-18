@@ -1,0 +1,123 @@
+<div class="row" style="margin-left: 30px;">
+  <div class="col-md-12 col-xs-12">
+    <div class="menu-action-dv">
+      <h3 style="width: 50%;">{{'DILIGENCE.TITLE' | translate}}{{'DILIGENCE.MONTH' | translate}} {{monthValue}}</h3>
+      <h3 style="width: 50%;text-align: end; text-transform: none;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"
+         >{{'DILIGENCE.STUDENT' | translate}}: {{itemCheck?.studentCode}} - <span  [matTooltipPosition]="'after'"  [matTooltip]="userName">{{userName}}</span></h3>
+    </div>
+    <div class="row search-dv" style="margin:0px;">
+      <div class="col-md-12" style="padding: 0;">
+        <div class="row" style="margin: 0;">
+          <div class="col-md-3" style="padding-left: 0">
+            <label>{{'DILIGENCE.SEMESTER' | translate}}</label>
+            <span style="color: #ff0000; margin-left: 2px"> *</span>
+            <ng-select [searchable]="false"
+                       [clearable]="false"
+                       [items]="dataSemester"
+                       bindLabel="name"
+                       [ngModelOptions]="{ standalone: true }"
+                       (ngModelChange)="selectSemester($event)"
+                       bindValue="value"
+                       [(ngModel)]="semester">
+              <ng-template ng-option-tmp let-item="item">
+                <div [title]="item.name">{{ item.name }}</div>
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="col-md-3">
+            <label>{{'DILIGENCE.MONTH' | translate}}</label>
+            <span style="color: #ff0000; margin-left: 2px"> *</span>
+            <ng-select
+              [items]="dataMonth"
+              bindLabel="name"
+              bindValue="value"
+              placeholder="{{'DILIGENCE.MONTH' | translate}}"
+              [(ngModel)]="monthValue"
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="onChangeMonth($event)"
+              [searchable]="false"
+              [clearable]="false"
+              class="sy-select"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div [title]="item.name">{{ item.name }}</div>
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+        <div class="row" style="margin: 0; margin-top: 20px;width: 50%">
+          <table class="w-100 mt-3 table-st">
+            <thead style="height: 56px; ">
+            <tr>
+              <th [attr.rowspan]="1" class="td-header1 text-center"
+                  style="max-width: 126px !important; min-width: 126px !important;">{{'DILIGENCE.PEMISSION_LEAVE' | translate}}
+              </th>
+              <th [attr.rowspan]="1" class="td-header1 text-center"
+                  style="max-width: 126px !important; min-width: 126px !important;">{{'DILIGENCE.AUTHORIZED_ABSENCES' | translate}}
+              </th>
+              <th [attr.rowspan]="1" class="td-header1 text-center"
+                  style="max-width: 126px !important; min-width: 126px !important;">{{'DILIGENCE.HAVE_GO_SCHOOL' | translate}}
+              </th>
+              <th [attr.rowspan]="1" class="td-header3 text-center"
+                  style="max-width: 126px !important; min-width: 126px !important;">{{'DILIGENCE.SUM' | translate}}
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="height: 56px !important;"
+                  class="cell-even td-body text-center">{{itemCheck?.totalRestByReason}}</td>
+              <td style="height: 56px !important;"
+                  class="cell-even td-body text-center">{{itemCheck?.totalRestNoReason}}</td>
+              <td style="height: 56px !important;"
+                  class="cell-even td-body text-center">{{itemCheck?.totalGoingSchool}}</td>
+              <td style="height: 56px !important;" class="cell-even td-body text-center">{{itemCheck?.totalCount}}</td>
+            </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+
+      </div>
+    </div>
+
+    <label class="cacmon">{{'DILIGENCE.DETAIL_DILIGENCE' | translate}} {{monthValue}}</label>
+
+    <table class="w-100 mt-3 table-st">
+      <thead style="height: 56px">
+      <tr>
+        <th *ngFor="let item of lsDay;" [attr.rowspan]="1" class="td-header text-center"
+            style="max-width: 30px !important; min-width: 30px !important;">{{item.name}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of (rowDataTotal|flyingHeroes); let i = index; let even = even; let odd = odd">
+        <td *ngIf="item?.type === 0" style="height: 40px !important;" class="td-body text-center">{{item?.t2}}</td>
+        <td *ngIf="item?.type === 1" style="height: 56px !important;"
+            class="td-body1 text-value{{item?.t2}} text-center">{{(item?.t2 === '-1'|| item?.t2 === '-2') ? '' : item?.t2 }}</td>
+        <td *ngIf="item?.type === 0" style="height: 40px !important;" class="td-body text-center">{{item?.t3}}</td>
+        <td *ngIf="item?.type === 1" style="height: 56px !important;"
+            class="td-body1 text-value{{item?.t3}} text-center">{{(item?.t3 === '-1'|| item?.t3 === '-2') ? '' : item?.t3 }}</td>
+        <td *ngIf="item?.type === 0" style="height: 40px !important;" class="td-body text-center">{{item?.t4}}</td>
+        <td *ngIf="item?.type === 1" style="height: 56px !important;"
+            class="td-body1 text-value{{item?.t4}} text-center">{{(item?.t4 === '-1'|| item?.t4 === '-2') ? '' : item?.t4 }}</td>
+        <td *ngIf="item?.type === 0" style="height: 40px !important;" class="td-body text-center">{{item?.t5}}</td>
+        <td *ngIf="item?.type === 1" style="height: 56px !important;"
+            class="td-body1 text-value{{item?.t5}} text-center">{{(item?.t5 === '-1' || item?.t5 === '-2') ? '' : item?.t5 }}</td>
+        <td *ngIf="item?.type === 0" style="height: 40px !important;" class="td-body text-center">{{item?.t6}}</td>
+        <td *ngIf="item?.type === 1" style="height: 56px !important;"
+            class="td-body1 text-value{{item?.t6}} text-center">{{(item?.t6 === '-1'|| item?.t6 === '-2') ? '' : item?.t6 }}</td>
+        <td *ngIf="item?.type === 0" style="height: 40px !important;" class="td-body text-center">{{item?.t7}}</td>
+        <td *ngIf="item?.type === 1" style="height: 56px !important; background: #FFEFD2"
+            class="td-body text-center text-value{{item?.t7}}">{{(item?.t7 === '-1') ? '' : item?.t7 }}</td>
+        <td *ngIf="item?.type === 0" style="height: 40px !important;" class="td-body text-center">{{item?.t8}}</td>
+        <td *ngIf="item?.type === 1" style="height: 56px !important; background: #DCF2EA"
+            class="td-body text-center text-value{{item?.t8}}">{{(item?.t8 === '-1') ? '' : item?.t8 }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--  </div>-->
+</div>

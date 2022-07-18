@@ -1,0 +1,201 @@
+<div class="ml-6 mr-15 ">
+  <div class="col-12 nav-content ml-5 mr-20 pr-0">
+    <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs">
+      <li [ngbNavItem]="1" class="d-flex align-items-center">
+        <a ngbNavLink class="header pl-0 align-items-center">{{'INBOX_ADMIN.IN' | translate}}</a>
+        <!--        <div class="number f12">{{totalReceived}}</div>-->
+        <ng-template ngbNavContent>
+          <div class="row p-0 mr-0">
+            <div class="col-5 nav-left">
+              <div class="row mt-3 align-items-end mx-0" [formGroup]="form" *ngIf="form" (ngSubmit)="searchEvent()">
+                <div class="col-5 pl-0 pr-1">
+                  <label class="f14">{{'INBOX_ADMIN.RECEIVED_TYPE' | translate}}</label>
+                  <ng-select [items]="listReceivedType" bindLabel="label" bindValue="value"
+                             formControlName="receivedType"
+                             [clearable]="false">
+                             <ng-template ng-option-tmp let-item="item">
+                              <div [matTooltip]="item.label">{{item.label}}</div>
+                            </ng-template>
+                  </ng-select>
+
+                </div>
+                <div class="col-5 px-1">
+                  <label class="f14">{{'INBOX_ADMIN.SEARCH' | translate}}</label>
+                  <input style=" font-size: 12px !important; width: 100%" class="form-control"
+                         [placeholder]="'INBOX_ADMIN.SEARCH_PLACE_HOLDER' | translate"
+                         formControlName="keySearch">
+
+                </div>
+                <div class="col-2 px-0">
+                  <button class="index-focus nav-button f12 i-btn px-0" #searchSchTime
+                          tabindex="0"
+                          (click)="searchEvent()">{{'INBOX_ADMIN.SEARCH' | translate}}</button>
+                </div>
+              </div>
+              <div *ngIf="dataGrid.length === 0" class="scroll-item" style="text-align: center;padding-top: 200px;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.69873 25H30.2467V48H7.45215C6.98712 48 6.54113 47.8136 6.2123 47.4818C5.88347 47.15 5.69873 46.7 5.69873 46.2308V25Z" fill="#C1C4D6"/>
+                <path d="M30.2466 25H42.5206V46.2308C42.5206 46.7 42.3358 47.15 42.007 47.4818C41.6782 47.8136 41.2322 48 40.7671 48H30.2466V25Z" fill="#8F95B2"/>
+                <path d="M30.2466 25L35.726 31.1923H48L42.5206 25H30.2466Z" fill="#D8DAE5"/>
+                <path d="M30.4658 25L24.9863 31.1923H0L5.47945 25H30.4658Z" fill="#D8DAE5"/>
+                <path d="M24 20C29.5228 20 34 15.5228 34 10C34 4.47715 29.5228 0 24 0C18.4772 0 14 4.47715 14 10C14 15.5228 18.4772 20 24 20Z" fill="#C1C4D6"/>
+                <path d="M23.7475 6.84449L24.0657 7.3131L24.3827 6.84449C24.5962 6.62203 24.8523 6.44481 25.1358 6.32338C25.4192 6.20196 25.7242 6.13881 26.0325 6.13771C26.3409 6.13661 26.6463 6.19756 26.9306 6.31696C27.2149 6.43635 27.4723 6.61173 27.6874 6.83266L27.7514 6.89359C28.2155 7.3479 28.4821 7.9666 28.4937 8.61593C28.5053 9.26526 28.2608 9.89307 27.8132 10.3636L27.7514 10.4267L24.0657 14.0274L20.4712 10.4267C20.2361 10.1965 20.0493 9.92169 19.9217 9.61834C19.7942 9.31499 19.7285 8.98923 19.7285 8.66017C19.7285 8.3311 19.7942 8.00534 19.9217 7.70199C20.0493 7.39864 20.2361 7.1238 20.4712 6.89359C20.6743 6.66067 20.9242 6.4731 21.2045 6.34306C21.4848 6.21301 21.7894 6.14342 22.0984 6.13879C22.4074 6.13416 22.7139 6.1946 22.998 6.31618C23.2821 6.43776 23.5375 6.61777 23.7475 6.84449Z" fill="white"/>
+                <defs>
+                  <clipPath id="clip0">
+                    <rect width="48" height="48" fill="white"/>
+                  </clipPath>
+                </defs>
+              </svg>
+              <p style='margin-top: 6px;'>{{"INBOX_ADMIN.NO_INFOR" | translate}}</p>
+              </div>
+              <div class="row scroll-item mt-3 ml-0" *ngIf="dataGrid.length > 0" [ngClass]="{'mr-0': dataGrid.length < 6}">
+                <div *ngFor="let it of dataGrid; let i = index" class="row item mb-3 w-100 m-0"
+                     [ngClass]="{'choose': i === indexChoose}" (click)="detailReceived(it, i)">
+                  <div class="col-12">
+                    <div class="f10 d-flex mt-3">{{"INBOX_ADMIN.AT_TIME" | translate}}&nbsp;{{it.sentDate}}</div>
+                    <div class="f14 mb-2 n-r-title" [matTooltipPosition]="'above'" [matTooltipClass]="'tooltip-class'" [matTooltip]="it.title">{{it.title}}</div>
+                    <div class="f12-item" *ngIf="it.contentSms" [innerHTML]="it.contentWebView?.trim()"></div>
+                    <div class="f12-item" *ngIf="!it.contentSms">{{"INBOX_ADMIN.NO_INFOR" | translate}}</div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!dataDetail" class="text-center nav-right col-7" style="padding-top: 277px;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.69873 25H30.2467V48H7.45215C6.98712 48 6.54113 47.8136 6.2123 47.4818C5.88347 47.15 5.69873 46.7 5.69873 46.2308V25Z" fill="#C1C4D6"/>
+                <path d="M30.2466 25H42.5206V46.2308C42.5206 46.7 42.3358 47.15 42.007 47.4818C41.6782 47.8136 41.2322 48 40.7671 48H30.2466V25Z" fill="#8F95B2"/>
+                <path d="M30.2466 25L35.726 31.1923H48L42.5206 25H30.2466Z" fill="#D8DAE5"/>
+                <path d="M30.4658 25L24.9863 31.1923H0L5.47945 25H30.4658Z" fill="#D8DAE5"/>
+                <path d="M24 20C29.5228 20 34 15.5228 34 10C34 4.47715 29.5228 0 24 0C18.4772 0 14 4.47715 14 10C14 15.5228 18.4772 20 24 20Z" fill="#C1C4D6"/>
+                <path d="M23.7475 6.84449L24.0657 7.3131L24.3827 6.84449C24.5962 6.62203 24.8523 6.44481 25.1358 6.32338C25.4192 6.20196 25.7242 6.13881 26.0325 6.13771C26.3409 6.13661 26.6463 6.19756 26.9306 6.31696C27.2149 6.43635 27.4723 6.61173 27.6874 6.83266L27.7514 6.89359C28.2155 7.3479 28.4821 7.9666 28.4937 8.61593C28.5053 9.26526 28.2608 9.89307 27.8132 10.3636L27.7514 10.4267L24.0657 14.0274L20.4712 10.4267C20.2361 10.1965 20.0493 9.92169 19.9217 9.61834C19.7942 9.31499 19.7285 8.98923 19.7285 8.66017C19.7285 8.3311 19.7942 8.00534 19.9217 7.70199C20.0493 7.39864 20.2361 7.1238 20.4712 6.89359C20.6743 6.66067 20.9242 6.4731 21.2045 6.34306C21.4848 6.21301 21.7894 6.14342 22.0984 6.13879C22.4074 6.13416 22.7139 6.1946 22.998 6.31618C23.2821 6.43776 23.5375 6.61777 23.7475 6.84449Z" fill="white"/>
+                <defs>
+                  <clipPath id="clip0">
+                    <rect width="48" height="48" fill="white"/>
+                  </clipPath>
+                </defs>
+              </svg>
+              <p style='margin-top: 6px;'>{{"INBOX_ADMIN.NO_INFOR" | translate}}</p>
+            </div>
+            <div class="col-7 nav-right px-0" *ngIf="dataDetail">
+              <div class="col-12 row r-header align-items-center py-4 pr-0">
+                <ng-container *ngIf="dataDetail && dataDetail.senderName">
+                  <img class="col-2 pl-4 image-inbox-detail" *ngIf="dataDetail.senderAvatar; else textAvatar" [src]="dataDetail.senderAvatar">
+                  <ng-template #textAvatar>
+                    <div class="col-2 pl-4" style="max-width: 68px;padding-right: 12.5px;">
+                      <div class="text-avatar">{{dataDetail.textAvatar}}</div>
+                    </div>
+                  </ng-template>
+                  <div class="col-10 pr-0 pl-1">
+                    <div class="d-flex r-h-name px-0 mb-0">
+                      <span [matTooltipClass]="'tooltip-class'"
+                            [matTooltip]="dataDetail.senderNameFirst"
+                        style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{dataDetail.senderNameFirst}}</span>
+                      <span *ngIf="dataDetail.senderNameLast"
+                            style="min-width: 95px; margin-left: 6px;">({{dataDetail.senderNameLast}}</span>
+                    </div>
+                    <!--                    <label class="col-12 r-h-name px-0 mb-0">{{dataDetailReceived.senderName}}</label>-->
+                    <label class="f10 mb-0">{{"INBOX_ADMIN.AT_TIME" | translate}}&nbsp;{{dataDetail.sentDate}}</label>
+                  </div>
+<!--                  <div class="row col-12 mx-0 px-0 mb-3 mt-2">-->
+<!--                    <div class="col-9 d-flex ">-->
+<!--                      <span class="f14-item-black">Đến:&nbsp;</span>-->
+<!--                      <span class="f14-item see-more">{{seeMores}}</span>-->
+<!--                    </div>-->
+<!--                    <div class="col-3 text-right">-->
+<!--                      <span class=" pr-0 f14-item-blue ml-1 index-focus i-btn" tabindex="0" (click)="openDialog()">+ Xem thêm</span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+                  <div class="list-recipient col-12 pr-0" *ngIf="(dataDetail.sendType === 3 && form.value.receivedType !== 1) || (dataDetail.sendType === 4 && form.value.receivedType === 1); else elseSenderType">
+                    <span class="f14-item-black">{{"INBOX_ADMIN.TO" | translate}}:</span>
+                    <span #listTeacher
+                          style="font-weight: 500; font-size:14px; line-height: 20px; color:#696F8C;">{{seeMores}}</span>
+                    <span class="see-more" *ngIf="shouldShowBtn(listTeacher)" (click)="openDialog()">+ {{"INBOX_ADMIN.SEE_MORE" | translate}}</span>
+                  </div>
+                  <ng-template #elseSenderType>
+                    <div class="d-flex pl-4 pt-4" style="width: 93%">
+                      <span class="f14-item-black">{{"INBOX_ADMIN.TO" | translate}}:</span>
+                      <div class="list-recipient col-12 pl-2" style="overflow-x: auto; overflow-y: hidden" >
+                        <div class="group-item text-bold mr-2">{{seeMores}}</div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </div>
+              <div class="col-12 r-body pr-0">
+                <ng-container *ngIf="dataDetail && dataDetail.pathFile">
+                  <button *ngFor="let file of dataDetail.lstFile"
+                          class="f14 gray index-focus btn-download pl-0 pr-7 text-left mt-2 d-flex align-items-center col-12" tabindex="0"
+                          (click)="downloadFile(file.path)">
+                    <svg style="min-width: 20px" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.7379 0.761748H5.08493C3.00493 0.753748 1.29993 2.41175 1.25093 4.49075V15.2037C1.20493 17.3167 2.87993 19.0677 4.99293 19.1147C5.02393 19.1147 5.05393 19.1157 5.08493 19.1147H13.0739C15.1679 19.0297 16.8179 17.2997 16.8029 15.2037V6.03775L11.7379 0.761748Z"
+                            stroke="#474D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M11.4756 0.75V3.659C11.4756 5.079 12.6236 6.23 14.0436 6.234H16.7986" stroke="#474D66"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M11.2887 13.3584H5.88867" stroke="#474D66" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                      <path d="M9.2437 9.60596H5.8877" stroke="#474D66" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                    <span class="mx-3 name-file" [matTooltipClass]="'tooltip-class'"  [matTooltip]="getFileName(file.path)">{{getFileName(file.path)}}</span>
+                    <span class=" size-file" >({{file.sizeStr}})</span>
+                    <svg style="min-width: 20px" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1.67578L5.96464 5.9992L11 1.67578" stroke="#696F8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="dataDetail && dataDetail.title">
+                  <label class="r-b-title my-5 col-12 pl-0">{{dataDetail.title}}</label>
+                  <div class="r-b-text pr-2" *ngIf="!dataDetail.contentWeb; else smsWeb" [innerHTML]="dataDetail.contentSms"></div>
+                  <ng-template #smsWeb>
+                    <div class="content-sms-web pr-2" *ngIf="dataDetail.contentSms || dataDetail.contentWeb">
+                      <div class="f14-item-black mb-5">{{"INBOX_ADMIN.SMS_CONTENT" | translate}}</div>
+                      <div class="r-b-text-sms-web mb-5" [innerHTML]="dataDetail.contentSms"></div>
+                      <div class="f14-item-black mb-5">{{"INBOX_ADMIN.CONTENT_WEB" | translate}}</div>
+                      <div class="r-b-text-sms-web" [innerHTML]="dataDetail.contentWeb"></div>
+                    </div>
+
+                    <div *ngIf="!dataDetail.contentSms && !dataDetail.contentWeb" class="text-center nav-right col-12">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.69873 25H30.2467V48H7.45215C6.98712 48 6.54113 47.8136 6.2123 47.4818C5.88347 47.15 5.69873 46.7 5.69873 46.2308V25Z" fill="#C1C4D6"/>
+                        <path d="M30.2466 25H42.5206V46.2308C42.5206 46.7 42.3358 47.15 42.007 47.4818C41.6782 47.8136 41.2322 48 40.7671 48H30.2466V25Z" fill="#8F95B2"/>
+                        <path d="M30.2466 25L35.726 31.1923H48L42.5206 25H30.2466Z" fill="#D8DAE5"/>
+                        <path d="M30.4658 25L24.9863 31.1923H0L5.47945 25H30.4658Z" fill="#D8DAE5"/>
+                        <path d="M24 20C29.5228 20 34 15.5228 34 10C34 4.47715 29.5228 0 24 0C18.4772 0 14 4.47715 14 10C14 15.5228 18.4772 20 24 20Z" fill="#C1C4D6"/>
+                        <path d="M23.7475 6.84449L24.0657 7.3131L24.3827 6.84449C24.5962 6.62203 24.8523 6.44481 25.1358 6.32338C25.4192 6.20196 25.7242 6.13881 26.0325 6.13771C26.3409 6.13661 26.6463 6.19756 26.9306 6.31696C27.2149 6.43635 27.4723 6.61173 27.6874 6.83266L27.7514 6.89359C28.2155 7.3479 28.4821 7.9666 28.4937 8.61593C28.5053 9.26526 28.2608 9.89307 27.8132 10.3636L27.7514 10.4267L24.0657 14.0274L20.4712 10.4267C20.2361 10.1965 20.0493 9.92169 19.9217 9.61834C19.7942 9.31499 19.7285 8.98923 19.7285 8.66017C19.7285 8.3311 19.7942 8.00534 19.9217 7.70199C20.0493 7.39864 20.2361 7.1238 20.4712 6.89359C20.6743 6.66067 20.9242 6.4731 21.2045 6.34306C21.4848 6.21301 21.7894 6.14342 22.0984 6.13879C22.4074 6.13416 22.7139 6.1946 22.998 6.31618C23.2821 6.43776 23.5375 6.61777 23.7475 6.84449Z" fill="white"/>
+                        <defs>
+                          <clipPath id="clip0">
+                            <rect width="48" height="48" fill="white"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      <p style='margin-top: 6px;'>{{"INBOX_ADMIN.NO_INFOR" | translate}}</p>
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+        </ng-template>
+      </li>
+      <!--  <li [ngbNavItem]="2">-->
+      <!--    <a ngbNavLink><b>Fancy</b> title</a>-->
+      <!--    <ng-template ngbNavContent>-->
+      <!--      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko-->
+      <!--        farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts-->
+      <!--        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar-->
+      <!--        helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson-->
+      <!--        8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester-->
+      <!--        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>-->
+      <!--    </ng-template>-->
+      <!--  </li>-->
+    </ul>
+
+    <div [ngbNavOutlet]="nav"></div>
+  </div>
+
+</div>
+

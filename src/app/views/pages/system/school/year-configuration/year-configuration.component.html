@@ -1,0 +1,147 @@
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <div class="menu-action-dv">
+      <h3>THÔNG TIN CẤU HÌNH VÀ THỜI GIAN NĂM HỌC</h3>
+      <div class="list-action-dv">
+        <div class="btn-action-dv blue" (click)="openModal(templateNewunit)">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" width="2" height="12" rx="1" fill="white" />
+            <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="white" />
+          </svg>
+          Khai báo năm học
+        </div>
+      </div>
+    </div>
+    <!---->
+    <div class="row table-school" style="margin-top: 20px;">
+      <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true" style="width: 100%; height: 600px;"
+        class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [headerHeight]="headerHeight"
+        [rowHeight]="rowHeight" (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+            <div class="ft-table-school"  style="width: 100%;">
+        <div class="sum-page">
+          1-10 của 120 kết quả
+        </div>
+        <div class="pa-navi">
+           <ul>
+             <li>1</li>
+             <li>2</li>
+             <li>3</li>
+             <li>4</li>
+             <li>5</li>
+             <li>6</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--model add new don vi-->
+<ng-template #templateNewunit>
+      <div class="modal-content modal-dialog-custom" >
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center;">Thêm mới đơn vị</h4>
+
+          <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 15px 10px !important;">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="">Mã đơn vị <span>*</span></label>
+              <input type="text" placeholder="Mã đơn vị">
+            </div>
+            <div class="col-md-6">
+              <label for="">Tên đơn vị đơn vị <span>*</span></label>
+              <input type="text" placeholder="Mã đơn vị">
+            </div>
+            <div class="col-md-6">
+              <label for="">Mã đơn vị <span>*</span></label>
+              <ng-select [items]="listDemo" bindLabel="name" bindValue="id" placeholder="Đơn vị cha" [(ngModel)]="selectDemo"
+                [ngModelOptions]="{standalone: true}">
+              </ng-select>
+            </div>
+            <div class="col-md-6">
+              <label for="">Tên đơn vị <span>*</span></label>
+              <ng-select [items]="listDemo" bindLabel="name" bindValue="id" placeholder="Đơn vị cha" [(ngModel)]="selectDemo"
+                [ngModelOptions]="{standalone: true}">
+              </ng-select>
+            </div>
+            <div class="col-md-6">
+              <label for="">Người phụ trách</label>
+              <ng-select [items]="listDemo" bindLabel="name" bindValue="id" placeholder="Đơn vị cha" [(ngModel)]="selectDemo"
+                [ngModelOptions]="{standalone: true}">
+              </ng-select>
+            </div>
+            <div class="col-md-6">
+              <label for="">Chức vụ </label>
+              <ng-select [items]="listDemo" bindLabel="name" bindValue="id" placeholder="Đơn vị cha" [(ngModel)]="selectDemo"
+                [ngModelOptions]="{standalone: true}">
+              </ng-select>
+            </div>
+            <div class="col-md-12">
+              <label for="">Người phụ trách</label>
+              <textarea name="" id="" ></textarea>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="btn-action">
+          <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+          <button type="button" class="btn-md btn-or">Lưu lại</button>
+          </div>
+        </div>
+      </div>
+
+</ng-template>
+<!--model import don vi-->
+<ng-template #templateImportunit>
+      <div class="modal-content modal-dialog-custom">
+        <div class="modal-header" style="    flex-direction: column;">
+          <h4 class="modal-title" style="text-align: center;">IMPORT DANH SÁCH ĐƠN VỊ</h4>
+          <p class="des">Thực hiện upload file danh sách các đơn vị thuộc trường muốn thêm vào trong hệ thống:</p>
+
+          <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 15px 10px !important;">
+          <div class="row">
+            <div class="title-list-file">
+              <p>File danh sách</p>
+              <div>
+                <p>Tải file mẫu</p>
+                <a>[Bấm để tải]</a>
+              </div>
+            </div>
+
+
+            <div class="list-file-result">
+              <p>Thành công<i>18/20</i>bản ghi</p>
+              <a>[Bấm để tải file import lỗi]</a>
+            </div>
+            <p class="import-er">Thất bại:<i>02/20</i>bản ghi</p>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="type-action">
+            <label class="container-radio">Thêm mới đơn vị
+              <input type="radio" name="aa" checked="checked">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container-radio">Cập nhật thông tin đơn vị
+              <input type="radio" name="aa" >
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="btn-action">
+              <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()" >Hủy bỏ</button>
+              <button type="button" class="btn-md btn-or">Import</button>
+          </div>
+        </div>
+      </div>
+</ng-template>

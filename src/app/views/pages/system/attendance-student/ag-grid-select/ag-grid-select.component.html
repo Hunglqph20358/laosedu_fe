@@ -1,0 +1,6 @@
+<select id="select11" name="select" [(ngModel)]="checkDate" (change)="this.refresh(this.params);changeColor(checkDate)" class="select-op" [ngClass]="changeColor(checkDate)">
+  <option value="" disabled selected hidden>-</option>
+  <option value="P" class="p">P</option>
+  <option value="K" class="k">K</option>
+  <option value="C" class="c">C</option>
+</select>

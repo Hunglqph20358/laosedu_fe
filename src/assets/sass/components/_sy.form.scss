@@ -1,0 +1,352 @@
+// Components
+
+// Layout
+.sy.default-layout {
+  padding: 0 32px;
+  font-family: 'Inter', sans-serif;
+}
+
+// Header
+.sy-heading {
+  display: flex;
+  align-items: center;
+  .sy-heading-text {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    text-transform: uppercase;
+    color: #101840;
+    margin: 0;
+  }
+  .heading-list-actions {
+    margin-left: auto;
+    display: flex;
+    button:not(:first-of-type) {
+      margin-left: 10px;
+    }
+  }
+}
+
+// Form
+.sy-form {
+  .sy-form-group {
+    margin-bottom: 16px;
+  }
+  label.sy-label {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    color: #474d66;
+    .sy-required {
+      color: red;
+    }
+  }
+
+  input.sy-input {
+    border: 1px solid #d8dae5;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 12px 10px 12px 12px;
+    width: 100%;
+  }
+}
+
+.search-form {
+  label {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    color: #474d66;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .ng-select.sy-select .ng-select-container {
+    border: 1px solid #d8dae5;
+    border-radius: 6px;
+    height: 40px;
+    .ng-value {
+      font-size: 12px;
+      line-height: 16px;
+      color: #101840;
+    }
+  }
+
+  .search-action {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+  }
+}
+
+.ng-select.ng-select-disabled > .ng-select-container {
+  background-color: #f4f6fa;
+}
+
+.sy-table {
+  margin-top: 24px;
+}
+.sy-header-center {
+  .ag-header-cell-label {
+    justify-content: center;
+  }
+}
+.sy-grid-actions {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  .title-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  ul {
+    display: none;
+    margin-left: 0;
+    z-index: 99999999;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 10px;
+    list-style: none;
+    li {
+      cursor: pointer;
+      padding: 8px 10px;
+      font-weight: 500;
+      font-size: 10px;
+      line-height: 12px;
+      border-radius: 2px;
+      background: #f3f6ff;
+      display: flex;
+      align-items: center;
+      &:not(:last-of-type) {
+        margin-bottom: 6px;
+      }
+      .edit {
+        color: #3366ff;
+      }
+      .delete {
+        color: #fdf4f4;
+      }
+    }
+  }
+  &:hover {
+    ul {
+      display: block;
+    }
+  }
+}
+
+// paging
+.sy-paging {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  .sy-paging-result {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #101840;
+  }
+
+  ul.sy-pages {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    li {
+      margin: 0 2px;
+    }
+  }
+
+  .arrow {
+    margin: 0 17px;
+    cursor: pointer;
+    &.disabled {
+      color: #d8dae5;
+      cursor: default;
+    }
+  }
+
+  .sy-page {
+    background: white;
+    border-radius: 3px;
+    color: #696f8c;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    height: 32px;
+    min-width: 32px;
+    display: inline-block;
+    cursor: pointer;
+    padding: 8px 12px;
+    &.sy-dots {
+      cursor: default;
+    }
+    &.sy-highlight {
+      background: #fce9e2;
+      color: #f26522;
+    }
+  }
+}
+
+// modal
+.modal-content {
+  border-radius: 16px;
+  .modal-header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 30px;
+    color: #242f57;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .des {
+    font-size: 14px;
+    line-height: 20px;
+    color: #8f95b2;
+    margin: 0;
+  }
+  .modal-footer {
+    padding: 24px 0;
+    justify-content: center;
+    .modal-actions {
+      display: flex;
+      .sy-btn-action {
+        min-width: 106px;
+        margin: 0 6px;
+      }
+    }
+  }
+}
+.modal-confirm {
+  text-align: center;
+  .modal-header {
+    justify-content: center;
+    border-bottom: none;
+    padding-top: 24px;
+  }
+  .modal-body {
+    padding: 24px 16px;
+  }
+  .modal-footer {
+  }
+}
+
+.modal-dialog-upload {
+  p {
+    margin: 0;
+  }
+  .title-list-file {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #474d66;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 12px;
+    p {
+      font-size: 14px;
+    }
+    span {
+      font-size: 12px;
+    }
+    a {
+      font-size: 12px;
+      color: #3366ff;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+  }
+  .container-upload {
+    border: 1px dashed #d8dae5;
+    border-radius: 8px;
+    padding: 20px 0 16px;
+    display: flex;
+    flex-direction: column;
+    label {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+    }
+    p {
+      font-style: italic;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      color: #696f8c;
+      padding: 12px 0 0;
+    }
+  }
+}
+
+// custom pages
+.package-status {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  span.fas {
+    font-size: 8px;
+    margin-right: 8px;
+  }
+  &.unregistered {
+    color: #474d66;
+  }
+  &.registered {
+    color: #f26522;
+  }
+  &.actived {
+    color: #52bd94;
+  }
+  &.canceled {
+    color: #d14343;
+  }
+}
+
+.history-package-contact {
+  max-width: 768px;
+  p.student-info {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #696f8c;
+    margin: 0;
+    text-align: left;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .student-code {
+      color: #3366ff;
+    }
+    .student-name {
+      color: #101840;
+    }
+  }
+}
+
+.one-line-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.view-teacher-details-list {
+  border-radius: 16px;
+  min-width: 600px;
+  min-height: 650px;
+  top: 5% !important;
+}

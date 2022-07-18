@@ -1,0 +1,202 @@
+<div class="tab-container">
+  <div style="display: flex;">
+    <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+    </svg>
+    <h3 class="title-tab">{{ 'STUDENT.CURRICULUM_VITAE' | translate }}</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.GRADE' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.gradeName">
+          {{ infoStudent?.gradeName }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.DEPT_NAME' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.deptName">
+          {{ infoStudent?.deptName }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.CLASS_NAME' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.className">
+          {{ infoStudent?.className }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.TRAINING_SYSTEM' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" matTooltip="{{ infoStudent?.trainingSystem | translate }}">
+          {{ infoStudent?.trainingSystem | translate }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.TEACHER' |translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.teacher">
+          {{ infoStudent?.teacher }}
+        </div>
+      </div>
+      <div class="list-item-hs no-boder">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.GRADUATION_TYPE' |translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" matTooltip="{{ infoStudent?.graduationType | translate }}">
+          {{ infoStudent?.graduationType | translate }}
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-md-4">
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.DOB' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.birthDay | date:'dd/MM/yyyy'">
+          {{ infoStudent?.birthDay | date:'dd/MM/yyyy' }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.SEX.TEXT' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" matTooltip="{{ infoStudent?.sex | translate }}">
+          {{ infoStudent?.sex | translate }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.RELIGION' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.religion">
+          {{ infoStudent?.religion }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.IDENTITY_CARD' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.identityCard">
+          {{ infoStudent?.identityCard }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.IDENTITY_ADDRESS' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.issuedAddress">
+          {{ infoStudent?.issuedAddress }}
+        </div>
+      </div>
+      <div class="list-item-hs no-boder">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.ISSUED_DATE' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.issuedDate | date:'dd/MM/yyyy'">
+          {{ infoStudent?.issuedDate | date:'dd/MM/yyyy' }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.HOMETOWN' | translate }}
+        </div>
+        <div class="value-item two-line-with-dots" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.homeTown">
+          {{ infoStudent?.homeTown }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.PERMANENT_ADDRESS' | translate }}
+        </div>
+        <div class="value-item two-line-with-dots" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.permanentAddress">
+          {{ infoStudent?.permanentAddress }}
+        </div>
+      </div>
+      <div class="list-item-hs no-boder">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.TEMPORARY_ADDRESS' | translate }}
+        </div>
+        <div class="value-item two-line-with-dots" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.temporaryAddress">
+          {{ infoStudent?.temporaryAddress }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div style="margin-bottom: 50px"></div>
+  
+  <div style="display: flex;">
+    <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+    </svg>
+    <h3 class="title-tab">{{ 'STUDENT.CONTACT_INFO' | translate }}</h3>
+  </div>
+  <div class="row" style="margin-bottom: 30px;">
+    <div class="col-md-4">
+      <h3 class="sub-title">{{ 'STUDENT.INFO.CONTACT_1' | translate }}</h3>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.RELATIONSHIP' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" matTooltip="{{ infoStudent?.relationShip1 | translate }}">
+          {{ infoStudent?.relationShip1 | translate }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.PARENT_NAME' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.fullNameContact1">
+          {{ infoStudent?.fullNameContact1 }}
+        </div>
+      </div>
+      <div class="list-item-hs no-boder">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.PARENT_PHONE' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.phoneContact1">
+          {{ infoStudent?.phoneContact1 }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3 class="sub-title">{{ 'STUDENT.INFO.CONTACT_2' | translate }}</h3>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.RELATIONSHIP' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" matTooltip="{{ infoStudent?.relationShip2| translate }}">
+          {{ infoStudent?.relationShip2| translate }}
+        </div>
+      </div>
+      <div class="list-item-hs">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.PARENT_NAME' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.fullNameContact2">
+          {{ infoStudent?.fullNameContact2 }}
+        </div>
+      </div>
+      <div class="list-item-hs no-boder">
+        <div class="name-item">
+          {{ 'STUDENT.INFO.PARENT_PHONE' | translate }}
+        </div>
+        <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.phoneContact2">
+          {{ infoStudent?.phoneContact2 }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

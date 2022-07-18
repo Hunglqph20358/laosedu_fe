@@ -1,0 +1,240 @@
+//
+// Main Style
+//
+
+////////////////////////////////////////////////////////////////
+///////////// DO NOT MODIFY BELOW INCLUDE ORDER ////////////////
+////////////////////////////////////////////////////////////////
+
+// 1: Initialize
+@import "init";
+
+// 2: Bootstrap framework includes
+@import "~bootstrap/scss/bootstrap";
+
+// 3: Components
+@import "components/utilities/background",
+"components/utilities/flex",
+"components/utilities/opacity",
+"components/utilities/borders",
+"components/utilities/sizing",
+"components/utilities/position",
+"components/utilities/text",
+"components/utilities/icon",
+"components/burger-icon",
+"components/card",
+"components/wizard",
+"components/type",
+"components/breadcrumb",
+"components/nav",
+"components/alert",
+"components/buttons",
+"components/code",
+"components/dropdown",
+"components/forms",
+"components/grid",
+"components/modal",
+"components/progress",
+"components/table",
+"components/popover",
+"components/tooltip",
+"components/accordion",
+"components/datatable",
+"components/bar-chart",
+"components/checkbox",
+"components/radio",
+"components/switch",
+"components/option",
+"components/dialog",
+"components/strikethrough",
+"components/separator",
+"components/image-input",
+"components/label",
+"components/loader",
+"components/symbol",
+"components/pulse",
+"components/page-loader",
+"components/quick-search",
+"components/scrolltop",
+"components/spinner",
+"components/sticky-toolbar",
+"components/svg-icon",
+"components/svg",
+"components/timeline",
+"components/timeline-2",
+"components/timeline-3",
+"components/timeline-4",
+"components/timeline-5",
+"components/overlay",
+"components/demo",
+"components/wave",
+"components/list",
+"components/bullet",
+"components/navi",
+"components/ribbon",
+"components/toggle";
+
+// 4: Plugins
+@import "vendors/plugins/formvalidation",
+"vendors/plugins/dropzone",
+"vendors/plugins/perfect-scrollbar",
+"vendors/plugins/prismjs",
+"vendors/plugins/apexcharts";
+
+// 5: Layout
+@import "layout/init";
+
+////////////////////////////////////////////////////////////////
+///////////// DO NOT MODIFY ABOVE INCLUDE ORDER ////////////////
+////////////////////////////////////////////////////////////////
+.border-radius {
+  border-radius: 5px !important;
+}
+.k-notification-success{
+  border-color: #70a3a5 !important;
+  background-color: #70a3a5 !important;
+}
+.card-header {
+  padding: 0.5rem 1rem;
+  background-color: #F6F6F6;
+  height: 60px
+}
+.text-header {
+  font-size: 20px;
+  margin-top: 0.5rem !important;
+}
+.icon-header {
+  font-size: 22px;
+}
+
+.btn-header {
+  margin-top: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+.btn-add{
+  background: #2a7e84 !important;
+  font-size: 18px !important;
+  color: white !important;
+  transition: all 0.5s;
+  position: relative;
+}
+.btn-delete{
+  background: red !important;
+  font-size: 18px !important;
+  color: white !important;
+}
+
+.w-100px {
+  width: 100px !important;
+}
+
+.btn-custom:hover {
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+}
+
+.btn:focus {
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+}
+//.k-grid {
+//  -moz-border-radius:5px;
+//  -webkit-border-radius:5px;
+//  border-radius:5px;
+//  overflow:hidden;
+//}
+
+
+.k-checkbox:checked {
+  border-color: #2a7e84  !important;
+  color: #ffffff;
+  background-color: #2a7e84  !important;
+}
+.k-checkbox:indeterminate,
+.k-checkbox.k-state-indeterminate {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #2a7e84  !important;
+  background-color: #ffffff;
+}
+.k-state-selected {
+  background-color: #9DC7CA !important;
+}
+
+.k-dialog-titlebar {
+  border-color: inherit;
+  color: #ffffff;
+  background-color: #9DC7CA !important;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: #B5B5C3;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #B5B5C3;
+}
+
+::placeholder {
+  color: #B5B5C3;
+}
+
+.symbol {
+  .symbol-label {
+    border-radius: 2rem;
+  }
+}
+
+.k-grid-header .k-header {
+  overflow: visible;
+  white-space: normal;
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+.k-tabstrip-items .k-item.k-state-active, .k-tabstrip-items .k-item.k-state-selected {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #ffffff !important;
+  background-color: #67A7AC !important;
+}
+
+.k-tabstrip-items .k-item {
+  color: lightgray !important;
+}
+
+.k-grid th {
+  text-align: center;
+}
+
+.k-dialog-titlebar {
+  background-color: rgba(240, 240, 240, 1) !important;
+  color: black !important;
+}
+
+.k-tabstrip > .k-content {
+  padding: 0;
+}
+
+.k-overlay {
+  opacity: 0.1 !important;
+}
+
+.k-window-content, .k-prompt-container {
+  overflow: hidden !important;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .k-dialog-wrapper .k-dialog {
+    width: 300px !important;
+  }
+}
+
+@media screen and (max-width: 320px){
+  .k-link {
+    padding: 0 !important;
+  }
+}

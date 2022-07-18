@@ -1,0 +1,86 @@
+.transfer-student-dialog {
+
+  &__header {
+    padding-bottom: 24px;
+    padding-top: 24px;
+  }
+
+  &__title {
+    color: #101840;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  &__label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #101840;
+
+    &--required {
+      &::after {
+        content: " *";
+        color: red;
+        display: inline;
+      }
+    }
+
+    &--value {
+      strong {
+        &::after {
+          content: ": ";
+          display: inline;
+          color: #101840;
+        }
+      }
+
+      span:last-child {
+        color: #8F95B2;
+      }
+    }
+  }
+
+  &__transfer-info {
+    margin-top: 16px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #101840;
+    text-transform: uppercase;
+  }
+
+  &__button {
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    padding: 8px 32px;
+
+    &--gray {
+      background: #E6E8F0;
+      font-weight: 600;
+      font-size: 12px;
+      color: #696F8C;
+    }
+
+    &--orange {
+      background: #F26522;
+      font-weight: 600;
+      font-size: 12px;
+      color: #FFFFFF;
+
+      &[disabled] {
+        background: #f8dad3;
+        color: white;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+button:hover{
+  opacity: 0.7;
+  //border: 1px solid #007eff !important;
+  //box-shadow: inset 0 1px 1px rgba(0,0,0,0.08), 0 0 0 3px rgba(0,126,255,0.1);
+}

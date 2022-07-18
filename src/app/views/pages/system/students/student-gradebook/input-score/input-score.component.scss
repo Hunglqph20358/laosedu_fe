@@ -1,0 +1,15 @@
+.input-score {
+  width: 100%;
+  border: none;
+  text-align: center;
+}
+.input-score:focus {
+  border: 1px solid #007eff !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.08), 0 0 0 3px rgba(0,126,255,0.1);
+}
+.white {
+  background: #ffffff !important;
+}
+.transparent {
+  background: transparent !important;
+}

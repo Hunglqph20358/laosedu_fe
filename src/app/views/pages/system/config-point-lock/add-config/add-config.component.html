@@ -1,0 +1,89 @@
+<div class="modal-dialog-custom">
+  <form [formGroup]="formAddConfig" #ngForm="ngForm" class="login-form">
+    <div class="modal-content">
+      <div class="modal-header" style="padding-bottom: 5px;flex-direction: column;">
+        <h4 class="modal-title" style="text-align: center;">{{'CONF_LOCK.CREATE_CONF_LOCK'|translate}}</h4>
+      </div>
+      <div class="modal-body" style="padding: 15px 10px !important;">
+        <div class="row">
+          <div class="col-4">
+            <mat-label style="font-size: 14px; font-weight: 600; color: #474D66;" >{{'GRADEBOOK.SELECT_SEMESTER'|translate}}</mat-label>
+            <ng-select [items]="semesterList"
+                       bindLabel="semesterDisplay"
+                       bindValue="semester"
+                       formControlName="semester"
+                       [clearable]="false"
+                       [searchable]="false"
+                       style="font-size: 12px"
+            >
+            </ng-select>
+          </div>
+
+          <div class="col-4">
+            <mat-label style="font-size: 14px; font-weight: 600;color: #474D66;">{{'STUDENT.YEAR'|translate}}</mat-label>
+            <ng-select [items]=""
+                       bindLabel="years"
+                       bindValue="years"
+                       formControlName="years"
+                       [clearable]="false"
+                       style="font-size: 12px"
+            >
+            </ng-select>
+          </div>
+
+          <div class="col-4">
+            <mat-label style="font-size: 14px; font-weight: 600; color: #474D66;">{{'CONF_LOCK.SELECT_GRADE_CONF'|translate}} <span style="color: red">*</span></mat-label>
+            <ng-select [items]="gradeList"
+                       [placeholder]="placeholder"
+                       bindLabel="name"
+                       bindValue="code"
+                       formControlName="gradeLevel"
+                       [clearable]="false"
+                       [searchable]="false"
+                       style="font-size: 12px"
+            >
+            </ng-select>
+            <mat-error *ngIf="(this.formAddConfig.get('gradeLevel').errors?.required &&
+              this.formAddConfig.controls.gradeLevel.touched) ||
+              (this.formAddConfig.get('gradeLevel').errors?.required && ngForm.submitted) ">
+              {{'CLASSROOM.MSG.SELECT_GRADE'|translate}}
+            </mat-error>
+          </div>
+        </div>
+        <div class="sy-row" style="display: flex;">
+          <div style="width: 25px;height: 25px;margin: 0 8px 19px 12px;">
+            <label class="container">
+              <input type="checkbox" id="extends" (change)="applyAllGrade($event)" style="display: none">
+              <span class="checkmark" style="cursor: pointer; top: 10px;"></span>
+            </label>
+          </div>
+          <div>
+            <label for="extends" class="text" style="font-size: 12px">{{'CONF_LOCK.APPLY_ALL'|translate}}</label><br>
+          </div>
+        </div>
+        <div class="row table-school" style="margin-top: -11px;padding: 0 12px 0 12px;">
+
+          <ag-grid-angular [suppressRowTransform]="true"
+                           [suppressRowClickSelection]="true" style="width: 790px; height: 240px;"
+                           class="ag-theme-balham"
+                           [rowData]="rowData"
+                           [columnDefs]="columnDefs"
+                           [headerHeight]="headerHeight"
+                           [rowSelection]="'multiple'"
+                           [tabToNextCell] = "true"
+                           [rowHeight]="rowHeight"
+                           (gridReady)="onGridReady($event)"
+                           [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                           #agGridConfLockAddDialog
+          >
+
+          </ag-grid-angular>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn-md btn-gray out-line-btn" (click)="onDismiss()" tabIndex="0">{{'COMMON.CANCEL'|translate}}</button>
+          <button type="submit" class="btn-md btn-or" (click)="this.formAddConfig.invalid ? null : createConfig()" tabIndex="0">{{'COMMON.OK'|translate}}</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,52 @@
+<div class="transfer-student-grid">
+  <ag-grid-angular class="ag-theme-balham"
+                   style="width: 100%; height: 440px"
+                   rowSelection="multiple"
+                   headerHeight="40"
+                   rowHeight="56"
+                   suppressRowClickSelection="true"
+                   [rowData]="items"
+                   [columnDefs]="columnDefs"
+                   (gridReady)="onGridReady($event)"
+                   (gridSizeChanged)="gridSizeChanged($event)"
+                   (selectionChanged)="onSelectionChanged($event)"
+                   [overlayNoRowsTemplate]="noRowsTemplate"
+  ></ag-grid-angular>
+
+  <div *ngIf="totalPages > 0" class="sy-paging w-100" style="margin-bottom: 30px; align-items: center;">
+    <span class="sy-paging-result">{{ from }}-{{ to }} {{'COMMON.OF' | translate}} {{ totalElements }}  {{'COMMON.RESULT' | translate}}</span>
+    <ul class="sy-pages">
+      <li class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-first-disabled]="page === 1"
+          [class.ic-svg-first]="page !== 1"
+          [class.disabled]="page === 1"
+          (click)="onPageChanged(1)">
+      </li>
+      <li class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-prev-disabled]="page === 1"
+          [class.ic-svg-prev]="page !== 1"
+          [class.disabled]="page === 1"
+          (click)="onPageChanged(page - 1)">
+      </li>
+      <li class="sy-page"
+          [class.sy-highlight]="i === page"
+          [class.sy-dots]="i === '...'"
+          *ngFor="let i of rangeWithDots"
+          (click)="i !== '...' && onPageChanged(i)">
+        {{ i }}
+      </li>
+      <li class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-next-disabled]="page === totalPages"
+          [class.ic-svg-next]="page !== totalPages"
+          [class.disabled]="page === totalPages"
+          (click)="onPageChanged(page + 1)">
+      </li>
+      <li class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-last-disabled]="page === totalPages"
+          [class.ic-svg-last]="page !== totalPages"
+          [class.disabled]="page === totalPages"
+          (click)="onPageChanged(totalPages)">
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+.exemption-popup {
+
+    .table-header-row {
+        background: #F4F6FA;
+        box-shadow: inset 0px -1px 0px #EDF2F7;
+        height: 56px;
+        padding: 20px 12px;
+        font-size: 10px;
+        color: #8F95B2;
+        font-style: normal;
+        font-weight: 600;
+
+        div {
+            width: 130px;
+        }
+    }
+
+    .btn-add-row {
+        background: #F3F6FF;
+        border: 1px dashed #3366FF;
+        box-sizing: border-box;
+        border-radius: 4px;
+        width: 270px;
+        height: 40px;
+        color: #3366FF;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    .btn-delete-row {
+        color: #d14643;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .cell {
+        background: #FFFFFF;
+        padding: 10px 11px;
+        height: 56px;
+    }
+
+    .table-cell,
+    .table-body-row {
+        display: flex;
+
+        .cell.no,
+        .cell.act {
+            min-width: 45px;
+            max-width: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .error {
+        padding: 0 11px;
+
+        span {
+            display: inline-block;
+            width: 130px;
+        }
+
+        .colspan {
+            width: 440px;
+        }
+    }
+
+
+}

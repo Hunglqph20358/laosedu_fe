@@ -1,0 +1,605 @@
+<div class="row" style="margin: 0 22px;">
+  <div class="col-md-4">
+    <div class="info-basic">
+      <div class="avatar" *ngIf="this.teacher.avatar !== null">
+        <img [src]="teacher.avatar" alt="" width="100" height="100" style="margin-top: 0px;">
+      </div>
+      <div class="avatar" *ngIf="this.teacher.avatar === null">
+        <img [src]="'/assets/media/users/blank.png'" alt="" width="100px" height="100px" style="margin-top: 0px">
+      </div>
+      <div class="info-basic-avatar" style="z-index: 2">
+        <h3 class="name-ifgv overflow-dot" style="width: 1000px" matTooltipClass="material-tooltip" [matTooltip]="teacher.fullName" >{{ teacher?.fullName }}</h3>
+        <div class="info-basic-gv">
+          <div class="info-basic-gv-key">
+            <div class="name-ifgv text overflow-dot">{{ 'TEACHER.CREATE.TEACHER_CODE' | translate }}</div>
+            <div class="name-ifgv text">{{ 'TEACHER.CREATE.STATUS' | translate }}</div>
+          </div>
+          <div class="info-basic-gv-value">
+            <div class="value-ifgv text code overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.code">{{ teacher.code }}</div>
+            <div class="value-ifgv staust" *ngIf="teacher.status === 0" style="color: #52BD94;" matTooltipClass="material-tooltip" [matTooltip]="teacher.statusStr">
+              {{teacher.statusStr}}
+            </div>
+            <!-- Đang nghỉ việc   -->
+            <div class="value-ifgv staust" *ngIf="teacher.status === 1" style="color: #D14343;" matTooltipClass="material-tooltip" [matTooltip]="teacher.statusStr">
+              {{teacher.statusStr}}
+            </div>
+            <!-- Đang nghỉ hưu   -->
+            <div class="value-ifgv staust" *ngIf="teacher.status === 2" style="color: #474D66;" matTooltipClass="material-tooltip" [matTooltip]="teacher.statusStr">
+              {{teacher.statusStr}}
+            </div>
+            <!-- Tạm nghỉ   -->
+            <div class="value-ifgv staust" *ngIf="teacher.status === 3" style="color: #F26522;" matTooltipClass="material-tooltip" [matTooltip]="teacher.statusStr">
+              {{teacher.statusStr}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="info-basic-gv one-column">
+      <div class="info-basic-gv-key">
+        <div class="name-ifgv text">{{ 'TEACHER.CREATE.DATE_START' | translate }}</div>
+        <div class="name-ifgv text">{{ 'TEACHER.CREATE.CONTRACT_TYPE' | translate }}</div>
+      </div>
+      <div class="info-basic-gv-value">
+        <div class="value-ifgv text" matTooltipClass="material-tooltip" [matTooltip]="teacher.startDate">{{teacher?.startDate}}</div>
+        <div class="value-ifgv text" matTooltipClass="material-tooltip" [matTooltip]="teacher.contractTypeStr">{{ teacher.contractTypeStr }}</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="info-basic-gv one-column">
+      <div class="info-basic-gv-key">
+        <div class="name-ifgv text">{{ 'TEACHER.CREATE.PHONE' | translate }}</div>
+        <div class="name-ifgv text">{{ 'TEACHER.CREATE.EMAIL' | translate }}</div>
+      </div>
+      <div class="info-basic-gv-value">
+        <div class="value-ifgv text" matTooltipClass="material-tooltip" [matTooltip]="teacher?.phone">{{ teacher?.phone }}</div>
+        <div class="value-ifgv text overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher?.email">{{ teacher?.email }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--tab-->
+<div class="row detail-hs  table-school" style="margin-left: 25px;padding-left: 14px;">
+  <ngb-tabset [destroyOnHide]="false">
+    <!--=============================Tab chi tiet ho so===================================-->
+    <ngb-tab>
+      <ng-template ngbTabTitle>{{ 'TEACHER.TAB_PROFILE_DETAILS.TITLE_TAB' | translate }}</ng-template>
+      <ng-template ngbTabContent>
+        <h3 class="title-tab">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          {{ 'TEACHER.TAB_PROFILE_DETAILS.PERSON_BACKGROUND' | translate }}
+        </h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.SUBJECT_PARENT' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.subjectParentName">
+                {{teacher.subjectParentName}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.DEPT_CHILD' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.deptName">
+                {{teacher.deptName}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.DEPT_PARENT' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.unitName">
+                {{teacher.unitName}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.POSITION' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.positionName">
+                {{teacher.positionName}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.BIRTHDAY' | translate }}
+              </div>
+              <div class="value-item" matTooltipClass="material-tooltip" [matTooltip]="teacher.birthDay">
+                {{teacher.birthDay}}
+              </div>
+            </div>
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.SEX' | translate }}
+              </div>
+              <div class="value-item">
+                {{teacher.sexStr}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.RELIGION' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.religion">
+                {{teacher.religion}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.NATION' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.nation">
+                {{teacher.nation}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.MARRIAGE_STATUS' | translate }}
+              </div>
+              <div class="value-item" matTooltipClass="material-tooltip" [matTooltip]="teacher.marriageStatusStr">
+                {{teacher.marriageStatusStr}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.IDENTITY_CARD' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.identityCard">
+                {{teacher.identityCard}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.ADDRESS_ISSUED' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.issuedAddress">
+                {{teacher.issuedAddress}}
+              </div>
+            </div>
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.DATE_ISSUED' | translate }}
+              </div>
+              <div class="value-item" matTooltipClass="material-tooltip" [matTooltip]="teacher.issuedDate">
+                {{teacher.issuedDate}}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.SOCIAL_INSURANCE_NUMBER' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.socialInsuranceNumber">
+                {{teacher.socialInsuranceNumber}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.HOME_TOWN' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.homeTown">
+                {{teacher.homeTown}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.PERMANENT_ADDRESS' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.permanentAddress">
+                {{teacher.permanentAddress}}
+              </div>
+            </div>
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                {{ 'TEACHER.CREATE.TEMPORARY_ADDRESS' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.temporaryAddress">
+                {{teacher.temporaryAddress}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title-tab" style="margin-top: 10px">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          {{ 'TEACHER.CREATE.INFOR_TYPE_EDU' | translate }}
+        </h3>
+        <div class="row" style="margin-left: 0px; margin-top: 15px; margin-bottom: 10px"><h4>{{ 'TEACHER.CREATE.SPECIALIZE_LEVEL' | translate }}: <b>{{this.trinhdo}}</b></h4></div>
+        <!--tab 1-->
+        <div class="row detail-hs1  table-school" style="margin-left: 0px;">
+          <ngb-tabset [destroyOnHide]="false">
+            <ngb-tab>
+              <ng-template ngbTabTitle>1.{{ 'TEACHER.CREATE.UNIVERSITY' | translate }}</ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.TRAINING_SYSTEM' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="university.sysEdu">
+                        {{university.sysEdu}}
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.TRAINING_PLACES' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="university.trainingPlaces">
+                        {{university.trainingPlaces}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.SPECIALIZE' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="university.specialized">
+                        {{university.specialized}}
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.GRADUATION_YEAR' | translate }}
+                      </div>
+                      <div class="value-item " matTooltipClass="material-tooltip" [matTooltip]="university.graduationYear | date: 'dd/MM/yyyy'">
+                        {{university.graduationYear | date: 'dd/MM/yyyy'}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.UNIVERSITY_CERTIFICATE' | translate }}
+                      </div>
+                      <div class="value-item blue" *ngIf="university.degreePath !== null">
+                        <a (click)="viewFileDH(university)" style="cursor: pointer;" [matTooltip]="university.name">{{university.name?(university.name.substring(0,20)+"..."):''}}</a>
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.TRANNING_COUNTRY' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="university.tranningCountry">
+                        {{university.tranningCountry}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+
+            <ngb-tab [disabled]="teacher.specializeLevel === 1">
+              <ng-template ngbTabTitle>2. {{ 'TEACHER.CREATE.MASTER' | translate }}</ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let item of listMaster">
+                    <div class="list-item-hs">
+                      <div class="name-item bold">
+                        1. {{ 'TEACHER.UNIVERSITY.MASTER_CERTIFICATE' | translate }}
+                      </div>
+                      <div class="value-item blue" *ngIf="item.degreePath !== null">
+<!--                        Bangthacsy.pdf-->
+                        <a (click)="viewFileDH(item)" style="cursor: pointer;" [matTooltip]="fileNameMaster">{{fileNameMaster?(fileNameMaster.substring(0,20)+"..."):''}}</a>
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.TRAINING_PLACES' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="item.trainingPlaces">
+                        {{item.trainingPlaces}}
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.SPECIALIZED' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="item.specialized">
+                        {{item.specialized}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4" *ngFor="let item of listDoctor">
+                    <div class="list-item-hs">
+                      <div class="name-item bold">
+                        2.  {{ 'TEACHER.UNIVERSITY.DOCTOR_CERTIFICATE' | translate }}
+                      </div>
+                      <div class="value-item blue" *ngIf="item.degreePath !== null">
+<!--                        Bangtiensy.pdf-->
+                        <a (click)="viewFileDH(item)" style="cursor: pointer;">{{fileNameDoctor}}</a>
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.TRAINING_PLACES' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="item.trainingPlaces">
+                        {{item.trainingPlaces}}
+                      </div>
+                    </div>
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        {{ 'TEACHER.UNIVERSITY.SPECIALIZED' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="item.specialized">
+                        {{item.specialized}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+              <ng-template ngbTabTitle>3. {{ 'TEACHER.LANGUAGE.TITLE' | translate }}</ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let item of teacher.foreignLanguageDTOList">
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        {{ 'TEACHER.LANGUAGE.NAME' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="item.languageName">
+                        {{item.languageName}}
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        {{ 'TEACHER.LANGUAGE.LEVEL' | translate }}
+                      </div>
+                      <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="item.level">
+                        {{item.level}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+                  <ng-template ngbTabTitle>4. {{ 'TEACHER.CERTIFICATES.TITLE' | translate }}</ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="list-item-hs" *ngFor="let item of certificates">
+                          <a (click)="viewFile(item)" style="cursor: pointer; color:#3366FF">{{item.name}}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+          </ngb-tabset>
+        </div>
+        <!--tab2-->
+        <h3 class="title-tab" style="margin-top: 30px;     margin-left: 0px; margin-bottom: 20px;">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          {{ 'TEACHER.UNION.TITLE' | translate }}
+        </h3>
+        <div class="row" style="margin-left: 25px; margin-bottom: 30px">
+          <div class="col-md-4" style="padding-left: 0px;">
+            <label class="container-radio">{{ 'TEACHER.UNION.UNION_MEMBER' | translate }}
+              <input type="checkbox" name="aa1" [checked]="this.teacher.unionMember == 1" disabled="true">
+              <span class="checkmark"></span>
+            </label>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.UNION.UNION_DATE' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.dateOfUnionMember">
+                {{teacher.dateOfUnionMember}}
+              </div>
+            </div>
+
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                {{ 'TEACHER.UNION.UNION_ADDRESS' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.adrOfUnionMember">
+                {{teacher.adrOfUnionMember}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="container-radio">{{ 'TEACHER.UNION.PARTY_MEMBER' | translate }}
+              <input type="checkbox" name="aa" [checked]="this.teacher.partyMember == 1" disabled="true">
+              <span class="checkmark"></span>
+            </label>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{ 'TEACHER.UNION.PARTY_DATE' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.dateOfPartyMember">
+                {{teacher.dateOfPartyMember}}
+              </div>
+            </div>
+
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                {{ 'TEACHER.UNION.PARTY_ADDRESS' | translate }}
+              </div>
+              <div class="value-item overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="teacher.adrOfPartyMember">
+                {{teacher.adrOfPartyMember}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+    </ngb-tab>
+
+    <!-- ==================================Tab qua trinh cong tac====================================-->
+    <ngb-tab>
+      <ng-template ngbTabTitle>{{ 'TEACHER.JOB_TRANSFER.TITLE_TAB' | translate }}</ng-template>
+      <ng-template ngbTabContent>
+        <div class="row table-school" style="margin: 20px 0 0 0;">
+          <ag-grid-angular [suppressRowTransform]="true"
+                           [suppressRowClickSelection]="true"
+                           style="width: 98%; height: 300px;" class="ag-theme-balham"
+                           [rowData]="rowDataJobTransfer"
+                           [columnDefs]="columnDefsJobTransfer"
+                           [headerHeight]="headerHeight"
+                           [rowHeight]="rowHeight"
+                           (gridReady)="onGridReady($event)"
+                           [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                           [suppressAutoSize]="true"
+                           [suppressMovableColumns]="true"
+                           (gridSizeChanged)="gridSizeChanged($event)">
+          </ag-grid-angular>
+        </div>
+        <div class="row table-school" style="margin: 20px 0 0 0; width: 100%; height: 300px">
+          <p></p>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <!-- =====================================Tab khen thuong ky luat ====================================-->
+    <ngb-tab>
+      <ng-template ngbTabTitle> {{ 'TEACHER.REWARD_DISCIPLINE.TITLE_TAB' | translate }}</ng-template>
+      <ng-template ngbTabContent>
+        <h3 class="title-tab">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          {{ 'TEACHER.REWARD_DISCIPLINE.REWARD' | translate }}
+        </h3>
+        <div class="row table-school" style="margin: 20px 0 0 0;">
+          <ag-grid-angular [suppressRowTransform]="true"
+                           [suppressRowClickSelection]="true"
+                           style="width: 98%; height: 300px;" class="ag-theme-balham"
+                           [columnDefs]="columnDefsRewardBonus"
+                           [rowData]="teacher.rewardDisciplinesBonus"
+                           [headerHeight]="headerHeight"
+                           [rowHeight]="rowHeight"
+                           (gridReady)="onGridReadyKT($event)"
+                           [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                           (gridSizeChanged)="gridSizeChanged($event)"
+                           [suppressMovableColumns]="true">
+          </ag-grid-angular>
+        </div>
+
+      <h3 class="title-tab" style="margin-top: 20px">
+        <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+        </svg>
+        {{ 'TEACHER.REWARD_DISCIPLINE.DISCIPLINE' | translate }}
+      </h3>
+        <div class="row table-school" style="margin: 20px 0 80px 0;">
+          <ag-grid-angular [suppressRowTransform]="true"
+                           [suppressRowClickSelection]="true"
+                           style="width: 98%; height: 300px;" class="ag-theme-balham"
+                           [rowData]="teacher.rewardDisciplinesPunish"
+                           [columnDefs]="columnDefsRewardPunish"
+                           [headerHeight]="headerHeight"
+                           [rowHeight]="rowHeight"
+                           (gridReady)="onGridReadyKL($event)"
+                           [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                           (gridSizeChanged)="gridSizeChanged($event)"
+                           [suppressAutoSize]="true"
+                           [suppressMovableColumns]="true">
+          </ag-grid-angular>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <!--=====================================Tab che do luong==================================================-->
+    <ngb-tab>
+      <ng-template ngbTabTitle>{{ 'TEACHER.SALARY.TITLE_TAB' | translate }}</ng-template>
+      <ng-template ngbTabContent>
+        <h3 class="title-tab" style="margin-top: 20px">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          {{ 'TEACHER.SALARY.INFOR_SALARY' | translate }}
+        </h3>
+        <div class="row table-school" style="margin: 20px 0 0 0;">
+          <ag-grid-angular [suppressRowTransform]="true"
+                           [suppressRowClickSelection]="true"
+                           style="width: 98%; height: 300px;" class="ag-theme-balham"
+                           [rowData]="this.teacher.salaryAllowancesList"
+                           [columnDefs]="columnDefsSalary"
+                           [headerHeight]="headerHeight"
+                           [rowHeight]="rowHeight"
+                           (gridReady)="onGridReadyPC($event)"
+                           [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                           (gridSizeChanged)="gridSizeChanged($event)"
+                           [suppressAutoSize]="true"
+                           [suppressMovableColumns]="true">
+          </ag-grid-angular>
+        </div>
+        <h3 class="title-tab" style="margin-top: 20px">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          {{ 'TEACHER.SALARY.INFOR_ALLOWANCES' | translate }}
+        </h3>
+        <div class="row table-school" style="margin: 20px 0 0 0;">
+          <ag-grid-angular [suppressRowTransform]="true"
+                           [suppressRowClickSelection]="true"
+                           style="width: 98%; height: 300px;" class="ag-theme-balham"
+                           [rowData]="this.teacher.salaryAllowancesList"
+                           [columnDefs]="columnAllowancesMode"
+                           [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+                           (gridReady)="onGridReadyTTPC($event)"
+                           [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                           (gridSizeChanged)="gridSizeChanged($event)"
+                           [suppressAutoSize]="true"
+                           [suppressMovableColumns]="true">
+          </ag-grid-angular>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
+</div>
+
+
+<ng-template #templateShowPdf>
+  <div class="modal-content modal-dialog-custom" >
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;"></h4>
+
+      <button type="button" class="close" (click)="modalRef.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <iframe width="100%" height="100%" [src]="dataPdfUrl"></iframe>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <div tabindex="0">
+          <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'COMMON.EXIT' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

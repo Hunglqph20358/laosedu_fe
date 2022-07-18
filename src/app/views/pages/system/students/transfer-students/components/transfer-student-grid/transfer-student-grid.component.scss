@@ -1,0 +1,41 @@
+.transfer-student-grid {
+  margin-top: 24px;
+
+  ::ng-deep {
+    .ag-header-group-text,
+    .ag-header-cell-text {
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .ag-header-group-cell-label {
+      justify-content: center;
+    }
+
+    .ag-header-cell-text {
+      color: #8F95B2;
+      font-weight: 600;
+      font-size: 10px;
+    }
+
+    .ag-row-odd {
+      background: #f9fafc;
+    }
+
+    .school-year-1,
+    .school-year-2 {
+      color: #474D66;
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 16px;
+    }
+
+    .school-year-1 {
+      background-color: #EDEFF5;
+    }
+
+    .school-year-2 {
+      background-color: #E6E8F0;
+    }
+  }
+}

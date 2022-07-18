@@ -1,0 +1,93 @@
+<ng-container *ngIf="component === 'subject'">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <div class="text-header">
+        <span><i class="fas fa-filter text-dark icon-header"></i> Tìm kiếm</span>
+      </div>
+      <div class="btn-header" (click)="isCollapsed = !isCollapsed">
+        <i class="fas fa-angle-double-down text-dark mt-2" *ngIf="isCollapsed"></i>
+        <i class="fas fa-angle-double-up text-dark mt-2" *ngIf="!isCollapsed"></i>
+      </div>
+    </div>
+
+    <div class="card-body row" *ngIf="isCollapsed">
+      <div class="col-1 mt-3">Khối:</div>
+      <div class="col-2">
+        <kendo-dropdownlist style="width: 100%; height: 100%; align-items: center"
+                            [data]="khoi"
+                            [defaultItem]="all"
+                            [(ngModel)]="searchValue.khoi">
+        </kendo-dropdownlist>
+      </div>
+      <div class="col-1 mt-3">Lớp:</div>
+      <div class="col-2">
+        <kendo-dropdownlist style="width: 100%; height: 100%; align-items: center"
+                            [data]="lop"
+                            [defaultItem]="all"
+                            [(ngModel)]="searchValue.lop">
+        </kendo-dropdownlist>
+      </div>
+      <div class="col-1 mt-3">Trạng thái:</div>
+      <div class="col-2">
+        <kendo-dropdownlist style="width: 100%; height: 100%; align-items: center"
+                            [data]="trangThai"
+                            [defaultItem]="all"
+                            [(ngModel)]="searchValue.trangThai">
+        </kendo-dropdownlist>
+      </div>
+      <div class="col-3 d-flex justify-content-end">
+        <div class="btn-custom btn-light" (click)="submit()">Search</div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="component === 'classroom'">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <div class="text-header">
+        <span><i class="fas fa-filter text-dark icon-header"></i> Tìm kiếm</span>
+      </div>
+      <div class="btn-header" (click)="isCollapsed = !isCollapsed">
+        <i class="fas fa-angle-double-down text-dark mt-2" *ngIf="isCollapsed"></i>
+        <i class="fas fa-angle-double-up text-dark mt-2" *ngIf="!isCollapsed"></i>
+      </div>
+    </div>
+
+    <div [ngbCollapse]="isCollapsed" class="card-body">
+      <form class="row">
+        <div class="col-sm-12 search-box-header">
+          <div class="row">
+                <label class="col-1 text-center col-form-label">Khối:</label>
+                <div class="col-2">
+                  <kendo-dropdownlist style="width: 100%" [data]="levelSchool" [defaultItem]="'Tất cả'"></kendo-dropdownlist>
+                  <!--                [(ngModel)]="selectedValue"-->
+                  <!--              <mat-select class="form-control form-control-solid" placeholder="Khối 2">-->
+                  <!--                <mat-option *ngFor="let level of levelSchool" [value]="level">{{level}}</mat-option>-->
+                  <!--              </mat-select>-->
+                </div>
+                <label class="col-1 text-center col-form-label">Lớp:</label>
+                <div class="col-2">
+                  <kendo-dropdownlist style="width: 100%" [data]="nameTeacher" [defaultItem]="'Tất cả'"></kendo-dropdownlist>
+                  <!--              <mat-select class="form-control form-control-solid" placeholder="Tất cả">-->
+                  <!--                <mat-option *ngFor="let teacher of nameTeacher" [value]="teacher">{{teacher}}</mat-option>-->
+                  <!--              </mat-select>-->
+                </div>
+              <div class="col-5 row">
+                <label class="col-sm-4 col-form-label">Giáo viên chủ nhiệm:</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control"
+                         placeholder="Nhập tên giáo viên chủ nhiệm">
+                </div>
+              </div>
+            <div class="col-1 d-flex  ">
+              <button kendoButton type="button" class="border-radius btn-custom btn-add mr-2"
+                      [iconClass]="'fas fa-search'"> Tìm kiếm</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+

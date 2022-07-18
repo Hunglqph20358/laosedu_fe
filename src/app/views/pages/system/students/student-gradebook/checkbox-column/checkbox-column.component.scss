@@ -1,0 +1,43 @@
+:host::ng-deep {
+  .header-checkbox-gradebook .mat-checkbox.mat-accent {
+    .mat-checkbox-frame {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 0px;
+      top: 0px;
+
+      /* Neutral/Background White - N0 */
+
+      background: #FFFFFF;
+      /* Neutral/Border Normal - N400 */
+
+      border: 1px solid #D8DAE5;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+
+    &.mat-checkbox-checked .mat-checkbox-background {
+      background-color: #F26522;
+      border-radius: 5px;
+      width: 20px;
+      height: 20px;
+    }
+
+    .mat-checkbox-checkmark-path {
+      stroke: dodger-blue !important;
+    }
+  }
+
+  .header-checkbox-gradebook .mat-checkbox-layout .mat-checkbox-label {
+    padding-top: 5px;
+    padding-left: 0px;
+    font-weight: 600;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8f95b2;
+  }
+}

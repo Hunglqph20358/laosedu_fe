@@ -1,0 +1,8 @@
+<div style="display: flex; flex-direction: column;justify-content: center;
+ align-items: center">
+    <input type="date" class="sy-popup-input" tabindex="0" [(ngModel)]="this.rowSelect.entryLockDate" (blur)="checkValid()"
+           placeholder="mm/dd/yyyy" (keyup)="validateKeyUp($event)"/>
+  <div class="message" *ngIf="invalid">
+    {{message}}
+  </div>
+</div>

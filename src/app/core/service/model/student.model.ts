@@ -1,0 +1,30 @@
+export class Student {
+  id: number;
+  createdTime: string;
+  createdName: string;
+  updateTime: string;
+  updateName: string;
+  fullName: string;
+  code: string;
+  deptId: number;
+  startDate: string;
+  phone: string;
+  email: string;
+  birthDay: string;
+  religion: string;
+  homeTown: string;
+  nation: string;
+  permanentAddress: string;
+  temporaryAddress: string;
+  socialInsuranceNumber: string;
+  identityCard: string;
+  issuedAddress: string;
+  issuedDate: string;
+  sex: number;
+  avatar: string;
+  electFormat: number;
+  graduationType: number;
+  contactId: number;
+  classRoomId: number;
+  status: number;
+}

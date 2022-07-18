@@ -1,0 +1,107 @@
+.create-group {
+  background: #FFFFFF;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+}
+
+.group-title {
+  width: 100%;
+  padding: 16px 0;
+  border-bottom: 1px solid #E6E8F0;
+  box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);
+
+  &__content {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600 !important;
+    line-height: 30px;
+    margin: 0;
+  }
+}
+
+.group-search-box {
+  padding: 16px 20px;
+  display: flex;
+  border-bottom: 1px solid #E6E8F0;
+  box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);
+}
+
+.group-body {
+  padding: 16px 20px;
+  border-bottom: 1px solid #E6E8F0;
+  box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);
+}
+
+.tree-view {
+  border: 1px solid #D8DAE5;
+  border-radius: 10px;
+  padding: 16px 16px 16px 0;
+}
+
+.list-teacher-details {
+  border: 1px solid #D8DAE5;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.btn-change {
+  position: absolute;
+  top: 50%;
+  left: -37px;
+  cursor: pointer;
+}
+
+.group-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.tableListNull {
+  height: 252px !important;
+}
+
+button{
+  font-size: 12px;
+}
+.t-body{
+  border-bottom: 1px solid rgba(124, 136, 177, 0.16);
+}
+:host ::ng-deep {
+  .ag-header-cell-text{
+    color: #8F95B2;
+  }
+
+  .ag-body-viewport{
+    margin-right: -5px;
+  }
+
+  .ag-center-cols-container{
+    width: 100% !important;
+  }
+}
+
+.nav-button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  //padding: 8px 32px;
+  height: 36px;
+  background: #f26522;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  justify-content: center;
+  font-weight: 600;
+  width: 100%;
+}
+.btn-close{
+  background: #E6E8F0;
+  width: 100px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: #696F8C;
+}

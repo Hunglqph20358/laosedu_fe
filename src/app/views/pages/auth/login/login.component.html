@@ -1,0 +1,249 @@
+<div>
+  <form class="form mt-5" [formGroup]="loginForm" (ngSubmit)="submit()">
+    <div class="w-100 mb-10 div_parent custom-input-login">
+      <div>
+        <label> {{'AUTH.LOGIN.USER_NAME' | translate}} </label>
+        <input type="text" class="form-control w-100 input-sm " formControlName="phone" id="phone" ng
+               aria-describedby="phone" autocomplete="off"
+               placeholder="{{'AUTH.LOGIN.ENTER_USERNAME' | translate}}"
+               [ngClass]="{'is-invalid': f.get('phone').touched && f.get('phone').invalid}"
+               (blur)="onBlurEvent($event)">
+        <span class="cross-validation-error-message alert error_div"
+              [ngClass]="{'is-invalid': f.get('phone').touched && f.get('phone').invalid}"
+              *ngIf="loginForm.get('phone').errors?.maxlength">
+          {{'AUTH.LOGIN.USERNAME_MAXLENT' | translate}}
+        </span>
+        <span class="cross-validation-error-message alert error_div"
+              [ngClass]="{'is-invalid': f.get('phone').touched && f.get('phone').invalid}"
+              *ngIf="loginForm.get('phone').errors?.isNullUser">
+           {{'AUTH.LOGIN.USERNAME_NOT_BLANK' | translate}}
+        </span>
+        <!--<span class="cross-validation-error-message alert error_div"-->
+        <!--[ngClass]="{'is-invalid': f.get('phone').touched && f.get('phone').invalid}"-->
+        <!--*ngIf="loginForm.get('phone').errors?.pattern">-->
+        <!--Số điện thoại chỉ được phép nhập số từ 0-9-->
+        <!--</span>-->
+      </div>
+      <div>
+        <label>{{'AUTH.LOGIN.PASSWORD' | translate}}</label>
+        <div class="input-group-append">
+          <input type="password" class="form-control w-100 input-sm custom-input-error" formControlName="password"
+                 #password autocomplete="off" (blur)="replaceSpacePassword($event)"
+                 (keydown.space)="$event.preventDefault();" autocomplete="off"
+                 id="exampleInputPassword1" placeholder="{{'AUTH.LOGIN.ENTER_PASSWORD' | translate}}"
+                 [ngClass]="{'is-invalid': f.get('password').touched && f.get('password').invalid}"/>
+          <span class="input-group-text cursor-pointer  navi-hover text-hover-red custom-span-error"
+                [ngClass]="{'custom-view-error': f.get('password').touched && f.get('password').invalid}"
+                (click)="changeType(password, 1)">
+              <i *ngIf="!toggle1" [ngClass]="{'fas fa-eye-slash': !toggle1}"></i>
+              <i *ngIf="toggle1" [ngClass]="{'fas fa-eye':toggle1}"></i>
+            </span>
+        </div>
+        <span class="cross-validation-error-message alert error_div"
+              [ngClass]="{'is-invalid': f.get('password').touched && f.get('password').invalid}"
+              *ngIf="loginForm.get('password').errors?.isNull">
+           {{'AUTH.LOGIN.PASSWORD_NOT_BLANK' | translate}}
+        </span>
+        <span class="cross-validation-error-message alert error_div"
+              [ngClass]="{'is-invalid': f.get('password').touched && f.get('password').invalid}"
+              *ngIf="loginForm.get('password').errors?.pattern">
+             {{'AUTH.LOGIN.PASSWORD' | translate}} {{'AUTH.VALIDATION.PASS_VALDATION' | translate}}
+          </span>
+        <span class="cross-validation-error-message alert error_div"
+              [ngClass]="{'is-invalid': f.get('password').touched && f.get('password').invalid}"
+              *ngIf="loginForm.get('password').errors?.maxlength">
+          {{'AUTH.LOGIN.PASSWORD_MAXLENT' | translate}}
+        </span>
+        <!--<span class="cross-validation-error-message alert error_div"-->
+        <!--[ngClass]="{'is-invalid': f.get('password').touched && f.get('password').invalid}"-->
+        <!--*ngIf="loginForm.get('password').errors?.minlength">-->
+        <!--Mật khẩu phải lớn hơn 3 ký tự-->
+        <!--</span>-->
+      </div>
+      <div>
+        <p>
+          <a href="javascript:;" class="float-right forgort-password"
+             (click)="openModal(templateForget)">{{'AUTH.LOGIN.FORGOT_PASSWORD' | translate}}</a>
+        </p>
+        <br/>
+        <br/>
+        <button type="submit" class="btn  btn_custom" [disabled]="loading||loginForm.invalid||loginForm.get('password').value ===''||loginForm.get('phone').value ===''" (keyup.enter)="submit()">
+          {{'AUTH.LOGIN.LOGIN' | translate}}
+          <i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="loading"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #templateForget>
+  <div class="modal-content modal-dialog-login-custom custom-input-login">
+    <div class="custom-modal-header text-center">
+      <div *ngIf="!verifySuccess">
+        <p class="modal-title custom-header"> {{'AUTH.LOGIN.PASSWORD_RETRIEVAL' | translate}}</p>
+        <p class="under-title p-2" *ngIf="!otp">{{'AUTH.LOGIN.ENTER_USER_NAME' | translate}}</p>
+        <p class="under-title p-2" *ngIf="otp">{{'AUTH.LOGIN.REQUEST_SEND_OTP' | translate}}
+          <b
+            style="color: #101840 !important;">******{{threeLastNumber}}</b> {{'AUTH.LOGIN.APPEND_SEND_OTP' | translate}}
+        </p>
+      </div>
+      <div *ngIf="verifySuccess">
+        <svg width="80" height="80" class="custom-svg-login" viewBox="0 0 80 80" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <rect width="80" height="80" rx="40" fill="#52BD94"/>
+          <path
+            d="M58.8501 32.3419L37.4295 53.7624C36.6629 54.5291 35.6708 54.8898 34.6336 54.8898C33.6415 54.8898 32.6494 54.5291 31.8828 53.7624L21.1499 43.0747C19.6167 41.4964 19.6167 39.0161 21.1499 37.4828C22.6832 35.9496 25.2086 35.9496 26.7418 37.4828L34.6336 45.3746L53.2582 26.75C54.7914 25.2168 57.3168 25.2168 58.8501 26.75C60.3833 28.3284 60.3833 30.8087 58.8501 32.3419Z"
+            fill="white"/>
+        </svg>
+        <p class="modal-title custom-header">{{'AUTH.LOGIN.AUTHENTICATION_SUCCESSFUL' | translate}}</p>
+        <p class="under-title p-2">{{'AUTH.LOGIN.NEW_PASS_IS' | translate}} <b
+          style="color: #101840 !important;">{{passwordReset}}</b>
+        </p>
+        <p class="custom-under-success">
+          {{'AUTH.LOGIN.ATTENTION' | translate}}
+        </p>
+      </div>
+    </div>
+    <div class="modal-body content_otp" style="padding: 15px 0px !important;" *ngIf="!otp&&!verifySuccess">
+      <form class="form mt-5" [formGroup]="otpForm" (ngSubmit)="onSubmitOtp()" (reset)="onCancelOtp()">
+        <div class="row">
+          <div class="col pl-15 pr-15">
+            <div class=" w-100 ">
+              <label class="m-auto label-input-popup pb-1">{{'AUTH.LOGIN.USER_NAME' | translate}} <span>*</span></label>
+              <input type="text" class="form-control w-100 input-sm" formControlName="accountName" ng
+                     aria-describedby="accountName" (keydown.space)="$event.preventDefault();"
+                     [ngClass]="{'is-invalid': f1.get('accountName').touched && f1.get('accountName').invalid}"
+                     (blur)="onBlurEventOTP($event)"
+                     id="accountName"
+                     placeholder="{{'AUTH.LOGIN.ENTER_USERNAME' | translate}}"/>
+            </div>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="otpForm.get('accountName').errors?.maxlength">
+              {{'AUTH.LOGIN.USERNAME_MAXLENT' | translate}}
+            </span>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="otpForm.get('accountName').errors?.required">
+               {{'AUTH.LOGIN.USERNAME_NOT_BLANK' | translate}}
+            </span>
+            <!--<span class="text-left cross-validation-error-message alert error_div"-->
+            <!--*ngIf="otpForm.get('accountName').errors?.pattern">-->
+            <!--Tên đăng nhập chỉ được phép nhập số từ 0-9-->
+            <!--</span>-->
+
+          </div>
+        </div>
+        <div class="modal-footer  mt-10">
+          <div class=" m-auto d-inline-flex">
+            <button type="reset" class="btn  btn_cancel">{{'COMMON.CANCEL' | translate}}</button>
+            <button type="button" type="submit" class="btn  btn_send"
+                    [disabled]="loadingOtp">{{'AUTH.LOGIN.SEND_CODE' | translate}}
+            </button>
+            <i class="spinner-border spin-custom"
+               *ngIf="loadingOtp"></i>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-body content_otp" style="padding: 15px 10px !important;" *ngIf="otp&&!verifySuccess">
+      <form class="form mt-5" [formGroup]="verifyOTPForm" (ngSubmit)="verifyOtp()" (reset)="onCancelOtp()">
+        <div class="row">
+          <div class="col div_custom ">
+            <div>
+              <p class="float-left label-input-popup custom-p">{{'AUTH.LOGIN.VERIFICATION_CODE' | translate}}</p>
+              <div class="col m-0 p-0 d-inline-flex text-center custom-p">
+                <div id="otp" class="d-inline-flex custom-input-number ">
+                  <input #digitOne (keyup)="onDigitInput($event)" formControlName="otpNumber1"
+                         aria-describedby="otpNumber1" autocomplete="off"
+                         [ngClass]="{'is-invalid': f2.get('otpNumber1').touched && f2.get('otpNumber1').invalid}"
+                         class="text-center form-control custom-otp" type="text" id="first"
+                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                         maxlength="1"/>
+                  <input #digitTwo (keyup)="onDigitInput($event)" formControlName="otpNumber2"
+                         aria-describedby="otpNumber2" class="text-center form-control custom-otp"
+                         type="text" autocomplete="off"
+                         [ngClass]="{'is-invalid': f2.get('otpNumber2').touched && f2.get('otpNumber2').invalid}"
+                         id="second"
+                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                         maxlength="1"/>
+                  <input #digitThree (keyup)="onDigitInput($event)" formControlName="otpNumber3"
+                         aria-describedby="otpNumber4" class="text-center form-control custom-otp" autocomplete="off"
+                         [ngClass]="{'is-invalid': f2.get('otpNumber3').touched && f2.get('otpNumber3').invalid}"
+                         type="text" id="third" maxlength="1"
+                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                  <input #digitFour (keyup)="onDigitInput($event)"
+                         class="text-center form-control custom-otp" formControlName="otpNumber4"
+                         aria-describedby="otpNumber4" type="text" id="fourth" autocomplete="off"
+                         [ngClass]="{'is-invalid': f2.get('otpNumber4').touched && f2.get('otpNumber4').invalid}"
+                         maxlength="1"
+                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                  <input #digitFive (keyup)="onDigitInput($event)" formControlName="otpNumber5"
+                         aria-describedby="otpNumber5" class="text-center form-control custom-otp"
+                         [ngClass]="{'is-invalid': f2.get('otpNumber5').touched && f2.get('otpNumber5').invalid}"
+                         type="text" autocomplete="off"
+                         id="fifth" maxlength="1"
+                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                  <input #digitSix (keyup)="onDigitInput($event)"
+                         class="text-center form-control custom-otp-end" formControlName="otpNumber6" autocomplete="off"
+                         aria-describedby="otpNumber6" type="text" id="sixth"
+                         [ngClass]="{'is-invalid': f2.get('otpNumber6').touched && f2.get('otpNumber6').invalid}"
+                         maxlength="1"
+                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                </div>
+              </div>
+              <div class="text-left pl-9">
+                  <span class="text-left cross-validation-error-message alert error_div"
+                        *ngIf="verifyOTPForm.get('otpNumber1').errors?.pattern||verifyOTPForm.get('otpNumber2').errors?.pattern
+                        ||verifyOTPForm.get('otpNumber3').errors?.pattern||verifyOTPForm.get('otpNumber4').errors?.pattern
+                        ||verifyOTPForm.get('otpNumber5').errors?.pattern||verifyOTPForm.get('otpNumber6').errors?.pattern">
+                    {{'AUTH.LOGIN.VALIDATE_OTP' | translate}}
+                  </span>
+              </div>
+              <div class="col d-inline-flex justify-content-end">
+                <!--<input type="text d-none"-->
+                <!--maxLength='6'-->
+                <!--id="inputCharacter"-->
+                <!--formControlName="otpNumber"-->
+                <!--aria-describedby="otpNumber"-->
+                <!--style="width: 14ch">-->
+                <div *ngIf="counter &&counter>0 && !passwordReset" class="btn-timer col-md-8 col-sm-12 pl-7">
+                  {{'AUTH.LOGIN.WAIT_SEND_CODE' | translate:'{counter:' + counter + '}'}}
+                </div>
+                <div class="col-md-4 col-sm-12 text-right">
+                  <button type="button" (click)="onSubmitOtp()" class="btn text-underline btn-link btn-resend-custom "
+                          [disabled]="counter>0?true:null || passwordReset">
+                    {{'AUTH.LOGIN.RE_SEND_CODE' | translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer pt-2">
+          <div class=" m-auto d-inline-flex pt-7">
+            <button type="reset" class="btn  btn_cancel">{{'COMMON.CANCEL' | translate}}</button>
+            <button type="button" type="submit" class="btn  btn_send"
+                    [disabled]="loadingVerifyOtp?true:null || passwordReset || numberOtpInput<6">{{'COMMON.CONFIRM' | translate}}
+            </button>
+            <i class="spinner-border spin-custom"
+               *ngIf="loadingVerifyOtp"></i>
+            <i class="spinner-border spin-custom"
+               *ngIf="loadingOtp"></i>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-body content_otp text-center" style="padding: 15px 10px !important;" *ngIf="verifySuccess">
+      <button type="button" type="submit" class="btn btn_send"
+              (click)="onCancelOtp()">{{'AUTH.LOGIN.LOGIN' | translate}}
+      </button>
+    </div>
+    <!--<div *ngIf="passwordReset">-->
+    <!--<div class="col div-custom-pw">-->
+    <!--<p>Xác thực thành công</p>-->
+    <!--<p>Mật khẩu mới của bạn là: {{passwordReset}}</p>-->
+    <!--</div>-->
+    <!--</div>-->
+  </div>
+</ng-template>
+

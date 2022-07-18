@@ -1,0 +1,110 @@
+<div
+  *ngIf="cellValue.evaluate === '1'"
+  style="color: #3366ff"
+  (click)="openEvaluationModal(evaluationOfSubjectTeachersModal)"
+>
+  {{'CONDUCT_ASSESSMENT.VIEW_DETAIL' | translate}}
+</div>
+<div *ngIf="cellValue.evaluate === '0'" style="color: #8F95B2;
+  font-size:12px; white-space: break-spaces">
+  <!--  <div style="text-align: center; margin-bottom: 6px">Không có</div>-->
+<!--  <div style="text-align: center; margin-bottom: 6px">đánh giá</div>-->
+<!--  Không có <br/> đánh giá-->{{'CONDUCT_ASSESSMENT.NO_EVALUATE' | translate}}
+</div>
+
+<!--<div-->
+<!--&gt;-->
+<!--  {{'CONDUCT_ASSESSMENT.VIEW_DETAIL' | translate}}-->
+<!--</div>-->
+
+
+
+<!--up-->
+<ng-template #evaluationOfSubjectTeachersModal>
+  <div class="">
+    <div class="modal-header">
+      <h4 class="modal-title" >{{'CONDUCT_ASSESSMENT.EVALUATE_OF_TEACHER' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+      <p class="student-info">
+
+<!--        <span style="color: #101840;"><b>Học sinh: </b></span>-->
+<!--        <span class="student-code" title="{{ cellValue.studentCode }}">{{-->
+
+        <span><b>{{'CONDUCT_ASSESSMENT.STUDENT' | translate}}: </b></span>
+        <span class="student-code" style="color: #696F8C !important;" title="{{ cellValue.studentCode }}">{{
+
+          cellValue.studentCode
+        }}</span
+        ><span class="student-name" style="color: #696F8C !important; font-size:14px;" title="{{ cellValue.studentName }}">
+          - {{ cellValue.studentName }}</span
+        >
+      </p>
+      <div class="table-school">
+        <ag-grid-angular
+          style="width: 100%; height:100%"
+          class="ag-theme-balham"
+          [suppressRowTransform]="true"
+          [debounceVerticalScrollbar]="true"
+          (gridReady)="onGridReady($event)"
+          suppressHorizontalScroll="false"
+          [rowHeight]="ROW_HEIGHT"
+          [headerHeight]="HEADER_HEIGHT"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [overlayNoRowsTemplate]="noRowsTemplate"
+          (gridSizeChanged)="gridSizeChanged($event)"
+        >
+        </ag-grid-angular>
+      </div>
+      <div *ngIf="total > 0" class="sy-paging w-100">
+        <span class="sy-paging-result"
+          >{{ first }}-{{ last }} {{'CONDUCT_ASSESSMENT.OF' | translate}} {{ total }} {{'CONDUCT_ASSESSMENT.RESULT' | translate}}</span
+        >
+        <ul class="sy-pages">
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-first-disabled]="currentPage === 1"
+            [class.ic-svg-first]="currentPage !== 1"
+            [class.disabled]="currentPage === 1"
+            (click)="goToPage(1)"
+          ></li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-prev-disabled]="currentPage === 1"
+            [class.ic-svg-prev]="currentPage !== 1"
+            [class.disabled]="currentPage === 1"
+            (click)="goToPage(currentPage - 1)"
+          ></li>
+          <li
+            class="sy-page"
+            [class.sy-highlight]="i === currentPage"
+            [class.sy-dots]="i === '...'"
+            *ngFor="let i of rangeWithDots"
+            (click)="i !== '...' && goToPage(i)"
+          >
+            {{ i }}
+          </li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-next-disabled]="currentPage === totalPage"
+            [class.ic-svg-next]="currentPage !== totalPage"
+            [class.disabled]="currentPage === totalPage"
+            (click)="goToPage(currentPage + 1)"
+          ></li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-last-disabled]="currentPage === totalPage"
+            [class.ic-svg-last]="currentPage !== totalPage"
+            [class.disabled]="currentPage === totalPage"
+            (click)="goToPage(totalPage)"
+          ></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="button-close btn-action-dv" style="font-weight: 600;" (click)="modalRef.hide()">{{'CONDUCT_ASSESSMENT.CLOSE' | translate}}</button>
+  </div>
+</ng-template>

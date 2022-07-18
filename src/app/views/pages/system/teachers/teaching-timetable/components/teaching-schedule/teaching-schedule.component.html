@@ -1,0 +1,67 @@
+<section *ngIf="teachingSchedule" class="teaching-schedule">
+  <table class="teaching-schedule__table teaching-schedule__table--with-head" style="table-layout: fixed;">
+    <thead>
+    <tr>
+      <th class="text-center teaching-schedule__period-cell w-64px">{{'TEACHING_TIMETABLE.PERIOD' | translate}}</th>
+      <th class="teaching-schedule__lesson-cell w-60px">{{'TEACHING_TIMETABLE.LESSON' | translate}}</th>
+      <th *ngFor="let day of teachingSchedule.days; let i = index">
+        <div>
+          <div class="day-of-week">{{day.name}}</div>
+          <div class="day-and-month">
+            <ng-container *ngIf="teachingSchedule.dates && teachingSchedule.dates.length && teachingSchedule.dates[i]">
+              {{teachingSchedule.dates[i] | localDate:('TEACHING_TIMETABLE.SCHEDULE_DATE_FORMAT' | translate) }}
+            </ng-container>
+          </div>
+        </div>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let lesson of teachingSchedule.lessons; let i = index">
+      <td *ngIf="i === 0" [attr.rowspan]="teachingSchedule.lessons.length"
+          class="teaching-schedule__period-morning-cell w-64px">
+        <div class="teaching-schedule__period-value">{{'TEACHING_TIMETABLE.MORNING' | translate}}</div>
+      </td>
+      <td class="teaching-schedule__lesson w-60px">{{lesson.code}}</td>
+      <td *ngFor="let day of teachingSchedule.days; let dayIndex = index" class="th-body cell-body">
+        <ng-container *ngIf="teachingSchedule.schedules">
+          <ng-container *ngIf="teachingSchedule.mappedSchedules[MORNING] as mappedSchedulesPeriod">
+            <kt-teaching-timetable-card [index]="dayIndex"
+                                        [schedule]="mappedSchedulesPeriod[day.code+lesson.code]">
+            </kt-teaching-timetable-card>
+          </ng-container>
+        </ng-container>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="teaching-schedule__table teaching-schedule__table--no-head">
+    <thead>
+    <tr>
+      <th class="teaching-schedule__period-cell w-64px"></th>
+      <th class="teaching-schedule__lesson-cell w-60px"></th>
+      <th *ngFor="let day of teachingSchedule.days"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let lesson of teachingSchedule.lessons; let i = index">
+      <td *ngIf="i === 0" [attr.rowspan]="teachingSchedule.lessons.length"
+          class="teaching-schedule__period-afternoon-cell w-64px">
+        <div
+          class="teaching-schedule__period-value teaching-schedule__period-value--afternoon">{{'TEACHING_TIMETABLE.AFTERNOON' | translate}}</div>
+      </td>
+      <td class="teaching-schedule__lesson w-60px">{{lesson.code}}</td>
+      <td *ngFor="let day of teachingSchedule.days; let dayIndex = index" class="th-body cell-body">
+        <ng-container *ngIf="teachingSchedule.schedules">
+          <ng-container *ngIf="teachingSchedule.mappedSchedules[AFTERNOON] as mappedSchedulesPeriod">
+            <kt-teaching-timetable-card [index]="dayIndex"
+                                        [schedule]="mappedSchedulesPeriod[day.code+lesson.code]">
+            </kt-teaching-timetable-card>
+          </ng-container>
+        </ng-container>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>

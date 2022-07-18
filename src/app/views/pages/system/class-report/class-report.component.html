@@ -1,0 +1,106 @@
+<div id="loadsubjectclass" class="page-loading-class" *ngIf="hide===false">
+  <div id="iconloadsubjectclass" class="bee-spinner-sc"></div>
+</div>
+<div class="row" style="padding: 0 15px">
+  <div class="col-md-12 col-xs-12"  style="padding-right: 0;">
+    <div class="menu-action-subject" style="display: flex; align-items: center">
+      <h3>{{'REPORT_CLASS.TITLE' | translate}}</h3>
+      <div class="list-action-subject">
+        <div class="btn-action-subject gray" tabindex="0"  style="width: 113px; height: 32px;" (click)="exportData()" (keyup.enter)="exportData()">
+          <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+                    d="M10.2663 7.91638V9.97918C10.2659 10.3194 10.1306 10.6456 9.89001 10.8862C9.64943 11.1268 9.32324 11.2621 8.98301 11.2625H1.28329C0.943053 11.2621 0.616861 11.1268 0.376279 10.8862C0.135697 10.6456 0.000373641 10.3194 0 9.97918V5.2738C0.000373641 4.93356 0.135697 4.60737 0.376279 4.36679C0.616861 4.12621 0.943053 3.99088 1.28329 3.99051H2.88667C1.18204 5.36568 0.702899 7.42116 1.57344 9.59526C1.67972 9.86413 1.87368 10.0892 2.1239 10.234C2.37412 10.3789 2.66591 10.4349 2.95199 10.3931C3.23806 10.3514 3.50163 10.2142 3.69999 10.0039C3.89834 9.79354 4.01984 9.52239 4.04479 9.23436C4.08697 8.7477 5.73954 7.54585 7.27179 7.27435V7.81278C7.27595 8.06469 7.35366 8.30989 7.49536 8.51822C7.63707 8.72654 7.83658 8.88889 8.06935 8.9853C8.30212 9.08171 8.558 9.10798 8.8055 9.06086C9.053 9.01374 9.28133 8.8953 9.4624 8.72011L10.2663 7.91638Z"
+                    fill="white"
+            />
+            <path
+                    d="M11.7497 5.22322L8.85773 8.11523C8.79742 8.17376 8.7213 8.21335 8.63875 8.22913C8.55621 8.24491 8.47085 8.23617 8.39321 8.20401C8.31557 8.17185 8.24904 8.11767 8.20183 8.04814C8.15462 7.97862 8.12879 7.89679 8.12754 7.81276V6.37741C7.1747 6.2759 5.66457 6.741 4.50324 7.53237C3.71333 8.07135 3.23586 8.66482 3.19283 9.16026C3.18281 9.25514 3.1415 9.344 3.07541 9.41281C3.00932 9.48163 2.9222 9.52649 2.8278 9.54033C2.7334 9.55417 2.63707 9.5362 2.55401 9.48925C2.47095 9.44229 2.40587 9.36903 2.36904 9.28101C1.84478 7.95495 1.87904 6.76539 2.47098 5.74526C3.31521 4.28993 5.2176 3.31416 8.12754 2.84255V1.42392C8.12882 1.3399 8.15466 1.2581 8.20188 1.18859C8.2491 1.11909 8.31562 1.06492 8.39325 1.03276C8.47089 1.00061 8.55623 0.99188 8.63876 1.00765C8.7213 1.02341 8.79741 1.06299 8.85773 1.12149L11.7497 4.01346C11.91 4.17396 12.0001 4.39151 12.0001 4.61834C12.0001 4.84517 11.91 5.06272 11.7497 5.22322Z"
+                    fill="white"
+            />
+          </svg>
+          {{'REPORT_CLASS.EXPORT_EXCEL' | translate}}
+        </div>
+      </div>
+    </div>
+    <!---->
+    <div class="row search-dv" style="margin: 0px">
+      <div class="col-md-10" style="padding: 0;">
+        <div class="col-md-4" style="padding-left: 0">
+          <label>{{'REPORT_CLASS.SELECT_SEMESTER' | translate}}</label>
+          <ng-select [searchable]="false" [clearable]="false" [items]="dataSemester" bindLabel="name" bindValue="value"
+            [(ngModel)]="semester" (change)="selectSemester($event)">
+            <ng-template ng-option-tmp let-item="item">
+              <div [title]="item.name">{{ item.name }}</div>
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="col-md-4" style="padding-left: 0">
+          <label>{{'REPORT_CLASS.GRADE' | translate}}</label>
+          <ng-select
+                  [items]="listGradeLevel"
+                  bindLabel="name"
+                  bindValue="id"
+                  placeholder="{{'REPORT_CLASS.GRADE_NAME' | translate}}"
+                  [(ngModel)]="selectedGradeLevel"
+                  [ngModelOptions]="{ standalone: true }"
+                  (ngModelChange)="onChangeGradeLevel($event)"
+                  [searchable]="false"
+                  [clearable]="false"
+                  class="sy-select"
+          >
+            <ng-template ng-option-tmp let-item="item">
+              <div [title]="item.name">{{ item.name }}</div>
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="col-md-4" style="padding-left: 0">
+          <label>{{'REPORT_CLASS.CLASS' | translate}}</label>
+          <ng-select [searchable]="false" [clearable]="false" [items]="dataClassRoom" bindLabel="name" bindValue="code"
+            [(ngModel)]="classRoom" (change)="selectClass($event)" [ngModelOptions]="{ standalone: true }">
+
+            <ng-template ng-option-tmp let-item="item">
+              <div class="overflow-dots" [title]="item.name">{{ item.name }}</div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+      <div class="col-md-2" style="padding-right: 0;">
+        <button style="width: 100%; " (click)="search(1)">{{'COMMON.SEARCH' | translate}}</button>
+      </div>
+    </div>
+
+    <div class="table-academic table-class-report" style="margin-top: 30px">
+      <div style="margin-bottom: 30px;">
+        <span class="note">{{'REPORT_CLASS.NUMBER_OF_ATTENDANTS' | translate}}: {{total}} {{'REPORT_CLASS.STUDENT' | translate}}</span>
+        <span class="note2" style="float: right;">{{'REPORT_CLASS.NOTE' | translate}}: <span style="color: #52BD94;">{{'REPORT_CLASS.MG' | translate}}</span> - {{'REPORT_CLASS.REMISSION' | translate}}, <span
+            style="color: #D14343;">{{'REPORT_CLASS.CT' | translate}}</span> - {{'REPORT_CLASS.SCORE_NOT_YET' | translate}} </span>
+      </div>
+      <ag-grid-angular [suppressRowTransform]="true" style="width: 100%; height: 400px;" class="ag-theme-balham"
+        [rowData]="rowData" [columnDefs]="columnDefs" [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+        (gridReady)="onGridReady($event)" [cacheBlockSize]="cacheBlockSize" [overlayNoRowsTemplate]="noRowsTemplate"
+                     (gridSizeChanged)="gridSizeChanged($event)" [debounceVerticalScrollbar]="true" [tooltipShowDelay]="0"
+                       (gridColumnsChanged)="gridColumnsChanged($event)"
+                       [overlayLoadingTemplate]="loadingTemplate"
+        [debounceVerticalScrollbar]="true">
+      </ag-grid-angular>
+      <div class="sy-paging w-100" *ngIf="hasRecord">
+        <span class="sy-paging-result">{{ first }}-{{ last }} {{'REPORT_CLASS.OF' | translate}} {{ total }} {{'REPORT_CLASS.RESULT' | translate}}</span>
+        <ul>
+          <i class="fas fa-angle-double-left arrow" style="margin: 0" (click)="goToPage(1)"></i>
+          <i class="fas fa-angle-left arrow" (click)="goToPage(currentPage - 1)"></i>
+          <li class="sy-page" [class.sy-highlight]="i === currentPage" [class.sy-dots]="i === '...'"
+            *ngFor="let i of rangeWithDots" (click)="i !== '...' && goToPage(i)">
+            {{ i }}
+          </li>
+          <i class="fas fa-angle-right arrow" (click)="goToPage(currentPage + 1)"></i>
+          <i class="fas fa-angle-double-right arrow" style="margin: 0" (click)="goToPage(totalPage)"></i>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

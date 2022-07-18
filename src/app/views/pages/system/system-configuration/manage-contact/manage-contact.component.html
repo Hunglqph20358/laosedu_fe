@@ -1,0 +1,412 @@
+<div class="sy default-layout">
+  <div class="sy-heading">
+    <div class="title">
+      <h3 class="sy-heading-text overflow-dot" [matTooltip]="title"  >
+        <div class="title1">{{'MANAGE_CONTACT.LIST_CONTACT' | translate}}:</div>
+        <div class="title2">{{classRoomName}}</div>
+        <div class="title3">{{_year}}</div>
+      </h3>
+    </div>
+
+    <div class="heading-list-actions" >
+      <button class="sy-btn-action gray focus-button btn-action-dv" (click)="exportData()"
+              tabindex="0">
+        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-export"></span>
+        {{'MANAGE_CONTACT.EXPORT_FILE' | translate}}
+      </button>
+    </div>
+  </div>
+  <hr class="sy-line" />
+  <div class="sy-main-content">
+    <form [formGroup]="formSearch" class="sy-form search-form">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="sy-label"
+                >{{'MANAGE_CONTACT.GRADE' | translate}} <span class="sy-required">*</span></label
+              >
+              <ng-select
+                name="gradeLevelId"
+                style="font-size: 12px; font-family: Inter;"
+                [items]="listGradeLevel"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'MANAGE_CONTACT.SELECTION' | translate}}"
+                [(ngModel)]="selectedGradeLevelId"
+                (ngModelChange)="onChangeGradeLevel($event)"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="false"
+                [clearable]="false"
+                class="sy-select"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div [title]="item.name">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+
+
+
+            <div class="col-md-2">
+              <label class="sy-label"
+                >{{'MANAGE_CONTACT.CLASSROOM' | translate}} <span class="sy-required">*</span></label
+              >
+              <ng-select
+                name="classId"
+                style="font-size: 12px; font-family: Inter;"
+                [items]="listClass"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'MANAGE_CONTACT.SELECTION' | translate}}"
+                [(ngModel)]="selectedClassId"
+                (ngModelChange)="onChangeClass($event)"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="true"
+                [clearable]="false"
+                class="sy-select"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;" title="{{ item.name }}">
+                    {{ item.name }}
+                  </div>
+                </ng-template>
+              </ng-select>
+            </div>
+            <div class="col-md-2">
+              <label class="sy-label">{{'MANAGE_CONTACT.STATUS' | translate}}</label>
+              <ng-select
+                name="statusId"
+                style="font-size: 12px; font-family: Inter;"
+                [items]="listStatus"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'MANAGE_CONTACT.SELECTION' | translate}}"
+                [(ngModel)]="selectedStatusId"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="false"
+                [clearable]="true"
+                class="sy-select"
+                (ngModelChange)="changeStatus()"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div title="{{ item.name }}">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+
+            <div class="col-md-2">
+              <label class="sy-label"
+              >{{'MANAGE_CONTACT.SEMESTER' | translate}}</label
+              >
+<!--              (ngModelChange)="onChangeGradeLevel($event)"-->
+              <ng-select
+                style="font-size: 12px; font-family: Inter;"
+                name="gradeLevelId"
+                [items]="semestersInCurrentYear1"
+                bindLabel="name"
+                bindValue="value"
+                placeholder="{{'MANAGE_CONTACT.SELECTION' | translate}}"
+                [(ngModel)]="semesterValue"
+
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="false"
+                [clearable]="false"
+                class="sy-select"
+                [disabled]="booleanSemester === true"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div [title]="item.name">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+
+            <div class="col-md-2">
+              <label class="sy-label">{{'MANAGE_CONTACT.STUDENT' | translate}}</label>
+              <input (keyup.enter)="findListContacts(1)"
+                class="sy-input focus-button" style="font-size: 12px; font-family: Inter;"
+                type="text"
+                name="studentName"
+                formControlName="studentName"
+                placeholder="{{'MANAGE_CONTACT.ENTER_SEARCH_INFORMATION' | translate}}"
+
+              />
+<!--              style="width: 180px"-->
+            </div>
+
+            <div class="col-md-2">
+              <div class="search-action" >
+                <button tabindex="0" style="width: 180px"
+                  class="focus-button sy-btn-action active large btn-action-dv"
+                  (click)="findListContacts(1)"
+                >
+                  {{'MANAGE_CONTACT.SEARCH' | translate}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <div class="row table-school-year table-school contact-kbt" style="margin-top: 24px">
+      <ag-grid-angular #agGridAngularManageContact
+        [suppressRowTransform]="true"
+        style="width: 100%; height: 450px; margin-right:13px; margin-left: 10px; "
+        class="ag-theme-balham"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [getRowStyle]="rowStyle"
+        [rowHeight]="ROW_HEIGHT"
+        [headerHeight]="HEADER_HEIGHT"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event)"
+        (gridSizeChanged)="gridSizeChanged($event)"
+       (gridColumnsChanged)="gridColumnsChanged($event)"
+       (selectionChanged)="onSelectionChanged($event)"
+        [overlayNoRowsTemplate]="noRowsTemplate"
+        [debounceVerticalScrollbar]="true"
+        [suppressMaintainUnsortedOrder]="true"
+        [applyColumnDefOrder]="true"
+      >
+      </ag-grid-angular>
+    </div>
+
+    <div *ngIf ="showPagination">
+    <div *ngIf="total > 0" class="sy-paging w-100" style="padding-bottom: 13px;">
+      <span class="sy-paging-result"
+        >{{ first }}-{{ last }} {{'MANAGE_CONTACT.OF' | translate}} {{ total }} {{'MANAGE_CONTACT.RESULT' | translate}}</span>
+      <ul class="sy-pages">
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-first-disabled]="currentPage === 1"
+          [class.ic-svg-first]="currentPage !== 1"
+          [class.disabled]="currentPage === 1"
+          (click)="goToPage(1)"
+        ></li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-prev-disabled]="currentPage === 1"
+          [class.ic-svg-prev]="currentPage !== 1"
+          [class.disabled]="currentPage === 1"
+          (click)="goToPage(currentPage - 1)"
+        ></li>
+        <li
+          class="sy-page"
+          [class.sy-highlight]="i === currentPage"
+          [class.sy-dots]="i === '...'"
+          *ngFor="let i of rangeWithDots"
+          (click)="i !== '...' && goToPage(i)"
+        >
+          {{ i }}
+        </li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-next-disabled]="currentPage === totalPage"
+          [class.ic-svg-next]="currentPage !== totalPage"
+          [class.disabled]="currentPage === totalPage"
+          (click)="goToPage(currentPage + 1)"
+        ></li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-last-disabled]="currentPage === totalPage"
+          [class.ic-svg-last]="currentPage !== totalPage"
+          [class.disabled]="currentPage === totalPage"
+          (click)="goToPage(totalPage)"
+        ></li>
+      </ul>
+    </div>
+    </div>
+
+    <div class="col-md-12 col-xs-12" style="padding-bottom: 30px;margin-bottom: 24px; display: flex; justify-content: center;" *ngIf="selectedStudents.length!==0">
+      <button class="sy-btn-action gray focus-button btn-action-dv"
+              tabindex="0" style="margin-right:16px; min-width: 136px; height: 40px"
+              (click)="unSelected()"
+      >
+        <svg width="18" height="13" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px">
+          <path d="M10.8 3.6V7.2C10.7989 8.15446 10.4193 9.06953 9.74442 9.74443C9.06951 10.4193 8.15445 10.799 7.19999 10.8H3.6C3.44087 10.8 3.28826 10.8632 3.17574 10.9757C3.06321 11.0883 3 11.2409 3 11.4C3 11.5591 3.06321 11.7117 3.17574 11.8243C3.28826 11.9368 3.44087 12 3.6 12H7.19999C8.47258 11.9985 9.69263 11.4924 10.5925 10.5925C11.4923 9.69264 11.9985 8.47259 12 7.2V3.6C12 3.44087 11.9368 3.28826 11.8243 3.17574C11.7117 3.06321 11.5591 3 11.4 3C11.2409 3 11.0882 3.06321 10.9757 3.17574C10.8632 3.28826 10.8 3.44087 10.8 3.6Z" fill="white"/>
+          <path d="M7.19999 10.2C7.99535 10.199 8.75787 9.88268 9.32027 9.32027C9.88268 8.75787 10.199 7.99535 10.2 7.19999V3C10.199 2.20463 9.88268 1.44212 9.32027 0.879713C8.75787 0.317308 7.99535 0.000936868 7.19999 0H3C2.20463 0.000936868 1.44212 0.317308 0.879713 0.879713C0.317308 1.44212 0.000936868 2.20463 0 3V7.19999C0.000936868 7.99535 0.317308 8.75787 0.879713 9.32027C1.44212 9.88268 2.20463 10.199 3 10.2H7.19999ZM3.48599 4.44845L4.25297 5.50901L6.79241 3.15942C6.90927 3.05133 7.06429 2.9941 7.22335 3.00032C7.38241 3.00653 7.53249 3.07567 7.64057 3.19253C7.74865 3.3094 7.80588 3.46441 7.79967 3.62347C7.79346 3.78253 7.72431 3.93261 7.60745 4.04069L4.57121 6.84959C4.5089 6.90721 4.43506 6.95095 4.35459 6.97792C4.27412 7.0049 4.18885 7.0145 4.10439 7.00608C4.01994 6.99767 3.93823 6.97143 3.86467 6.92911C3.7911 6.88678 3.72736 6.82933 3.67763 6.76055L2.514 5.15153C2.42544 5.02245 2.39084 4.86387 2.41758 4.70963C2.44432 4.55539 2.53027 4.4177 2.65711 4.32596C2.78395 4.23421 2.94162 4.19567 3.09648 4.21856C3.25133 4.24144 3.39112 4.32394 3.48599 4.44845Z" fill="white"/>
+        </svg>
+        {{'MANAGE_CONTACT.UNSELECTED' | translate}}
+      </button>
+<!--      *ngIf="checkDisplayRegister"-->
+      <button style="margin-right: 16px;min-width: 169px; height: 40px"
+        class="sy-btn-action blue focus-button btn-action-dv"
+        (click)="registerMultiPackage()"
+        tabindex="0"
+        *ngIf="checkDisplayRegister"
+        [disabled]="selectedStudents.length ===0"
+      >
+        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-plus" style="transform: translateY(1px) !important;" ></span>
+        {{'MANAGE_CONTACT.REGISTER_PACKAGE' | translate}}
+      </button>
+      <button style="min-width: 125px; height: 40px"
+        class="sy-btn-action red button-cancel focus-button btn-action-dv"
+              (click)="openModalDelete(deteleContactPackageModal)"
+              [disabled]="selectedStudents.length !==1"
+              *ngIf="checkDisplayRegister && checkDisplayCancel && selectedStudents.length ===1"
+              >
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: translateY(-1px) !important; margin-right: 5px">
+          <rect x="9.53554" y="1.05029" width="2" height="12" rx="1" transform="rotate(45 9.53554 1.05029)" fill="white"/>
+          <rect x="10.9498" y="9.5354" width="2" height="12" rx="1" transform="rotate(135 10.9498 9.5354)" fill="white"/>
+        </svg>
+        {{'MANAGE_CONTACT.CANCEL_SERVICE' | translate}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--Dang ky goi cuoc-->
+<ng-template #registerPackageModal>
+  <form class="sy-form" >
+    <div class="modal-content modal-dialog-custom" tabindex="0">
+      <div class="modal-header">
+        <h4 class="modal-title">{{'MANAGE_CONTACT.REGISTER_PACKAGE' | translate}}</h4>
+      </div>
+      <div class="modal-body">
+        <h4 class="title-register">{{'MANAGE_CONTACT.REGISTER_DETAIL' | translate}}</h4>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="sy-form-group">
+              <label class="sy-label"
+                >{{'MANAGE_CONTACT.SELECTION_SEMESTER' | translate}}<span class="sy-required">*</span></label
+              >
+              <ng-select
+                style="font-size: 12px;line-height: 16px;"
+                class="focus-button"
+                name="semester"
+                [items]="listSemesters"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'MANAGE_CONTACT.SELECTION' | translate}}"
+                [(ngModel)]="selectedSemester"
+                (ngModelChange)="onChangeSemester($event)"
+                [clearable]="false"
+                [searchable]="false"
+              >
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="sy-form-group">
+              <label class="sy-label"
+                >{{'MANAGE_CONTACT.PACKAGE_REGISTER' | translate}}<span class="sy-required">*</span></label
+              >
+<!--              class="sy-input"-->
+              <input
+                class="input2"
+                type="text"
+                name="packageName"
+                disabled="true"
+                [(ngModel)]="packageName"
+              />
+              <p class="package-description">{{ packageDescription }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label">{{'MANAGE_CONTACT.TIME_APPLICATION' | translate}}</label>
+              <input
+                class="input1"
+                type="text"
+                name="fromPackageDate"
+                [(ngModel)]="fromPackageDate"
+                disabled="true"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label">{{'MANAGE_CONTACT.TO' | translate}}</label>
+              <input
+                class="input1"
+                type="text"
+                name="toPackageDate"
+                [(ngModel)]="toPackageDate"
+                disabled="true"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-actions">
+          <button type="button" class="focus-button sy-btn-action btn-action-dv"
+             (click)="modalRef.hide()">
+            {{'MANAGE_CONTACT.CANCEL' | translate}}
+          </button>
+          <button
+            [disabled]="disableSave"
+            [ngStyle]="{'cursor': disableSave ? 'default':'pointer'}"
+            type="button"
+            class="focus-button sy-btn-action active btn-action-dv"
+            (click)="updateRegisterPackage()"
+          >
+            {{'MANAGE_CONTACT.SAVE' | translate}}
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!--Huy goi cuoc-->
+<ng-template #deteleContactPackageModal>
+  <form class="sy-form">
+  <div class="modal-content " style="width: 418px" tabindex="0">
+    <div class="modal-header">
+      <h4 class="modal-title">{{'MANAGE_CONTACT.CANCEL_SERVICE' | translate}}</h4>
+<!--      <p style="text-align: center;" class="des" >-->
+<!--        Bạn có chắc chắn muốn huỷ dịch vụ gói cước sổ liên lạc điện tử?-->
+<!--      </p>-->
+    </div>
+    <div class="modal-body">
+      <label class="titleCancel" style="float: left"
+      >{{'MANAGE_CONTACT.SELECTION_SEMESTER_CANCEL' | translate}}</label
+      >
+      <ng-select
+
+        style="font-size: 12px;line-height: 16px; text-align: left"
+        class="focus-button"
+        name="semester"
+        [items]="listSemesterRegistered"
+        bindLabel="name"
+        bindValue="id"
+        placeholder="{{'MANAGE_CONTACT.SELECTION' | translate}}"
+        [(ngModel)]="selectedSemesterRegistered"
+        (ngModelChange)="onChangeSemesterCancel($event)"
+        [clearable]="false"
+        [searchable]="false"
+      >
+      </ng-select>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-actions">
+        <button type="button" class="focus-button sy-btn-action btn-action-dv" (click)="modalRef.hide()"
+                >
+          {{'MANAGE_CONTACT.CANCEL' | translate}}
+        </button>
+        <button
+          type="button"
+          class="focus-button sy-btn-action active btn-action-dv"
+          (click)="deteleContactPackage()"
+
+        >
+          {{'MANAGE_CONTACT.AGREE' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  </form>
+</ng-template>
+
+
+
+
+<div class="page-loading-class" *ngIf="hide===false">
+  <div class="bee-spinner-sc"></div>
+</div>

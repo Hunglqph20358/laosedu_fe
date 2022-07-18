@@ -1,0 +1,107 @@
+.teaching-schedule-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  padding: 0px 12px 0px 12px;
+  font-size: 12px;
+  line-height: 16px;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #F26522;
+    border-radius: 100px 0 0 100px;
+  }
+
+  &--0 {
+    background: #FCE9E2;
+
+    &:before {
+      background: #F26522;
+    }
+  }
+
+  &--1 {
+    background: #EEF8F4;
+
+    &:before {
+      background: #52BD94;
+    }
+  }
+
+  &--2 {
+    background-color: #F3F6FF;
+
+    &:before {
+      background: #3366FF;
+    }
+  }
+
+  &--3 {
+    background-color: #FFFAF1;
+
+    &:before {
+      background: #F3A412;
+    }
+  }
+
+  &--4 {
+    background-color: #FCE9E2;
+
+    &:before {
+      background: #F26522;
+    }
+  }
+
+  &--5 {
+    background-color: #F2FCFD;
+
+    &:before {
+      background: #25CBD6;
+    }
+  }
+
+  &__label {
+    color: #696F8C;
+  }
+
+  &__value {
+    padding-left: 4px;
+    font-weight: 600;
+    color: #101840;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    width: 70%;
+    line-height: 20px;
+  }
+}
+
+.name {
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #696F8C;
+  width: 51px;
+}
+
+.text {
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  font-size: 12px;
+  width: 70%;
+  line-height: 20px;
+}

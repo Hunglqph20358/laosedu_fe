@@ -1,0 +1,33 @@
+<div class="modal-dialog-custom">
+  <form class="login-form">
+    <div class="modal-content">
+      <div class="modal-header" style="    flex-direction: column;">
+        <h4 class="modal-title" style="text-align: center;">{{'COMMON.UPDATE'|translate}}</h4>
+      </div>
+      <div class="modal-body" style="padding: 15px 10px !important;">
+        <div class="info-point">
+          {{'CONF_LOCK.INFO_SCORE'|translate}}:
+        </div>
+        <div class="row table-school update-dialog-conf-lock" style="margin-top: 20px;">
+          <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true" style="width: 100%; height: 100px;"
+                           class="ag-theme-balham" [rowData]="confEntryKey" [columnDefs]="columnDefs"
+                           [headerHeight]="headerHeight"
+                           [rowSelection]="'multiple'"
+                           [rowHeight]="rowHeight" (gridReady)="onGridReady($event)">
+
+          </ag-grid-angular>
+        </div>
+          <div style="display: flex; flex-direction: column; text-align: left;">
+            <label for="toDate" class="info-point">{{'CONF_LOCK.UPDATE_TIME_LOWER'|translate}} <span style="color: red"> * </span></label>
+            <input id="toDate" type="date" value="" placeholder="dd/mm/yyyy" class="sy-popup-input"
+                   name="toDate" [(ngModel)]="configLockDate" (blur)="validateUpdate()" (keyup)="keyUpDate($event)">
+          </div>
+          <div style="color: red;" *ngIf="showErr">{{message}}</div>
+        </div>
+      <div class="modal-footer">
+          <button type="button" class="btn-md btn-gray" (click)="onDismiss()">{{'COMMON.CANCEL'|translate}}</button>
+          <button type="submit" class="btn-md btn-or" (click)="save()">{{'COMMON.OK'|translate}}</button>
+      </div>
+    </div>
+  </form>
+</div>

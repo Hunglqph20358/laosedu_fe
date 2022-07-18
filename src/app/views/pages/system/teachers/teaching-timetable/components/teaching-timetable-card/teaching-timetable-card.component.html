@@ -1,0 +1,14 @@
+<div *ngIf="schedule" [ngClass]="'teaching-schedule-card--' + index" class="teaching-schedule-card">
+  <div style="transform: translateY(4px) !important;">
+    <label class="d-flex w-100  ml-2 mt-2 mb-0" style="margin-top: 0px !important;">
+      <p class="name">{{'TEACHING_TIMETABLE.SUBJECT' | translate}}</p>
+      <p [matTooltip]="schedule.subjectName" [matTooltipClass]="'tooltip-class'"
+           class="text color-lesson-teacher-subject">{{schedule.subjectName | truncate}}</p>
+    </label>
+    <label class="d-flex w-100  ml-2 mt-2 mb-0" style="margin-top: 0px !important;">
+      <p class="name">{{'TEACHING_TIMETABLE.CLASS' | translate}}</p>
+      <p [matTooltip]="schedule.classCode" [matTooltipClass]="'tooltip-class'"
+           class="text color-lesson-teacher-subject">{{schedule.classCode | truncate}}</p>
+    </label>
+  </div>
+</div>

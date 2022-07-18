@@ -1,0 +1,36 @@
+<ng-select
+    [id]="rowIndex+scoreName"
+    class="select-score"
+    [items]="listSelect"
+    bindLabel="name"
+    bindValue="name"
+    [placeholder]="placeholderSelect"
+    [(ngModel)]="rankValue"
+    [disabled]="!isUpdate || disableScore"
+    (change)="changeValue('click')"
+    [searchable]="false"
+    [ngClass]="isUpdate ? 'white' : 'transparent'"
+    *ngIf="showDropDown"
+    appendTo="body"
+    [matTooltip]="rankValue"
+    [matTooltipClass]="'tooltip-class'"
+>
+  <ng-template ng-option-tmp let-item="item">
+    <div [matTooltip]="item.name" [matTooltipClass]="'tooltip-class'" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.name}}</div>
+  </ng-template>
+</ng-select>
+
+<input class="input-score"
+       [id]="rowIndex+scoreName"
+       [ngClass]="isUpdate ? 'white' : 'transparent'"
+       *ngIf="!showDropDown"
+       type="text"
+       [placeholder]="placeholder"
+       (change)="changeValue('click')"
+       (keyup.enter)="changeValue('enter')"
+       maxlength="250" tabindex="0"
+       [matTooltip]="rankValue"
+       matTooltipClass="tooltip-class tip"
+       [(ngModel)]="rankValue"
+       [readOnly]="!isUpdate || disableScore"
+/>

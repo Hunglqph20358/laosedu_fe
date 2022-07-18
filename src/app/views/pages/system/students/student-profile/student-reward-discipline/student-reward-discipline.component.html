@@ -1,0 +1,33 @@
+<div class="tab-container">
+  <div class="d-flex">
+    <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+    </svg>
+    <h3 class="title-tab">
+      {{ 'STUDENT.REWARD.TEXT' | translate }}
+    </h3>
+  </div>
+  
+  <div class="student-grid" [ngStyle]="rewardStyle">
+    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-balham" [rowData]="rowDataReward"
+      [columnDefs]="columnReward" [overlayNoRowsTemplate]="overlayNoRowsTemplate" [headerHeight]="headerHeight" [rowHeight]="rowHeight" (gridReady)="onGridReady($event)"
+      (gridSizeChanged)="gridSizeChanged($event)">
+    </ag-grid-angular>
+  </div>
+  
+  <div class="d-flex" >
+    <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+    </svg>
+    <h3 class="title-tab">
+      {{ 'STUDENT.DISCIPLINE.TEXT' | translate }}
+    </h3>
+  </div>
+  
+  <div class="student-grid" [ngStyle]="disciplineStyle">
+    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-balham" [rowData]="rowDataDiscipline"
+      [columnDefs]="columnDiscipline" [overlayNoRowsTemplate]="overlayNoRowsTemplate" [headerHeight]="headerHeight" [rowHeight]="rowHeight" (gridReady)="onGridReady($event)"
+      (gridSizeChanged)="gridSizeChanged($event)">
+    </ag-grid-angular>
+  </div>
+</div>

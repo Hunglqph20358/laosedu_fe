@@ -1,0 +1,43 @@
+<div class="teaching-timetable-filter">
+  <form [formGroup]="form">
+    <div class="row padding-bottom">
+      <div class="col-md-3" style="padding-right: 6px;">
+        <label class="teaching-timetable-filter__label teaching-timetable-filter__label--required">
+          {{'TEACHING_TIMETABLE.SEMESTER' | translate}}
+        </label>
+        <ng-select [clearable]="false"
+                   [compareWith]="isSemesterEqual"
+                   [items]="semesters"
+                   (change)="onSemesterChanged()"
+                   bindLabel="label"
+                   formControlName="semester"
+                   style="width: 100%"
+        >
+
+        </ng-select>
+        <div *ngIf="semester.touched || semester.dirty">
+          <small class="error-validate" *ngIf="semester.hasError('required')">
+            {{'TEACHING_TIMETABLE.REQUIRED_FIELD' | translate}}
+          </small>
+        </div>
+      </div>
+      <div class="col-md-3" style="padding-left: 6px;">
+        <label class="teaching-timetable-filter__label teaching-timetable-filter__label--required">
+          {{'TEACHING_TIMETABLE.APPLY_DATE' | translate}}
+        </label>
+        <input (change)="onApplyDateChanged()"
+               class="teaching-timetable-filter__datepicker"
+               formControlName="applyDate"
+               type="date">
+        <div *ngIf="applyDate.touched || applyDate.dirty">
+          <small class="error-validate" *ngIf="applyDate.hasError('required')">
+            {{'TEACHING_TIMETABLE.REQUIRED_APPLY_DATE' | translate}}
+          </small>
+          <small class="error-validate" *ngIf="applyDate.hasError('invalidDate')">
+            {{'TEACHING_TIMETABLE.INVALID_APPLY_DATE' | translate}}
+          </small>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

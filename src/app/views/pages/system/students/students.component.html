@@ -1,0 +1,119 @@
+<div style="position: relative; height: 100%">
+  <div id="loadpagepr" [ngClass]="{'page-loading-class' : isLoading}" >
+    <div id="loadpage" class="bee-spinner-sc"></div>
+  </div>
+  <div class="row" style="padding: 0 15px">
+    <div class="col-md-12 col-xs-12">
+      <div class="menu-action-dv">
+
+        <h3>{{ 'STUDENT.LIST_STUDENT' | translate }}</h3>
+
+        <div class="list-action-dv">
+          <div class="btn-action-dv blue" *ngIf="!isRole && editable">
+            <a class="student-btn-focus" routerLink="/system/student/create-update-student" style="color: #fff;">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" width="2" height="12" rx="1" fill="white" />
+                <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="white" />
+              </svg>
+              {{ 'STUDENT.CREATE' | translate}}
+            </a>
+          </div>
+          <div *ngIf="!isRole && editable" class="btn-action-dv gray student-btn-focus" (click)="openImportDialog()">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.53806 2.87431V0.468903C5.53806 0.213138 5.74206 0 6.00006 0C6.23106 0 6.42677 0.179095 6.45778 0.405948L6.46206 0.468903V2.87431L9.33 2.8745C10.758 2.8745 11.9312 4.04387 11.9971 5.50225L12 5.63165V8.65523C12 10.1238 10.8676 11.3293 9.46082 11.397L9.336 11.4H2.664C1.236 11.4 0.0684539 10.2365 0.00290267 8.77275L0 8.64284L0 5.62546C0 4.15686 1.12675 2.94553 2.5332 2.87751L2.658 2.8745H5.538V6.71593L4.578 5.72459C4.398 5.53872 4.104 5.53872 3.924 5.72459C3.834 5.81753 3.792 5.94145 3.792 6.06536C3.792 6.15954 3.81888 6.25768 3.87571 6.34076L3.924 6.39994L5.67 8.20913C5.754 8.30207 5.874 8.35164 6 8.35164C6.1 8.35164 6.2 8.31721 6.27917 8.25196L6.324 8.20913L8.07 6.39994C8.25 6.21406 8.25 5.91047 8.07 5.72459C7.90636 5.55561 7.64851 5.54025 7.46775 5.67851L7.416 5.72459L6.462 6.71593V2.8745L5.53806 2.87431Z"
+                fill="white" />
+            </svg>
+            {{ 'STUDENT.IMPORT' | translate }}
+          </div>
+          <div class="btn-action-dv gray student-btn-focus" (click)="exportData()">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10.2663 7.91638V9.97918C10.2659 10.3194 10.1306 10.6456 9.89001 10.8862C9.64943 11.1268 9.32324 11.2621 8.98301 11.2625H1.28329C0.943053 11.2621 0.616861 11.1268 0.376279 10.8862C0.135697 10.6456 0.000373641 10.3194 0 9.97918V5.2738C0.000373641 4.93356 0.135697 4.60737 0.376279 4.36679C0.616861 4.12621 0.943053 3.99088 1.28329 3.99051H2.88667C1.18204 5.36568 0.702899 7.42116 1.57344 9.59526C1.67972 9.86413 1.87368 10.0892 2.1239 10.234C2.37412 10.3789 2.66591 10.4349 2.95199 10.3931C3.23806 10.3514 3.50163 10.2142 3.69999 10.0039C3.89834 9.79354 4.01984 9.52239 4.04479 9.23436C4.08697 8.7477 5.73954 7.54585 7.27179 7.27435V7.81278C7.27595 8.06469 7.35366 8.30989 7.49536 8.51822C7.63707 8.72654 7.83658 8.88889 8.06935 8.9853C8.30212 9.08171 8.558 9.10798 8.8055 9.06086C9.053 9.01374 9.28133 8.8953 9.4624 8.72011L10.2663 7.91638Z"
+                fill="white" />
+              <path
+                d="M11.7497 5.22322L8.85773 8.11523C8.79742 8.17376 8.7213 8.21335 8.63875 8.22913C8.55621 8.24491 8.47085 8.23617 8.39321 8.20401C8.31557 8.17185 8.24904 8.11767 8.20183 8.04814C8.15462 7.97862 8.12879 7.89679 8.12754 7.81276V6.37741C7.1747 6.2759 5.66457 6.741 4.50324 7.53237C3.71333 8.07135 3.23586 8.66482 3.19283 9.16026C3.18281 9.25514 3.1415 9.344 3.07541 9.41281C3.00932 9.48163 2.9222 9.52649 2.8278 9.54033C2.7334 9.55417 2.63707 9.5362 2.55401 9.48925C2.47095 9.44229 2.40587 9.36903 2.36904 9.28101C1.84478 7.95495 1.87904 6.76539 2.47098 5.74526C3.31521 4.28993 5.2176 3.31416 8.12754 2.84255V1.42392C8.12882 1.3399 8.15466 1.2581 8.20188 1.18859C8.2491 1.11909 8.31562 1.06492 8.39325 1.03276C8.47089 1.00061 8.55623 0.99188 8.63876 1.00765C8.7213 1.02341 8.79741 1.06299 8.85773 1.12149L11.7497 4.01346C11.91 4.17396 12.0001 4.39151 12.0001 4.61834C12.0001 4.84517 11.91 5.06272 11.7497 5.22322Z"
+                fill="white" />
+            </svg>
+            {{ 'STUDENT.EXPORT' | translate }}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row search-dv" style="margin:0px">
+        <div class="col-md-10" style="padding: 0;flex-wrap: wrap;">
+          <div class="col-md-3" style="padding-left: 0">
+            <label for="">{{ 'STUDENT.GRADE' | translate }}</label>
+            <ng-select
+              [items]="listGradeLevel"
+              bindLabel="name"
+              bindValue="id"
+              (change)="loadGradeLevel($event)"
+              [(ngModel)]="searchModel.gradeLevel"
+              [ngModelOptions]="{standalone: true}"
+              [searchable]="false"
+              [clearable]="false">
+            </ng-select>
+          </div>
+          <div class="col-md-3" style="padding-left: 0">
+            <label for="">{{ 'STUDENT.CLASS_ROOM' | translate }}</label>
+            <ng-select [items]="listClass" bindLabel="name" bindValue="code" placeholder="{{ 'TEACHER.PLACEHOLDER_SELECT' | translate }}"
+              [(ngModel)]="searchModel.classRoomCode" [ngModelOptions]="{standalone: true}">
+            </ng-select>
+          </div>
+          <div class="col-md-3" style="padding-left: 0">
+            <label for="">{{ 'STUDENT.STATUS' | translate }}</label>
+            <ng-select [items]="listStatus" bindLabel="name" bindValue="id" placeholder="{{ 'TEACHER.PLACEHOLDER_SELECT' | translate }}"
+              [(ngModel)]="searchModel.status" [ngModelOptions]="{standalone: true}">
+            </ng-select>
+          </div>
+          <div class="col-md-3" style="padding-left: 0">
+            <label for="">{{ 'STUDENT.STUDENT' | translate }}</label>
+            <input type="text" placeholder="{{ 'TEACHER.PLACEHOLDER_INPUT' | translate }}" (keydown.enter)="doSearch(1)" [(ngModel)]="searchModel.fullName"
+              style="height: 36px;">
+          </div>
+        </div>
+        <div class="col-md-2" style="padding:0">
+          <div class="col-md-12" style="padding: 0">
+            <button class="student-btn-focus" (click)="doSearch(1)" style="height: 36px; width: 100%;margin-top: 10px;">{{ 'STUDENT.SEARCH' | translate }}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row table-school" style="margin: 20px 0px;">
+        <ag-grid-angular class="ag-theme-balham" [rowData]="rowData" style="width: 100%; height: 545px !important;"
+          [columnDefs]="columnDefs" [overlayLoadingTemplate]="overlayLoadingTemplate" [overlayNoRowsTemplate]="overlayNoRowTemplate" [context]="context" [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+          (gridReady)="onGridReady($event)" (gridSizeChanged)="gridSizeChanged($event)">
+        </ag-grid-angular>
+        <div class="sy-paging w-100" style="margin-top: 20px">
+          <span class="sy-paging-result">{{first}}-{{last}} {{ 'STUDENT.OF' | translate }} {{total}} {{ 'STUDENT.RESULT' | translate }}</span>
+          <ul>
+            <i
+              class="fas fa-angle-double-left arrow"
+              style="margin: 0"
+              (click)="page(1)"
+            ></i>
+            <i class="fas fa-angle-left arrow" (click)="prev()"></i>
+            <li
+              class="sy-page"
+              [class.sy-highlight]="i === currentPage"
+              [class.sy-dots]="i === '...'"
+              *ngFor="let i of rangeWithDots"
+              (click)="i !== '...' && page(i)"
+            >
+              {{ i }}
+            </li>
+            <i class="fas fa-angle-right arrow" (click)="next()"></i>
+            <i
+              class="fas fa-angle-double-right arrow"
+              style="margin: 0"
+              (click)="page(totalPage)"
+            ></i>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,30 @@
+<div class="grid-exemption tab-container">
+  <div style="display: flex;position: relative;">
+    <div [style.left.px]="i * -7" *ngFor="let data of classes; index as i" [class.selected]="currentYear === data.years"  class="year" (click)="loadExemption(data.years)">
+      <svg [class.float]="currentYear === data.years" width="172" height="64" viewBox="0 0 172 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 16C0 7.16344 7.16344 0 16 0H135.755C142.315 0 148.211 4.00432 150.629 10.1024L172 64H0V16Z" [attr.fill]="currentYear === data.years ? 'white' : '#EDEFF5' "/>
+      </svg>
+      <div style="cursor: pointer;" [class.float]="currentYear === data.years">
+        <div class="class-year-text" [matTooltip]="data.years">{{ data.years }}</div>
+        <div class="class-name-text d-flex justify-content-center">(
+          <span class="overflow-dot overflow-text" [matTooltip]="data.name">{{ data.name }}</span>  
+        )</div>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 24px; background: white; border: 1px solid #FAFBFF">
+    <h3 class="title-tab" style="margin-bottom: 15px">
+      {{ 'STUDENT.EXEMPTION.LIST' | translate }}
+    </h3>
+    <div [ngStyle]="exemptionStyle">
+      <ag-grid-angular style="width: 100%; height: 100%;" 
+        class="ag-theme-balham" 
+        [rowData]="rowData" [columnDefs]="columnExemption" 
+        [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+        [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
+        (gridReady)="onGridReady($event)" 
+        (gridSizeChanged)="gridSizeChanged($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

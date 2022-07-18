@@ -1,0 +1,31 @@
+.d-flex {
+  display: flex;
+}
+
+.title-tab {
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #101840;
+  margin-left: 10px;
+  margin-bottom: 15px
+}
+
+:host ::ng-deep {
+  .ag-overlay {
+    padding-top: 50px
+  }
+
+  .ag-body-horizontal-scroll {
+    display: flex;
+  }
+
+  .ag-horizontal-right-spacer {
+    display: none;
+  }
+}
+
+.reserve-leave {
+  padding: 24px;
+  background: white;
+}

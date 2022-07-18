@@ -1,0 +1,73 @@
+.student-name span{
+  font-weight: 500;
+  font-size: 12px;
+  font-family: Inter;
+  font-style: normal;
+  align-items: center;
+  displayce: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  max-width: 150px;
+}
+.button-eva {
+  position: absolute;
+  width: 152px;
+  height: 48px;
+  top: -26px;
+  right: -106px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 100;
+}
+.button-eva-first {
+  top: -9px;
+}
+
+.button-eva button {
+  background: #FDF7F4;
+  border-radius: 2px;
+  height: 28px;
+  width: 132px;
+  font-family: Inter;
+  border: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #F26522;
+}
+.action-eval {
+  cursor: pointer;
+  width: 200px;
+  position: relative;
+}
+
+.action-eval:hover .button-eva {
+  display: flex;
+}
+
+.action-eval:hover .student-name span{
+  color: #F26522;
+}
+.action-eval:hover .style-ca-nam span{
+  color: #101840;
+}
+.hide {
+  display: none !important;
+}
+.not-evaluate {
+  color: #101840;
+}
+
+.evaluate{
+  color: #3366FF;
+}
+.style-ca-nam span{
+  cursor: default;
+}

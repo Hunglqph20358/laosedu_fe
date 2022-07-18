@@ -1,0 +1,30 @@
+<!--<mat-checkbox [(ngModel)]="params.value" (change)="this.refresh(this.params)"-->
+<!--              [disabled]="params.data.abilityName === null || params.data.abilityName.toString().trim().length === 0">-->
+<!--</mat-checkbox>-->
+
+<!--<mat-checkbox [(ngModel)]="params.value" (change)="this.refresh(this.params)"-->
+<!--              [disabled]="params.data.abilityName === '-' "-->
+<!--              (ngModelChange)="onChange(this.params)"-->
+<!--              *ngIf="!params.api.disableSelect"-->
+<!--&gt;-->
+
+<!--</mat-checkbox>-->
+
+<!--<mat-checkbox [(ngModel)]="params.value" (change)="this.refresh(this.params)"-->
+<!--              [disabled]="params.data.abilityName === '-' "-->
+<!--              (ngModelChange)="onChange(this.params)"-->
+<!--              *ngIf="params.api.disableSelect"-->
+<!--              style="opacity: 0.6;"-->
+<!--&gt;-->
+
+<!--</mat-checkbox>-->
+
+
+<mat-checkbox [(ngModel)]="checked"
+              (change)="changeCheckbox()"
+              [disabled]="params.data.abilityName === '-' "
+              [ngStyle]="{'opacity': params.api.disableSelect ? '0.6':'1'}"
+              style="margin-left: 5px;"
+>
+
+</mat-checkbox>

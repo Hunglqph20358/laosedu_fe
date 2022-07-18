@@ -1,0 +1,4 @@
+<div class="transfer-student-status" *ngIf="status$ | async as status" [ngStyle]="{color: status.color}">
+  <span class="fas fa-circle transfer-student-status__icon"></span>
+  <span>{{status.code | translate}}</span>
+</div>

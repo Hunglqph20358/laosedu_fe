@@ -1,0 +1,92 @@
+<div style="position: relative; height: 100%">
+  <div id="loadpagepr" class="page-loading-class" *ngIf="isLoading">
+    <div id="loadpage" class="bee-spinner-sc"></div>
+  </div>
+  <div class="row" style="margin: 0 22px;">
+    <div class="col-md-4">
+      <div class="info-basic">
+        <div class="avatar">
+          <img [src]="imageUrl">
+        </div>
+        <div class="info-basic-avatar">
+          <h3 class="name-student overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.fullName">{{ infoStudent?.fullName }}</h3>
+          <div class="info-basic-gv">
+            <div class="info-basic-gv-key">
+              <div class="name-ifgv text overflow-dot">{{ 'STUDENT.INFO.CODE' | translate }}</div>
+              <div class="name-ifgv text">{{ 'STUDENT.STATUS' | translate }}</div>
+            </div>
+            <div class="info-basic-gv-value">
+              <div class="value-ifgv text code overflow-dot" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.code">{{ infoStudent?.code }}</div>
+              <div class="value-ifgv text status" [style.color]="infoStudent?.status.color" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.status.name | translate">{{ infoStudent?.status.name | translate }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="info-basic-gv one-column">
+        <div class="info-basic-gv-key">
+          <div class="name-ifgv text">{{ 'STUDENT.INFO.START_DATE' | translate }}</div>
+          <div class="name-ifgv text">{{ 'STUDENT.INFO.ELECT_FORMAT' | translate }}</div>
+        </div>
+        <div class="info-basic-gv-value">
+          <div class="value-ifgv text" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.startDate | date: 'dd/MM/yyyy'">{{ infoStudent?.startDate | date:'dd/MM/yyyy' }}</div>
+          <div class="value-ifgv text" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.electFormat | translate">{{ infoStudent?.electFormat | translate }}</div>
+        </div>
+      </div>
+  
+    </div>
+    <div class="col-md-4">
+      <div class="info-basic-gv one-column margin-T-0">
+        <div class="info-basic-gv-key">
+          <div class="name-ifgv text">{{ 'STUDENT.INFO.PHONE' | translate }}</div>
+          <div class="name-ifgv text">{{ 'STUDENT.INFO.EMAIL' | translate }}</div>
+        </div>
+        <div class="info-basic-gv-value">
+          <div class="value-ifgv text" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.phone">{{ infoStudent?.phone }}</div>
+          <div class="value-ifgv text" matTooltipClass="material-tooltip" [matTooltip]="infoStudent?.email">{{ infoStudent?.email }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--tab-->
+  <div class="row detail-hs table-school" style="padding: 0 0 0 25px">
+    <ngb-tabset #tabset [destroyOnHide]="false" [hidden]="!infoStudent">
+      <ngb-tab  id="detail">
+        <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.DETAIL' | translate}}</ng-template>
+        <ng-template ngbTabContent>
+          <kt-student-infomation [infoStudent]="infoStudent"></kt-student-infomation>
+        </ng-template>
+      </ngb-tab>
+  
+      <ngb-tab  id="score">
+        <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.SCORE' | translate}}</ng-template>
+        <ng-template ngbTabContent>
+          <kt-student-score (getIsLoadingChange)="changeIsLoading($event)" [studentCode]="infoStudent.code"></kt-student-score>
+        </ng-template>
+      </ngb-tab>
+  
+      <ngb-tab  id="reward">
+        <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.REWARD_DISCIPLINE' | translate}}</ng-template>
+        <ng-template ngbTabContent>
+          <kt-student-reward-discipline [studentCode]="infoStudent.code"></kt-student-reward-discipline>
+        </ng-template>
+      </ngb-tab>
+  
+      <ngb-tab  id="exemption">
+        <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.EXEMPTION' | translate}}</ng-template>
+        <ng-template ngbTabContent>
+          <kt-student-exemption (changeIsLoading)="changeIsLoading($event)" [studentCode]="infoStudent.code"></kt-student-exemption>
+        </ng-template>
+      </ngb-tab>
+  
+      <ngb-tab id="reserve-leave">
+        <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.RESERVE_LEAVE' | translate}}</ng-template>
+        <ng-template ngbTabContent>
+          <kt-student-reserve [studentCode]="infoStudent.code"></kt-student-reserve>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+  
+</div>

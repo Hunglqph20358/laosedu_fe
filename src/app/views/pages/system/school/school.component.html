@@ -1,0 +1,315 @@
+<div class="row" style="margin-left: 30px;">
+  <div class="col-md-3 col-xs-12 unit-school" style="padding-left:5px">
+    <div class="col-iner">
+      <div class="witget-title">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" fill="white"/>
+          <rect width="32" height="32" rx="8" fill="#F26522"/>
+          <path d="M25.2857 20.2857H23.8571V17.4285C23.8571 17.034 23.5373 16.7142 23.1428 16.7142H16.7143V11.7143H20.2857C20.6802 11.7143 21 11.3945 21 11V6.71426C21 6.3198 20.6802 6 20.2857 6H11.7143C11.3198 6 11 6.3198 11 6.7143V11C11 11.3945 11.3198 11.7143 11.7143 11.7143H15.2857V16.7143H8.85711C8.46261 16.7143 8.14281 17.0341 8.14281 17.4286V20.2857H6.7143C6.3198 20.2857 6 20.6055 6 21V25.2857C6 25.6802 6.3198 26 6.7143 26H11C11.3945 26 11.7143 25.6802 11.7143 25.2857V21C11.7143 20.6055 11.3945 20.2857 11 20.2857H9.57141V18.1428H15.2857V20.2857H13.8571C13.4626 20.2857 13.1428 20.6055 13.1428 21V25.2857C13.1428 25.6802 13.4626 26 13.8571 26H18.1428C18.5373 26 18.8571 25.6802 18.8571 25.2857V21C18.8571 20.6055 18.5373 20.2857 18.1428 20.2857H16.7143V18.1428H22.4285V20.2857H21C20.6055 20.2857 20.2857 20.6055 20.2857 21V25.2857C20.2857 25.6802 20.6055 26 21 26H25.2857C25.6802 26 26 25.6802 26 25.2857V21C26 20.6055 25.6802 20.2857 25.2857 20.2857Z" fill="white"/>
+          </svg>
+        {{'SCHOOL.ORGANIZATION'|translate}}
+      </div>
+  <div style="height: 670px;">
+        <ag-grid-angular
+        #agGrid1
+        style="width: 100%; height: 100%; "
+        class="ag-theme-balham caytochuc"
+        [columnDefs]="columnDefsTree"
+        [defaultColDef]="defaultColDef"
+        [autoGroupColumnDef]="autoGroupColumnDefTree"
+        [rowModelType]="rowModelType"
+        [serverSideStoreType]="serverSideStoreType"
+        [treeData]="true"
+        [headerHeight]="0"
+        [rowHeight]="rowHeight"
+        [rowSelection]="rowSelection"
+        [enableRangeSelection]="true"
+        (selectionChanged)="onSelectionChanged()"
+         [debounceVerticalScrollbar]="true"
+        [suppressRowTransform]="true" [suppressRowClickSelection]="true"
+        [isServerSideGroup]="isServerSideGroup"
+        [suppressContextMenu]="true"
+        [cacheBlockSize]="5"
+        [getServerSideGroupKey]="getServerSideGroupKey"
+        [rowData]="rowDataTree"
+        [tooltipShowDelay]="0"
+        (cellClicked)='onCellClicked($event)'
+        (gridReady)="onGridReadyTree($event)"
+        (gridSizeChanged)="gridSizeChanged($event)"
+      ></ag-grid-angular>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-9 col-xs-12">
+    <div class="menu-action-dv">
+      <h3>{{'SCHOOL.LIST_DEPT'|translate}}</h3>
+      <div class="list-action-dv">
+        <button class="btn-action-dv blue" (click)="openModal(templateNewunit)"  tabindex="0" style="border: none">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" width="2" height="12" rx="1" fill="white" />
+            <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="white" />
+          </svg>
+          {{'STUDENT.CREATE'|translate}}
+        </button>
+        <div class="btn-action-dv gray" (click)="openModal(templateImportunit)"  tabindex="0" (keyup.enter)="openModal(templateImportunit)">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M5.53806 2.87431V0.468903C5.53806 0.213138 5.74206 0 6.00006 0C6.23106 0 6.42677 0.179095 6.45778 0.405948L6.46206 0.468903V2.87431L9.33 2.8745C10.758 2.8745 11.9312 4.04387 11.9971 5.50225L12 5.63165V8.65523C12 10.1238 10.8676 11.3293 9.46082 11.397L9.336 11.4H2.664C1.236 11.4 0.0684539 10.2365 0.00290267 8.77275L0 8.64284L0 5.62546C0 4.15686 1.12675 2.94553 2.5332 2.87751L2.658 2.8745H5.538V6.71593L4.578 5.72459C4.398 5.53872 4.104 5.53872 3.924 5.72459C3.834 5.81753 3.792 5.94145 3.792 6.06536C3.792 6.15954 3.81888 6.25768 3.87571 6.34076L3.924 6.39994L5.67 8.20913C5.754 8.30207 5.874 8.35164 6 8.35164C6.1 8.35164 6.2 8.31721 6.27917 8.25196L6.324 8.20913L8.07 6.39994C8.25 6.21406 8.25 5.91047 8.07 5.72459C7.90636 5.55561 7.64851 5.54025 7.46775 5.67851L7.416 5.72459L6.462 6.71593V2.8745L5.53806 2.87431Z"
+              fill="white" />
+          </svg>
+
+          {{'STUDENT.IMPORT'|translate}}
+        </div>
+        <div class="btn-action-dv gray" (click)="exportData()"  (keyup.enter)="exportData()"  tabindex="0">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2663 7.91638V9.97918C10.2659 10.3194 10.1306 10.6456 9.89001 10.8862C9.64943 11.1268 9.32324 11.2621 8.98301 11.2625H1.28329C0.943053 11.2621 0.616861 11.1268 0.376279 10.8862C0.135697 10.6456 0.000373641 10.3194 0 9.97918V5.2738C0.000373641 4.93356 0.135697 4.60737 0.376279 4.36679C0.616861 4.12621 0.943053 3.99088 1.28329 3.99051H2.88667C1.18204 5.36568 0.702899 7.42116 1.57344 9.59526C1.67972 9.86413 1.87368 10.0892 2.1239 10.234C2.37412 10.3789 2.66591 10.4349 2.95199 10.3931C3.23806 10.3514 3.50163 10.2142 3.69999 10.0039C3.89834 9.79354 4.01984 9.52239 4.04479 9.23436C4.08697 8.7477 5.73954 7.54585 7.27179 7.27435V7.81278C7.27595 8.06469 7.35366 8.30989 7.49536 8.51822C7.63707 8.72654 7.83658 8.88889 8.06935 8.9853C8.30212 9.08171 8.558 9.10798 8.8055 9.06086C9.053 9.01374 9.28133 8.8953 9.4624 8.72011L10.2663 7.91638Z"
+              fill="white" />
+            <path
+              d="M11.7497 5.22322L8.85773 8.11523C8.79742 8.17376 8.7213 8.21335 8.63875 8.22913C8.55621 8.24491 8.47085 8.23617 8.39321 8.20401C8.31557 8.17185 8.24904 8.11767 8.20183 8.04814C8.15462 7.97862 8.12879 7.89679 8.12754 7.81276V6.37741C7.1747 6.2759 5.66457 6.741 4.50324 7.53237C3.71333 8.07135 3.23586 8.66482 3.19283 9.16026C3.18281 9.25514 3.1415 9.344 3.07541 9.41281C3.00932 9.48163 2.9222 9.52649 2.8278 9.54033C2.7334 9.55417 2.63707 9.5362 2.55401 9.48925C2.47095 9.44229 2.40587 9.36903 2.36904 9.28101C1.84478 7.95495 1.87904 6.76539 2.47098 5.74526C3.31521 4.28993 5.2176 3.31416 8.12754 2.84255V1.42392C8.12882 1.3399 8.15466 1.2581 8.20188 1.18859C8.2491 1.11909 8.31562 1.06492 8.39325 1.03276C8.47089 1.00061 8.55623 0.99188 8.63876 1.00765C8.7213 1.02341 8.79741 1.06299 8.85773 1.12149L11.7497 4.01346C11.91 4.17396 12.0001 4.39151 12.0001 4.61834C12.0001 4.84517 11.91 5.06272 11.7497 5.22322Z"
+              fill="white" />
+          </svg>
+          {{'STUDENT.EXPORT'|translate}}
+        </div>
+      </div>
+    </div>
+    <!---->
+    <div class="row search-dv" style="margin:0px">
+      <div class="col-md-4" style="padding-left:0px">
+        <label for="">{{'SCHOOL.DEPT_CODE'|translate}}</label>
+        <input type="text" [placeholder]="codeDeptTranslate"  [(ngModel)]="codeSearch" trim>
+      </div>
+      <div class="col-md-6">
+        <label for="">{{'TEACHER_RATING.GRID.DEPT_NAME'|translate}}</label>
+        <input type="text" [placeholder]="nameDeptTranslate"  [(ngModel)]="nameSearch" trim>
+      </div>
+      <div class="col-md-2" style="padding-right:0px; padding-left: 0px;" >
+        <button (click)="searchData(0)" type="submit" >{{'STUDENT.SEARCH'|translate}}</button>
+      </div>
+    </div>
+
+
+
+
+    <div class="row table-school table-class-room" style="margin-top: 20px; height: 570px;margin-right: 0px; margin-left: 0px;" [class.firt-column]="rowData && rowData.length > 4">
+      <!-- <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true" style="width: 100%; height: 600px;"
+        class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [headerHeight]="headerHeight"
+        [rowHeight]="rowHeight" (gridReady)="onGridReady($event)"> -->
+        <ag-grid-angular
+        #agGrid
+        style="width: 100%; height:570px;"
+        [suppressScrollOnNewData]="true"
+        class="ag-theme-balham"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [autoGroupColumnDef]="autoGroupColumnDef"
+        [rowModelType]="rowModelType"
+        [serverSideStoreType]="serverSideStoreType"
+        [treeData]="true"
+        [headerHeight]="headerHeight"
+        [rowHeight]="rowHeight"
+        [debounceVerticalScrollbar]="true"
+        [suppressRowTransform]="true" [suppressRowClickSelection]="true"
+        [isServerSideGroupOpenByDefault]="isServerSideGroupOpenByDefault"
+        [isServerSideGroup]="isServerSideGroup"
+        [suppressContextMenu]="true"
+        [overlayNoRowsTemplate]="noRowsTemplate"
+        [getServerSideGroupKey]="getServerSideGroupKey"
+        [rowData]="rowData"
+        [tooltipShowDelay]="tooltipShowDelay"
+        (gridReady)="onGridReady($event)"
+        (gridSizeChanged)="gridSizeChanged($event)"
+      ></ag-grid-angular>
+
+      <!-- <div class="ft-table-school"  style="width: 100%;">
+        <div class="sum-page">
+          1-10 của 120 kết quả
+        </div>
+        <div class="pa-navi">
+           <ul>
+             <li>1</li>
+             <li>2</li>
+             <li>3</li>
+             <li>4</li>
+             <li>5</li>
+             <li>6</li>
+            </ul>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!--model add new don vi-->
+<ng-template #templateNewunit>
+      <div class="modal-content modal-dialog-custom" >
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center;">{{'SCHOOL.ADD_DEPT'|translate}}</h4>
+
+          <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 15px 10px !important;">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="">{{'SCHOOL.DEPT_CODE'|translate}}<span> *</span></label>
+              <input type="text" id="madonvi" [(ngModel)]="department.code" [placeholder]="codeDeptTranslate" (change)="validate()">
+              <small style="color: red;font-size: 12px" class="error-validate" *ngIf="blCode">
+                {{'SCHOOL.MSG.CODE_DEPT_REQUIRED'|translate}}
+              </small>
+              <small style="color: red;font-size: 12px" class="error-validate" *ngIf="spaceWhite">
+                {{'SCHOOL.MSG.WHITE_SPACE_NOT_ALLOW'|translate}}
+              </small>
+              <small style="color: red;font-size: 12px" class="error-validate" *ngIf="specicalChar">
+                {{'SCHOOL.MSG.CODE_DEPT_NOT_SPECIAL'|translate}}
+              </small>
+              <small style="color: red;font-size: 12px" class="error-validate" *ngIf="maxLegnthCode">
+                {{'SCHOOL.MSG.CODE_DEPT_BIGGER_50'|translate}}
+              </small>
+            </div>
+            <div class="col-md-6">
+              <label for="">{{'TEACHER_RATING.GRID.DEPT_NAME'|translate}}<span> *</span></label>
+              <input type="text" [(ngModel)]="department.name" [placeholder]="nameDeptTranslate"  (change)="validate()">
+              <small style="color: red;font-size: 12px" class="error-validate" *ngIf="blName">
+                {{'SCHOOL.MSG.NAME_DEPT_REQUIRED'|translate}}
+              </small>
+              <small style="color: red;font-size: 12px" class="error-validate" *ngIf="department.name?.length > 250">
+                {{'SCHOOL.MSG.NAME_DEPT_BIGGER_250'|translate}}
+              </small>
+            </div>
+            <div class="col-md-6 dvicha">
+              <label>{{'SCHOOL.DEPT_PARENT'|translate}} </label>
+              <nz-tree-select
+              style="width: 100%; max-width: 100%;"
+              #tree
+              (keydown.enter)="tree.openDropdown()"
+              tabindex="0"
+              [nzDefaultExpandAll]="true"
+              [nzNodes]="nodes"
+              [nzPlaceHolder]="selectTrans"
+              [(ngModel)]="department.parentId"
+              (ngModelChange)="onChange($event)"
+              nzShowSearch
+              [nzShowIcon]="true"
+              ></nz-tree-select>
+              <!-- <ng-select [items]="listUnitParent" bindLabel="nameDisplay" bindValue="id" placeholder="Lựa chọn" [(ngModel)]="department.parentId"
+                [ngModelOptions]="{standalone: true}" (change)="changeUnit()">
+              </ng-select> -->
+            </div>
+            <div class="col-md-6">
+              <label for="">{{'SCHOOL.DEPT_TYPE'|translate}} <span>*</span></label>
+              <div>
+              <ng-select [items]="typeUnit" bindLabel="name" bindValue="code" [placeholder]="deptTypeTranslate" [(ngModel)]="department.type" [disabled]="department.parentId != null"
+                [ngModelOptions]="{standalone: true}"  (change)="validate()">
+              </ng-select>
+              </div>
+              <small style="color: red;font-size: 12px" class="error-validate" *ngIf="blType">
+                {{'SCHOOL.MSG.DEPT_TYPE_REQUIRED'|translate}}
+              </small>
+            </div>
+            <div class="col-md-6">
+              <label for="">{{'SCHOOL.PERSON_CHARGE'|translate}}</label>
+              <ng-select [items]="listTeacher" bindLabel="fullName" bindValue="id" [placeholder]="selectTeacherTrans" [(ngModel)]="department.employeeId"
+                [ngModelOptions]="{standalone: true}">
+                <ng-template ng-option-tmp let-item="item" let-search="listTeacher" let-index="index">
+                  <span> {{item.code}} - {{item.fullName}}</span>
+                </ng-template>
+              </ng-select>
+            </div>
+            <div class="col-md-6">
+              <label for="">{{'SCHOOL.POSITION'|translate}} </label>
+              <ng-select [items]="listPosition" bindLabel="name" bindValue="id" [placeholder]="selectTrans" [(ngModel)]="department.position"
+                [ngModelOptions]="{standalone: true}">
+              </ng-select>
+            </div>
+            <div class="col-md-12">
+              <label for="">{{'SCHOOL.MISSION_DESC'|translate}}</label>
+              <textarea cols='60' rows='8' [(ngModel)]="department.description" name="description" maxlength="500" trim></textarea>
+              <small style="color: red;font-size: 12px" class="error-validate" *ngIf="department.description?.length > 500">
+                {{'SCHOOL.MSG.NAME_DEPT_BIGGER_250'|translate}}
+              </small>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="btn-action">
+              <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">{{'STUDENT.CANCEL'|translate}}</button>
+              <button type="button" class="btn-md btn-or" (click)="create()">{{'STUDENT.SAVE'|translate}}</button>
+          </div>
+        </div>
+      </div>
+
+</ng-template>
+<!--model import don vi-->
+<ng-template #templateImportunit>
+      <div class="modal-content modal-dialog-custom">
+        <div class="modal-header" style="    flex-direction: column;">
+          <h4 class="modal-title" style="text-align: center;">{{'SCHOOL.IMPORT_DEPT_LIST'|translate}}</h4>
+          <p class="des">{{'SCHOOL.IMPORT_DESC'|translate}}:</p>
+
+          <button type="button" class="close" (click)="cancelImport()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 15px 10px !important;">
+          <div class="row">
+            <div class="title-list-file">
+              <p>{{'CLASSROOM.FILE_LIST'|translate}}</p>
+              <div>
+                <p style="font-size: 12px">{{'TEACHER_RATING.IMPORT.TEMPLATE'|translate}}</p>
+                <div tabindex="0" (keyup.enter)="exportTemplate()">
+                  <a (click)="exportTemplate()" style="cursor: pointer;font-size: 12px">[{{'TEACHER_RATING.IMPORT.CLICK_DOWNLOAD'|translate}}]</a>
+                </div>
+              </div>
+            </div>
+            <div class="upload-file" (keyup.enter)="file.click()">
+              <input #file type="file" [disabled]="fileName"  id="upload-file" style="display: none;" (change)="upload(file.files)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+              <label for="upload-file" style="font-size: 12px"  tabindex="0" >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.69882 7.5628L6.29258 5.45342C6.16212 5.25771 5.83801 5.25771 5.70755 5.45342L4.30131 7.5628C4.22954 7.67061 4.2227 7.80931 4.2838 7.92364C4.3449 8.03797 4.46403 8.10938 4.59381 8.10938H4.94537V10.5703C4.94537 10.7646 5.10261 10.9219 5.29693 10.9219H6.70318C6.8975 10.9219 7.05474 10.7646 7.05474 10.5703V8.10938H7.4063C7.53607 8.10938 7.65521 8.03797 7.71633 7.92364C7.77746 7.80931 7.77056 7.67061 7.69882 7.5628Z" fill="white"/>
+                  <path d="M10.206 4.11183C10.1751 3.69169 10.0045 3.29975 9.70413 2.99935C9.24981 2.54503 8.56588 2.40917 7.96511 2.57689C7.38742 1.64796 6.39362 1.07812 5.29689 1.07812C3.64824 1.07812 2.29041 2.34532 2.14861 3.98642C0.918471 4.29713 0 5.41738 0 6.70314C0 8.25393 1.28515 9.51564 2.83594 9.51564H4.2422V8.75245C3.99774 8.66627 3.79004 8.49152 3.66369 8.25496C3.48001 7.91197 3.50026 7.49725 3.71588 7.17315L5.12249 5.06342C5.31439 4.77537 5.64261 4.60372 6.00001 4.60372C6.35741 4.60372 6.68563 4.77537 6.87754 5.06342L8.28379 7.1728C8.49974 7.49725 8.51999 7.91197 8.33631 8.25496C8.20996 8.49152 8.00226 8.66627 7.7578 8.75245V9.51564H9.16406C10.7148 9.51564 12 8.25393 12 6.70314C12 5.54286 11.2722 4.53645 10.206 4.11183Z" fill="white"/>
+                  </svg>
+                {{'TEACHER_RATING.IMPORT.DOWNLOAD'|translate}}
+              </label>
+              <span class="dingdang" *ngIf="!fileName">{{'TEACHER_RATING.IMPORT.VALIDATE'|translate}}</span>
+            </div>
+            <div class="info-file" *ngIf="fileName">
+              <div class="file-name" title="{{fileName}}">{{fileName}}</div>
+              <div class="delete-file" (click)="removeFile()">{{'TEACHER_RATING.IMPORT.DELETE'|translate}}</div>
+            </div>
+            <div class="prosess-bar" *ngIf="fileName"></div>
+            <div class="size-file" *ngIf="fileSize">
+              {{fileSize / 1024 | number}} KB of {{fileSize / 1024 | number}} KB ({{'CLASSROOM.MSG.UPLOAD_PRESENT'|translate}})
+            </div>
+            <!-- <angular-file-uploader style="padding: 15px 10px ;width: 100%"
+                [config]="afuConfig">
+            </angular-file-uploader> -->
+
+            <div class="list-file-result" *ngIf="resultImport">
+              <p>{{'TEACHER_RATING.IMPORT.SUCCESS'|translate}}:<i>{{resultImport.numberSuccess}}/{{resultImport.total}}</i>{{'TEACHER_RATING.IMPORT.RECORD'|translate}}</p>
+              <a (click)="exportDataErrors()" style="cursor: pointer;font-size: 12px;" *ngIf="resultImport.numberErrors > 0">[{{'TEACHER_RATING.IMPORT.CLICK_DOWNLOAD_ERROR'|translate}}]</a>
+            </div>
+            <p class="import-er" *ngIf="resultImport">{{'TEACHER_RATING.IMPORT.ERROR'|translate}}:<i>{{resultImport.numberErrors}}/{{resultImport.total}}</i>{{'TEACHER_RATING.IMPORT.RECORD'|translate}}</p>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="type-action" style="padding: 0px 10px;">
+            <label class="container-radio" style="  font-size: 12px;">{{'SCHOOL.ADD_DEPT'|translate}}
+              <input type="radio" name="aa" [value]="0"  [(ngModel)]="typeImportInsert">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container-radio"  style="  font-size: 12px;">{{'SCHOOL.UPDATE_DEPT'|translate}}
+              <input type="radio" name="aa" [value]="1" [(ngModel)]="typeImportInsert">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="btn-action">
+              <button type="button" class="btn-md btn-gray" (click)="cancelImport()" >{{'TEACHER_RATING.IMPORT.CANCEL'|translate}}</button>
+              <button type="button" class="btn-md btn-or" [disabled]="isShowImport" (click)="importFile()">{{'CLASSROOM.IMPORT_BTN'|translate}}</button>
+          </div>
+        </div>
+      </div>
+</ng-template>

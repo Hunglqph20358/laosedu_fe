@@ -1,0 +1,119 @@
+.create-group {
+  // width: 1042px;
+  background: #FFFFFF;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+}
+
+.group-title {
+  width: 100%;
+  padding: 16px 0;
+  border-bottom: 1px solid #E6E8F0;
+  box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);
+
+  &__content {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600 !important;
+    line-height: 30px;
+    margin: 0;
+  }
+}
+
+.group-search-box {
+  padding: 16px 20px;
+  display: flex;
+  border-bottom: 1px solid #E6E8F0;
+  box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);
+}
+
+.group-body {
+  padding: 16px 20px;
+  border-bottom: 1px solid #E6E8F0;
+  box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);
+}
+
+.tree-view {
+  border: 1px solid #D8DAE5;
+  border-radius: 10px;
+  padding: 16px 16px 16px 0;
+}
+
+.list-teacher-details {
+  border: 1px solid #D8DAE5;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.btn-change {
+  position: absolute;
+  top: 50%;
+  left: -37px;
+  cursor: pointer;
+}
+
+.group-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.tableListNull {
+  height: 252px !important;
+}
+
+button{
+  font-size: 12px;
+}
+
+::ng-deep{
+  .ag-header-cell-text{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8F95B2 !important;
+  }
+
+  .sent-amount-header .ag-header-cell-text {
+    white-space: pre-wrap;
+    text-align: center;
+  }
+
+  .ag-header-cell[aria-colindex='1'] {
+    .ag-header-cell-label {
+      justify-content: center;
+    }
+  }
+}
+
+.btn-md{
+  width: 105px;
+  height: 32px;
+  left: 726px;
+  top: 774px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  border: none;
+  font-weight: 600;
+}
+.btn-gray{
+  background: #E6E8F0;
+  margin-right: 10px;
+  color: #696F8C;
+}
+.btn-or{
+  background: #F26522
+}
+
+.ag-body-horizontal-scroll{
+  display: none;
+}

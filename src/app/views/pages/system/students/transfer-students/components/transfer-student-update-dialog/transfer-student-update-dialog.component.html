@@ -1,0 +1,101 @@
+<form *ngIf="vm$ | async as vm" [formGroup]="form" class="transfer-student-update-dialog">
+  <div class="modal-header transfer-student-update-dialog__header">
+    <h4 class="transfer-student-update-dialog__title">{{'TRANSFER_STUDENTS.UPDATE_TRANSFER_STUDENT' | translate}}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h6 class="transfer-student-update-dialog__transfer-info">{{'TRANSFER_STUDENTS.STUDENT_INFO' | translate}}</h6>
+      </div>
+      <div class="col-md-12">
+        <label class="transfer-student-update-dialog__label transfer-student-update-dialog__label--value">
+          <strong>{{'TRANSFER_STUDENTS.SCHOOL_YEAR' | translate}}</strong>
+          <span>{{vm.schoolYearPairs.current}}</span>
+        </label>
+      </div>
+      <div class="col-md-8">
+        <label class="transfer-student-update-dialog__label transfer-student-update-dialog__label--value">
+          <strong>{{'TRANSFER_STUDENTS.STUDENT' | translate}}</strong>
+          <span>{{transferStudent.details.studentName}}</span>
+        </label>
+      </div>
+      <div class="col-md-4">
+        <label class="transfer-student-update-dialog__label transfer-student-update-dialog__label--value">
+          <strong>{{'TRANSFER_STUDENTS.CLASS' | translate}}</strong>
+          <span style="color: #101840">{{transferStudent.className}}</span>
+        </label>
+      </div>
+
+      <div class="col-md-12">
+        <label class="transfer-student-update-dialog__label" style="color: #474D66">{{'TRANSFER_STUDENTS.TRANSFER' | translate}}</label>
+        <ng-select [items]="vm.transferStatusItems"
+                   [compareWith]="isStatusEqual"
+                   [clearable]="false"
+                   formControlName="status"
+                   bindLabel="name">
+        </ng-select>
+      </div>
+
+      <div class="col-md-12">
+        <h6 class="transfer-student-update-dialog__transfer-info">{{'TRANSFER_STUDENTS.TRANSFER_INFO' | translate}}</h6>
+      </div>
+
+      <div class="col-md-12">
+        <label class="transfer-student-update-dialog__label transfer-student-update-dialog__label--value">
+          <strong>{{'TRANSFER_STUDENTS.SCHOOL_YEAR' | translate}}</strong>
+          <span style="color: #474D66">{{vm.schoolYearPairs.next}}</span>
+        </label>
+      </div>
+
+      <div class="col-md-6">
+        <label class="transfer-student-update-dialog__label transfer-student-update-dialog__label--required" style="color:#474D66;">
+          {{'TRANSFER_STUDENTS.GRADE' | translate}}
+        </label>
+        <ng-select [items]="vm.grades"
+                   [compareWith]="isGradeEqual"
+                   (change)="onGradeChanged($event)"
+                   [clearable]="false"
+                   formControlName="gradeLevel"
+                   bindLabel="name">
+        </ng-select>
+        <div *ngIf="gradeLevel.touched || gradeLevel.dirty">
+          <small class="error-validate" *ngIf="gradeLevel.hasError('required')">
+            {{'TRANSFER_STUDENTS.REQUIRED_FIELD' | translate}}
+          </small>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="transfer-student-update-dialog__label transfer-student-update-dialog__label--required" style="color: #474D66">
+          {{'TRANSFER_STUDENTS.CLASS' | translate}}
+        </label>
+        <ng-select [items]="vm.classes"
+                   [compareWith]="isClassEqual"
+                   [clearable]="false"
+                   formControlName="classCode"
+                   bindLabel="classFullName">
+        </ng-select>
+        <div *ngIf="(classCode.touched || classCode.dirty) && vm.classes.length > 0">
+          <small class="error-validate" *ngIf="classCode.hasError('required')">
+            {{'TRANSFER_STUDENTS.REQUIRED_FIELD' | translate}}
+          </small>
+        </div>
+
+        <small class="error-validate" *ngIf="(gradeLevel.touched || gradeLevel.dirty) && vm.classes.length === 0">
+          {{'TRANSFER_STUDENTS.EMPTY_CLASSES' | translate:{schoolYear: vm.schoolYearPairs.next} }}
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="transfer-student-update-dialog__button transfer-student-update-dialog__button--gray"
+            (click)="onCancel()">
+      {{'TRANSFER_STUDENTS.CANCEL' | translate}}
+    </button>
+    <button class="transfer-student-update-dialog__button transfer-student-update-dialog__button--orange"
+            [disabled]="form.invalid"
+            (click)="onOk()">
+      {{'TRANSFER_STUDENTS.OK' | translate}}
+    </button>
+  </div>
+</form>

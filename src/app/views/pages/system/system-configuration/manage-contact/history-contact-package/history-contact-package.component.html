@@ -1,0 +1,97 @@
+<div
+  *ngIf="showHistory"
+  style="color: #3366ff; cursor: pointer;"
+  (click)="openHistoryModal(historyContactPackageModal)"
+>
+  {{'MANAGE_CONTACT.VIEW_DETAIL' | translate}}
+</div>
+<div *ngIf="!showHistory" style="color: #3366ff; opacity: 0.5;"  (click)="openHistoryModal(historyContactPackageModal)">
+  {{'MANAGE_CONTACT.VIEW_DETAIL' | translate}}
+</div>
+
+<!--up-->
+<ng-template #historyContactPackageModal>
+  <div class="">
+    <div class="modal-header">
+      <h4 class="modal-title">{{'MANAGE_CONTACT.HISTORY_REGISTER_DATAPACKAGE' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+      <p class="student-info" style="color: #696F8C !important;
+            font-size: 14px !important;font-family: Inter;
+            font-style: normal !important;
+            font-weight: 600 !important;
+            line-height: 20px !important;">
+        {{'CONDUCT_ASSESSMENT.STUDENT' | translate}}:
+        <span class="student-code" style="color: #3366FF !important;" title="{{ cellValue.studentCode }}">{{
+          cellValue.studentCode
+        }}</span
+        ><span class="student-name" style="color: #101840 !important; font-weight: bold !important;" title="{{ cellValue.studentName }}">
+        - <b>{{ cellValue.studentName }}</b></span
+        >
+      </p>
+      <div class="sy-table table-school">
+        <ag-grid-angular
+          style="width: 100%; height: 220px"
+          class="ag-theme-balham"
+          (gridReady)="onGridReady($event)"
+          [rowHeight]="ROW_HEIGHT"
+          [headerHeight]="HEADER_HEIGHT"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [overlayNoRowsTemplate]="noRowsTemplate"
+        >
+        </ag-grid-angular>
+      </div>
+      <div *ngIf="total > 0" class="sy-paging w-100">
+        <span class="sy-paging-result"
+          >{{ first }}-{{ last }} {{'MANAGE_CONTACT.OF' | translate}} {{ total }} {{'MANAGE_CONTACT.RESULT' | translate}}</span
+        >
+        <ul class="sy-pages">
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-first-disabled]="currentPage === 1"
+            [class.ic-svg-first]="currentPage !== 1"
+            [class.disabled]="currentPage === 1"
+            (click)="goToPage(1)"
+          ></li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-prev-disabled]="currentPage === 1"
+            [class.ic-svg-prev]="currentPage !== 1"
+            [class.disabled]="currentPage === 1"
+            (click)="goToPage(currentPage - 1)"
+          ></li>
+          <li
+            class="sy-page"
+            [class.sy-highlight]="i === currentPage"
+            [class.sy-dots]="i === '...'"
+            *ngFor="let i of rangeWithDots"
+            (click)="i !== '...' && goToPage(i)"
+          >
+            {{ i }}
+          </li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-next-disabled]="currentPage === totalPage"
+            [class.ic-svg-next]="currentPage !== totalPage"
+            [class.disabled]="currentPage === totalPage"
+            (click)="goToPage(currentPage + 1)"
+          ></li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-last-disabled]="currentPage === totalPage"
+            [class.ic-svg-last]="currentPage !== totalPage"
+            [class.disabled]="currentPage === totalPage"
+            (click)="goToPage(totalPage)"
+          ></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="button-close btn-action-dv" style="font-weight: 600;" (click)="modalRef.hide()">
+      {{'MANAGE_CONTACT.CLOSE' | translate}}
+    </button>
+  </div>
+</ng-template>

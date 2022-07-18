@@ -1,0 +1,37 @@
+<div ngbDropdown placement="bottom-right" class="dropdown dropdown-fluid">
+  <!--begin::Toggle-->
+  <div ngbDropdownToggle class="topbar-item" id="dropdownBasic1">
+    <button class="btn btn-outline-light button_lang">
+      	<span>
+          <img class="icon_lang" src="{{language.flag}}">
+        </span>
+      <label style="margin-bottom: 0;padding: 0 8px; color: #696F8C;">{{language.name}}</label>
+      <i class="fa fa-caret-down" style="color: #696F8C;" aria-hidden="true"></i>
+    </button>
+  </div>
+  <!--end::Toggle-->
+
+  <!--begin::Dropdown-->
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+       class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right"
+       style="left: 18px !important;"
+  >
+    <ul class="navi navi-hover py-4">
+      <ng-container *ngFor="let language of languages">
+        <button class="dropdown-item" (click)="setLanguage(language.lang)">
+          <a href="javascript:;"  [ngClass]="{'active': language.active}"
+             class="navi-link" style="display: flex; align-items: center;"
+          >
+						<span class="symbol symbol-20 mr-3">
+							<img src="{{language.flag}}">
+						</span>
+            <span class="navi-text" style="display: flex; align-items: center">{{language.name}}</span>
+          </a>
+        </button>
+
+      </ng-container>
+    </ul>
+  </div>
+  <!--end::Dropdown-->
+</div>
+

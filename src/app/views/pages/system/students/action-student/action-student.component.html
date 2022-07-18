@@ -1,0 +1,515 @@
+<div class="action-shool" *ngIf="editable && componentParent.editable">
+  <div class="title-action"><i class="fa fa-ellipsis-v"></i></div>
+  <ul [style.top]="rowIndex">
+    <li class="btn-action-sc ac1" routerLink="/system/student/create-update-student/{{studentId}}">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+          fill="#F26522" />
+      </svg>
+      {{ 'STUDENT.UPDATE_PROFILE' | translate }}
+    </li>
+    <li class="btn-action-sc ac2" (click)="openModalMienGiam(templateMienGiam)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+          fill="#3366FF" />
+      </svg>
+      {{ 'STUDENT.EXEMPTION.TITLE' | translate }}
+    </li>
+    <li class="btn-action-sc ac3" (click)="openModalKhenThuong(templateKhenThuong)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+          fill="#D14343" />
+      </svg>
+      {{ 'STUDENT.REWARD.TITLE' | translate}}
+    </li>
+    <li class="btn-action-sc ac5" (click)="openModalKyLuat(templateKiLuat)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+          fill="#F3A412" />
+      </svg>
+      {{ 'STUDENT.DISCIPLINE.TITLE' | translate }}
+    </li>
+    <li class="btn-action-sc ac8" (click)="openModalBaoLuu(templateThoiHocOrBaoLuu)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+          fill="#52BD94" />
+      </svg>
+      {{ 'STUDENT.RESERVE.TITLE' | translate }}
+    </li>
+    <li class="btn-action-sc ac6" (click)="openModalThoiHoc(templateThoiHocOrBaoLuu)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+          fill="#897AE3" />
+      </svg>
+      {{ 'STUDENT.LEAVE.TITLE' | translate }}
+    </li>
+    <li class="btn-action-sc ac7" (click)="openModalChuyenLop(templateChuyenLop)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+          fill="#25CBD6" />
+      </svg>
+      {{ 'STUDENT.TRANSFER.TITLE' | translate }}
+    </li>
+  </ul>
+</div>
+
+
+
+<ng-template #templateKhenThuong>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title modal-custom-title" style="text-align: center;">{{ 'STUDENT.REWARD.TITLE' | translate}}</h4>
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'STUDENT.STUDENT' | translate}}: <span>{{studentCode}} - {{studentName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <label> {{'STUDENT.REWARD.FORMALITY' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="khenThuong.formality" (keyup)="validateFormality()">
+          <div style="color: red; font-size: 12px" *ngIf="errorKhenThuong.formality.error">
+            {{errorKhenThuong.formality.message}}</div>
+        </div>
+        <div class="col-md-6">
+          <label>{{'STUDENT.YEAR' | translate }} <span>*</span></label>
+          <input type="text" readonly [(ngModel)]="khenThuong.year">
+        </div>
+        <div class="col-md-6">
+          <label>{{'STUDENT.REWARD.DATE' | translate }}<span>*</span></label>
+          <input type="date" [(ngModel)]="khenThuong.rdDate" (keydown)="interceptKeyboard($event)" (change)="validateRdDate()">
+          <div style="color: red; font-size: 12px" *ngIf="errorKhenThuong.rdDate.error">
+            {{errorKhenThuong.rdDate.message}}</div>
+        </div>
+        <div class="col-md-12">
+          <label>{{'STUDENT.REWARD.LOCATION' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="khenThuong.location" (keyup)="validateLocation()">
+          <div style="color: red; font-size: 12px" *ngIf="errorKhenThuong.location.error">
+            {{errorKhenThuong.location.message}}</div>
+        </div>
+        <div class="col-md-12">
+          <label>{{ 'STUDENT.REWARD.CONTENT' | translate }}</label>
+          <textarea [(ngModel)]="khenThuong.content" (keydown)="validateContent($event)" maxlength="500"></textarea>
+          <div style="color: red; font-size: 12px" *ngIf="errorKhenThuong.content.error">
+            {{errorKhenThuong.content.message}}</div>
+        </div>
+        <div class="col-md-12" style="margin-bottom: 0;">
+          <label class="container" style="margin: 0;">{{ 'STUDENT.REWARD.IS_SAVE' | translate }}
+            <input type="checkbox" id="khenthuong" value="1" (change)="onChangeCheckBox()">
+            <span class="checkmark1"></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" [disabled]="isLoading" (click)="close()">{{'STUDENT.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" [disabled]="isLoading" (click)="saveKhenThuong()">
+          {{'STUDENT.SAVE' | translate }}
+          <i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="isLoading"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #templateMienGiam>
+  <div class="exemption-popup modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title modal-custom-title">{{ 'STUDENT.EXEMPTION.TITLE' | translate }}</h4>
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'STUDENT.STUDENT' | translate }}: <span>{{studentCode}} - {{studentName}}</span></p>
+        </div>
+        <div class="col-md-6">
+          <label>{{ 'STUDENT.YEAR' | translate }} <span>*</span></label>
+          <input type="text" readonly [(ngModel)]="year">
+        </div>
+        <div class="col-md-12">
+          <div style="overflow-x: scroll;">
+            <div class="table">
+              <div class="table-cell">
+                <div class="table-header-row" style="text-align: center;">{{ 'STUDENT.INFO.NO' | translate }}</div>
+                <div class="table-header-row">
+                  <div>
+                    {{ 'STUDENT.EXEMPTION.SUBJECT' | translate }} <span>*</span>
+                  </div>
+                </div>
+                <div class="table-header-row" *ngFor="let schoolYear of listDataYear">
+                  <div>
+                    {{ 'STUDENT.EXEMPTION.SEMESTER' | translate }} {{schoolYear.semester}}
+                  </div>
+                </div>
+                <div class="table-header-row">
+                  <div>
+                    {{ 'STUDENT.EXEMPTION.OBJECT' | translate }} <span>*</span>
+                  </div>
+                </div>
+                <div class="table-header-row" style="min-width: 45px;"></div>
+              </div>
+              <div class="table-body">
+                <div *ngFor="let row of exemptionRowTables; index as i">
+                  <div class="table-body-row" >
+
+                    <div class="cell no">{{i+1}}</div>
+
+                    <div class="cell">
+                      <ng-select style="width: 130px;" [items]="subjectList" bindLabel="name" bindValue="code"
+                        [searchable]="false" [clearable]="false" placeholder="Lựa chọn" [(ngModel)]="row.subjectCode" (change)="validateSubjectCode(i)">
+                        <ng-template ng-option-tmp let-item="item">
+                          <div title="{{item.name}}">{{item.name}}</div>
+                        </ng-template>
+                      </ng-select>
+                    </div>
+
+                    <div *ngFor="let type of row.subjectExemptionsDetails; index as ii" class="cell">
+                      <ng-select style="width: 130px;" [items]="apParamList" bindLabel="name" bindValue="name"
+                        placeholder="Lựa chọn" [disabled]="type.disabled" [(ngModel)]="type.typeSemester" (change)="validateTypeSemester(i)">
+                        <ng-template ng-option-tmp let-item="item">
+                          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                            title="{{item.name}}">{{item.name}}</div>
+                        </ng-template>
+                      </ng-select>
+                    </div>
+
+                    <div class="cell">
+                      <ng-select style="width: 130px;" [items]="exemptionObjectList" bindLabel="name" bindValue="name"
+                        [searchable]="false" [clearable]="false" placeholder="Lựa chọn" [(ngModel)]="row.exemptionObject" (change)="validateExemptionObject(i)">
+                        <ng-template ng-option-tmp let-item="item">
+                          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                            title="{{item.name}}">{{item.name}}</div>
+                        </ng-template>
+                      </ng-select>
+                    </div>
+
+                    <div class="cell act">
+                      <i (click)="deleteRow(i)" class="btn-delete-row fas fa-trash"></i>
+                    </div>
+
+                  </div>
+                  <div class="table-body-row" >
+
+                    <div style="text-align: center; min-width: 45px;"></div>
+
+                    <div class="error">
+                      <span>{{errorSubjectExemption[i].subjectCode.message}}</span>
+                    </div>
+
+                    <div class="error">
+                      <span class="colspan">{{errorSubjectExemption[i].typeSemester.message}}</span>
+                    </div>
+
+                    <div class="error">
+                      <span>{{errorSubjectExemption[i].exemptionObject.message}}</span>
+                    </div>
+
+                    <div></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button class="btn-add-row" (click)="addRow()">
+            <svg style="margin-right: 12px;" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" width="2" height="12" rx="1" fill="blue" />
+              <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="blue" />
+            </svg>
+            {{ 'STUDENT.EXEMPTION.ADD_SUBJECT' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" [disabled]="isLoading" (click)="close()">{{ 'STUDENT.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" [disabled]="isLoading" (click)="saveMienGiam()">
+          {{ 'STUDENT.SAVE' | translate }}
+          <i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="isLoading"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!--Cập nhật kỷ luật-->
+<ng-template #templateKiLuat>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title modal-custom-title" style="text-align: center;">{{ 'STUDENT.DISCIPLINE.TITLE' | translate }}</h4>
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'STUDENT.STUDENT' | translate }}: <span>{{studentCode}} - {{studentName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <label>{{ 'STUDENT.DISCIPLINE.FORMALITY' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="valueHinhThucKyLuat" name="hinhThucLyLuat" placeholder=""
+            (ngModelChange)="checkHinhThuckyLuat()">
+          <div style="color: red" *ngIf="messageHinhThucKyLuat.status== 'true'">{{messageHinhThucKyLuat.message}}</div>
+        </div>
+
+        <div class="col-md-6">
+          <label>{{ 'STUDENT.YEAR' | translate }} <span>*</span></label>
+          <input type="text" readonly [(ngModel)]="valueNamHoc">
+        </div>
+        <div class="col-md-6">
+          <label>{{ 'STUDENT.DISCIPLINE.DCL_DATE' | translate }}<span>*</span></label>
+          <input type="date" [(ngModel)]="valueNgayKyLuat" (keydown)="interceptKeyboard($event)" (ngModelChange)="checkNgayKyLuat()">
+          <div style="color: red" *ngIf="messageNgayKyLuat.status== 'true'">{{messageNgayKyLuat.message}}</div>
+        </div>
+        <div class="col-md-12">
+          <label>{{ 'STUDENT.DISCIPLINE.LOCATION' | translate }}<span>*</span></label>
+          <input type="text" [(ngModel)]="valueDiaDiemKyLuat" (ngModelChange)="checkDiaDiemKyLuat()" placeholder="">
+          <div style="color: red" *ngIf="messageDiaDiemKyLuat.status== 'true'">{{messageDiaDiemKyLuat.message}}</div>
+        </div>
+        <div class="col-md-12">
+          <label>{{ 'STUDENT.DISCIPLINE.CONTENT' | translate }}</label>
+          <textarea name="" [(ngModel)]="valueNoiDungKyLuat" (ngModelChange)="checkNoiDungKyLuat()"></textarea>
+          <div style="color: red" *ngIf="messageNoiDungKyLuat.status == 'true'">{{messageNoiDungKyLuat.message}}</div>
+        </div>
+      </div>
+      <div class="col-7 sy-row" style="padding-left: 14px">
+        <label class="container">{{ 'STUDENT.DISCIPLINE.IS_SAVE' | translate }}
+          <input type="checkbox" id="extends" value="0" [ngModel]="checkBoxValue" (ngModelChange)="checkBoxKyLuat()">
+          <span class="checkmark1"></span>
+        </label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" [disabled]="isLoading" (click)="close()">{{ 'STUDENT.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" [disabled]="isLoading" (click)="saveKiLuat()">
+          {{ 'STUDENT.SAVE' | translate }}
+          <i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="isLoading"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+
+<!--Cập nhật thôi học + Bao lưu-->
+<ng-template #templateThoiHocOrBaoLuu>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title modal-custom-title" style="text-align: center;" *ngIf="thoiHoc =='true'">{{ 'STUDENT.LEAVE.TITLE' | translate }}</h4>
+      <h4 class="modal-title modal-custom-title" style="text-align: center;" *ngIf="thoiHoc !='true'">{{ 'STUDENT.RESERVE.TITLE' | translate }}</h4>
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'STUDENT.STUDENT' | translate }}: <span>{{studentCode}} - {{studentName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <label *ngIf="thoiHoc =='true'">{{ 'STUDENT.LEAVE.DATE' | translate }} <span>*</span></label>
+          <label *ngIf="thoiHoc !='true'">{{ 'STUDENT.RESERVE.DATE' | translate }} <span>*</span></label>
+          <input type="date" [(ngModel)]="valueNgayThoiHoc" (keydown)="interceptKeyboard($event)" (ngModelChange)="checkNgayThoiHoc()">
+          <div style="color: red" *ngIf="messageNgayThoiHoc.status== 'true'">{{messageNgayThoiHoc.message}}</div>
+        </div>
+        <div class="col-md-6">
+          <label *ngIf="thoiHoc =='true'">{{ 'STUDENT.LEAVE.SEMESTER' | translate }} <span>*</span></label>
+          <label *ngIf="thoiHoc !='true'">{{ 'STUDENT.RESERVE.SEMESTER' | translate }} <span>*</span></label>
+          <ng-select [items]="listHocKy" bindLabel="nameHocKy" bindValue="id" placeholder="Học Kỳ"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="idHocKy" [clearable]="false"
+            (ngModelChange)="checkHocKy($event)">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div>{{item.nameHocKy}}</div>
+            </ng-template>
+          </ng-select>
+          <div style="color: red" *ngIf="messageHocKy.status== 'true'">{{messageHocKy.message}}</div>
+        </div>
+        <div class="col-md-6">
+          <label>{{ 'STUDENT.YEAR' | translate }}<span>*</span></label>
+          <input type="text" readonly [(ngModel)]="valueNamHoc">
+        </div>
+        <div class="col-md-12">
+          <label *ngIf="thoiHoc =='true'">{{ 'STUDENT.LEAVE.REASON' | translate }}<span>*</span></label>
+          <label *ngIf="thoiHoc !='true'">{{ 'STUDENT.RESERVE.REASON' | translate }}<span>*</span></label>
+          <input type="text" [(ngModel)]="valueLiDoNghi" (ngModelChange)="checkLiDoNghi()" maxlength="250">
+          <div style="color: red" *ngIf="messageLiDoNghi.status== 'true'">{{messageLiDoNghi.message}}</div>
+        </div>
+        <div class="col-md-12">
+          <label>{{ 'STUDENT.LEAVE.NOTE' | translate }}</label>
+          <textarea maxlength="500" [(ngModel)]="valueGhiChu"></textarea>
+        </div>
+      </div>
+      <div class="col-12 sy-row" style="padding-left: 14px" *ngIf="thoiHoc =='true'">
+        <label class="container">{{ 'STUDENT.RESERVE.IS_SAVE' | translate }}
+          <input type="checkbox" [ngModel]="checkBoxValue" (ngModelChange)="checkBoxKyLuat()">
+          <span class="checkmark1"></span>
+        </label>
+      </div>
+      <div class="col-12 sy-row" style="padding-left: 14px" *ngIf="thoiHoc !='true'">
+        <label class="container">{{ 'STUDENT.RESERVE.IS_SAVE' | translate }}
+          <input type="checkbox" [ngModel]="checkBoxValue" (ngModelChange)="checkBoxKyLuat()">
+          <span class="checkmark1"></span>
+        </label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" [disabled]="isLoading" (click)="close()">{{ 'STUDENT.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" [disabled]="isLoading" *ngIf="thoiHoc =='true'" (click)="saveThoiHoc()">
+          {{ 'STUDENT.SAVE' | translate }}
+          <i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="isLoading"></i>
+        </button>
+        <button type="button" class="btn-md btn-or" [disabled]="isLoading" *ngIf="thoiHoc !='true'" (click)="saveBaoLuu()">
+          {{ 'STUDENT.SAVE' | translate }}
+          <i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="isLoading"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--chuyển trường/ lớp-->
+<ng-template #templateChuyenLop>
+  <form [formGroup]="formTransferClass" (ngSubmit)="onSubmitTransferClass()">
+    <div class="modal-content modal-dialog-custom">
+      <div class="modal-header">
+        <h4 class="modal-title modal-custom-title" style="text-align: center;">{{ 'STUDENT.TRANSFER.CLASS' | translate }}</h4>
+
+      </div>
+      <div class="modal-body" style="padding: 15px 10px !important;">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="type-action">
+              <label class="container-radio col-6">{{ 'STUDENT.TRANSFER.SCHOOL' | translate }}
+                <input type="radio" value="0" formControlName="isTransferClass" (change)="changeTransferClass($event)">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container-radio col-6" style="margin-left: 15px">{{ 'STUDENT.TRANSFER.CLASS' | translate }}
+                <input type="radio" checked="checked" value="1" formControlName="isTransferClass"
+                  (change)="changeTransferClass($event)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>{{ 'STUDENT.TRANSFER.DATE' | translate }} <span>*</span></label>
+            <input type="date" name="transferDate" id="transferDate" (keydown)="interceptKeyboard($event)" formControlName="transferDate" />
+            <div *ngIf="(getTransferClassControl.transferDate.touched || getTransferClassControl.transferDate.dirty) && getTransferClassControl.transferDate.invalid">
+              <div class="required" *ngIf="getTransferClassControl.transferDate.errors?.required">
+                {{ 'STUDENT.TRANSFER.NOTIFY.DATE.BLANK' | translate }}
+              </div>
+              <div class="required" *ngIf="getTransferClassControl.transferDate.errors?.invalid">
+                {{ 'STUDENT.TRANSFER.NOTIFY.DATE.INVALID' | translate }}
+              </div>
+              <div class="required" *ngIf="getTransferClassControl.transferDate.errors?.outscopeSemester">
+                {{ 'STUDENT.TRANSFER.NOTIFY.DATE.OUT' | translate }}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>{{ 'STUDENT.TRANSFER.SEMESTER' | translate }}<span>*</span></label>
+            <ng-select [items]="listHocKy" bindLabel="nameHocKy" bindValue="id" placeholder="Học Kỳ" name="semester"
+              id="semester" formControlName="semester" [clearable]="false" (change)="changeSemester($event)">
+              <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                <div>{{item.nameHocKy}}</div>
+              </ng-template>
+            </ng-select>
+            <div
+              *ngIf="(getTransferClassControl.semester.touched || getTransferClassControl.semester.dirty) && getTransferClassControl.semester.invalid">
+              <div class="required" *ngIf="getTransferClassControl.semester.errors.isPast">
+                {{ 'STUDENT.TRANSFER.NOTIFY.SEMESTER.PAST' | translate }}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>{{ 'STUDENT.YEAR' | translate }}<span>*</span></label>
+            <input type="text" name="years" id="years" formControlName="years">
+          </div>
+          <div class="col-md-6">
+            <label>{{ 'STUDENT.TRANSFER.CLS' | translate }}<span>*</span></label>
+            <input type="text" name="classId" id="classId" formControlName="classId">
+          </div>
+
+          <div class="col-md-12" *ngIf="formTransferClass.get('isTransferClass').value == '0'">
+            <label>{{ 'STUDENT.TRANSFER.TO_SCHOOL' | translate }}<span>*</span></label>
+            <input type="text" name="transferSchool" id="transferSchool" formControlName="transferSchool">
+            <div
+              *ngIf="(getTransferClassControl.transferSchool.touched || getTransferClassControl.transferSchool.dirty) && getTransferClassControl.transferSchool.invalid">
+              <div class="required" *ngIf="getTransferClassControl.transferSchool.errors?.required">
+                {{ 'STUDENT.TRANSFER.NOTIFY.TO_SCHOOL.BLANK' | translate }}
+              </div>
+              <div class="required" *ngIf="getTransferClassControl.transferSchool.errors?.maxlength">
+                {{ 'STUDENT.TRANSFER.NOTIFY.TO_SCHOOL.MAX' | translate }}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12" *ngIf="formTransferClass.get('isTransferClass').value == '1'">
+            <label>{{ 'STUDENT.TRANSFER.TO_CLASS' | translate }}<span>*</span></label>
+            <ng-select [items]="listClassRoomOfGrade" bindLabel="name" bindValue="id" placeholder="Lựa chọn"
+              name="transferClassId" id="transferClassId" formControlName="transferClassId">
+              <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                <div>{{item.code}} - {{item.name}} </div>
+              </ng-template>
+            </ng-select>
+            <div
+              *ngIf="(getTransferClassControl.transferClassId.touched || getTransferClassControl.transferClassId.dirty) && getTransferClassControl.transferClassId.invalid">
+              <div class="required" *ngIf="getTransferClassControl.transferClassId.errors.required">
+                {{ 'STUDENT.TRANSFER.NOTIFY.TO_CLASS.BLANK' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label>{{ 'STUDENT.TRANSFER.REASON' | translate }}<span>*</span></label>
+            <textarea name="reason" id="reason" formControlName="reason"></textarea>
+            <div
+              *ngIf="(getTransferClassControl.reason.touched || getTransferClassControl.reason.dirty) && getTransferClassControl.reason.invalid">
+              <div class="required" *ngIf="getTransferClassControl.reason.errors?.required">
+                {{ 'STUDENT.TRANSFER.NOTIFY.REASON.BLANK' | translate }}
+              </div>
+              <div class="required" *ngIf="getTransferClassControl.reason.errors?.maxlength">
+                {{ 'STUDENT.TRANSFER.NOTIFY.REASON.MAX' | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="btn-action">
+          <button type="button" class="btn-md btn-gray" [disabled]="isLoading" (click)="close()">{{ 'STUDENT.CANCEL' | translate }}</button>
+          <button type="submit" class="btn-md btn-or" [disabled]="isLoading">
+            {{ 'STUDENT.SAVE' | translate }}
+            <i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="isLoading"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</ng-template>

@@ -1,0 +1,15 @@
+:host::ng-deep {
+  .header-checkbox{
+    display: flex !important;
+    align-items: center !important ;
+    justify-content: center !important;
+    min-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+  .mat-checkbox-label {
+    padding-top: 0px !important;
+  }
+}
+

@@ -1,0 +1,5 @@
+<!--<label class="container">-->
+<!--<input type="checkbox" id="extends" [(ngModel)]="params.value" (change)="this.refresh(this.params)" [disabled]="params.data.status == 0 && params.colDef.field !== 'status'">-->
+<!--  <span class="checkmark"></span>-->
+<!--</label>-->
+<mat-checkbox [(ngModel)]="params.value" (change)="this.refresh(this.params)" [disabled]="params.data.status == 0 && params.colDef.field !== 'status'"></mat-checkbox>

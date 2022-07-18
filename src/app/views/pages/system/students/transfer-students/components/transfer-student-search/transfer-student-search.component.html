@@ -1,0 +1,58 @@
+<form class="transfer-student-search" [formGroup]="form" (ngSubmit)="onSearch()">
+  <div class="row">
+    <div class="col-md-10 pr-0">
+      <div class="row">
+        <div class="col-md-3 pr-0">
+          <label class="transfer-student-search__label">{{'TRANSFER_STUDENTS.GRADE' | translate}}</label>
+          <ng-select [items]="grades"
+                     bindLabel="name"
+                     formControlName="gradeLevel"
+                     [clearable]="false"
+                     [searchable]="false"
+                     [compareWith]="isGradeEqual"
+                     (change)="gradeChanged.emit($event)"
+                     [placeholder]="'TRANSFER_STUDENTS.SELECT_PLACEHOLDER' | translate">
+          </ng-select>
+        </div>
+        <div class="col-md-3 pr-0">
+          <label class="transfer-student-search__label">{{'TRANSFER_STUDENTS.CLASS' | translate}}</label>
+          <ng-select [items]="classes"
+                     bindLabel="fullName"
+                     formControlName="classCode"
+                     [compareWith]="isClassEqual"
+                     [clearable]="false"
+                     [searchable]="false"
+                     [placeholder]="'TRANSFER_STUDENTS.SELECT_PLACEHOLDER' | translate">
+          </ng-select>
+        </div>
+        <div class="col-md-3 pr-0">
+          <label class="transfer-student-search__label">{{'TRANSFER_STUDENTS.STATUS' | translate}}</label>
+          <ng-select formControlName="transferStatus"
+                     bindLabel="name"
+                     [items]="statuses"
+                     [clearable]="false"
+                     [searchable]="false"
+                     [compareWith]="isStatusEqual"
+                     [placeholder]="'TRANSFER_STUDENTS.SELECT_PLACEHOLDER' | translate">
+          </ng-select>
+        </div>
+        <div class="col-md-3">
+          <label class="transfer-student-search__label">{{'TRANSFER_STUDENTS.STUDENT' | translate}}</label>
+          <input type="text"
+                 class="transfer-student-search__input"
+                 formControlName="studentSearch"
+                 (blur)="trim()"
+                 (keyup.enter)="onSearch()"
+                 [placeholder]="'TRANSFER_STUDENTS.STUDENT_PLACEHOLDER' | translate">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="transfer-student-search__button-wrapper">
+        <button class="transfer-student-search__button" matRipple>
+          {{'TRANSFER_STUDENTS.SEARCH' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

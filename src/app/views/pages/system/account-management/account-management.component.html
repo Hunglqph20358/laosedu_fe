@@ -1,0 +1,307 @@
+<div class="sy position-absolute">
+  <div class="sy-heading">
+    <span class="sy-heading-text">{{'MENU.SCHOOL.UPDATE_INFO' | translate}} </span>
+  </div>
+  <!--<form class="form" [formGroup]="schoolForm" (ngSubmit)="onSubmit()">-->
+  <form class="form form-change-custom" [formGroup]="schoolForm" (ngSubmit)="onSubmit()">
+    <div class="row content-account-form ">
+      <div class="col-md-2 col-sm-12 text-center ">
+        <!-- Form starts -->
+        <div class="group-gap">
+          <!-- Upload image -->
+          <div class="avatar-upload">
+            <div class="avatar-edit">
+              <!--accept=".png, .jpg, .jpeg"-->
+              <input type='file' id="imageUpload" accept=".jpg, .png, .bmp, .tiff,.tif,.jpeg" #fileInput
+                     (change)="uploadFile($event)"/>
+            </div>
+            <div class="avatar-preview m-auto">
+              <div id="imagePreview1" *ngIf="!defaultUrl" [style.backgroundImage]="'url('+ imageUrl +')'">
+              </div>
+              <div id="imagePreview2" *ngIf="defaultUrl"
+                   [style.backgroundImage]="'url(../../../../../assets/media/img/image_photo.png)'">
+              </div>
+            </div>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="overSize">
+              {{'COMMON.VALIDATE_FILE' | translate}}
+            </span>
+          </div>
+        </div>
+        <button type="button" [disabled]="!isEdit" class="btn btn-primary btn-upload" (click)="fileInput.click()" style="background-color: #3366ff">
+          <svg width="12"  height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.69882 7.5628L6.29258 5.45342C6.16212 5.25771 5.83801 5.25771 5.70755 5.45342L4.30131 7.5628C4.22954 7.67061 4.2227 7.80931 4.2838 7.92364C4.3449 8.03797 4.46403 8.10938 4.59381 8.10938H4.94537V10.5703C4.94537 10.7646 5.10261 10.9219 5.29693 10.9219H6.70318C6.8975 10.9219 7.05474 10.7646 7.05474 10.5703V8.10938H7.4063C7.53607 8.10938 7.65521 8.03797 7.71633 7.92364C7.77746 7.80931 7.77056 7.67061 7.69882 7.5628Z" fill="white"/>
+            <path d="M10.206 4.11183C10.1751 3.69169 10.0045 3.29975 9.70413 2.99935C9.24981 2.54503 8.56588 2.40917 7.96511 2.57689C7.38742 1.64796 6.39362 1.07812 5.29689 1.07812C3.64824 1.07812 2.29041 2.34532 2.14861 3.98642C0.918471 4.29713 0 5.41738 0 6.70314C0 8.25393 1.28515 9.51564 2.83594 9.51564H4.2422V8.75245C3.99774 8.66627 3.79004 8.49152 3.66369 8.25496C3.48001 7.91197 3.50026 7.49725 3.71588 7.17315L5.12249 5.06342C5.31439 4.77537 5.64261 4.60372 6.00001 4.60372C6.35741 4.60372 6.68563 4.77537 6.87754 5.06342L8.28379 7.1728C8.49974 7.49725 8.51999 7.91197 8.33631 8.25496C8.20996 8.49152 8.00226 8.66627 7.7578 8.75245V9.51564H9.16406C10.7148 9.51564 12 8.25393 12 6.70314C12 5.54286 11.2722 4.53645 10.206 4.11183Z" fill="white"/>
+          </svg>
+          {{ 'COMMON.CHOOSE_FILE' | translate }}
+        </button>
+      </div>
+      <div class="col-md-10 col-sm-12 col-auto pr-7">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="code">
+              {{'MENU.SCHOOL.SCHOOL_CODE' | translate}} <span>*</span>
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="code" ng
+                   aria-describedby="code" [(ngModel)]="school.code" [disabled]="true" [readonly]="true"
+                   [ngClass]="{'is-invalid': f.get('code').touched && f.get('code').invalid}"
+                   id="code"
+                   placeholder="{{'COMMON.ENTER' | translate}} {{'MENU.SCHOOL.SCHOOL_CODE' | translate| lowercase}}"/>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('code').errors?.required">
+              {{'MENU.SCHOOL.SCHOOL_CODE' | translate}}{{'COMMON.NOT_BLANK' | translate}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="hotLine">
+              {{'AUTH.INPUT.PHONE' | translate}}
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="hotLine" ng
+                   aria-describedby="hotLine" [(ngModel)]="school.hotLine" [autofocus]="isEdit"
+                   [ngClass]="{'is-invalid': f.get('hotLine').touched && f.get('hotLine').invalid}"
+                   (blur)="onBlurEventRemoveAllSpace($event)"
+                   id="hotLine" placeholder="{{'AUTH.INPUT.INPUT_PHONE' | translate}}"/>
+            <span class="cross-validation-error-message alert error_div"
+                  [ngClass]="{'is-invalid': f.get('hotLine').touched && f.get('hotLine').invalid}"
+                  *ngIf="schoolForm.get('hotLine').errors?.maxlength">
+              {{'AUTH.INPUT.PHONE' | translate}} {{'COMMON.MAX_LENGHT' | translate:'{length: 20}'}}
+            </span>
+            <span class="cross-validation-error-message alert error_div"
+                  [ngClass]="{'is-invalid': f.get('hotLine').touched && f.get('hotLine').invalid}"
+                  *ngIf="schoolForm.get('hotLine').errors?.pattern">
+              {{'AUTH.VALIDATION.INVALID_PHONE' | translate}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="educationType">
+              {{'MENU.SCHOOL.TYPE_EDU' | translate}}
+            </label>
+            <ng-select ng-disabled="true" formControlName="educationType" [items]="listSchoolType" [searchable]="false"
+                       [clearable]="false" id="educationType"
+                       bindLabel="name" bindValue="code" placeholder="{{'MENU.SCHOOL.TYPE_EDU' | translate}}"
+                       [(ngModel)]="school.typeEducation" *ngIf="langKey === 'vn'">
+            </ng-select>
+            <ng-select ng-disabled="true" formControlName="educationType" [items]="listSchoolType" [searchable]="false"
+                       [clearable]="false" id="educationTypeLA"
+                       bindLabel="nameLA" bindValue="code" placeholder="{{'MENU.SCHOOL.TYPE_EDU' | translate}}"
+                       [(ngModel)]="school.typeEducation" *ngIf="langKey === 'la'">
+            </ng-select>
+            <ng-select ng-disabled="true" formControlName="educationType" [items]="listSchoolType" [searchable]="false"
+                       [clearable]="false" id="educationTypeEN"
+                       bindLabel="nameEN" bindValue="code" placeholder="{{'MENU.SCHOOL.TYPE_EDU' | translate}}"
+                       [(ngModel)]="school.typeEducation" *ngIf="langKey === 'en'">
+            </ng-select>
+            <!--<input type="text" class="form-control w-100 input-sm" formControlName="educationType" ng-->
+            <!--aria-describedby="educationType"  [ngModel]="school.typeEducation"-->
+            <!--[ngClass]="{'is-invalid': f.get('educationType').touched && f.get('educationType').invalid}"-->
+            <!--id="educationType"/>-->
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="name">
+              {{'MENU.SCHOOL.SCHOOL_NAME' | translate}} <span>*</span>
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="name" ng
+                   aria-describedby="name" [(ngModel)]="school.name" (blur)="onBlurEventTrim($event)"
+                   [ngClass]="{'is-invalid': f.get('name').touched && f.get('name').invalid}"
+                   id="name"
+                   placeholder="{{'COMMON.ENTER' | translate}} {{'MENU.SCHOOL.SCHOOL_NAME' | translate| lowercase}}"/>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('name').errors?.required">
+               {{'MENU.SCHOOL.SCHOOL_NAME' | translate}}{{'COMMON.NOT_BLANK' | translate}}
+            </span>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('name').errors?.maxlength">
+              {{'MENU.SCHOOL.SCHOOL_NAME' | translate}} {{'COMMON.MAX_LENGHT' | translate:'{length: 250}'}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="email">
+              {{'MENU.SCHOOL.EMAIL' | translate}}
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="email" ng
+                   aria-describedby="email" placeholder="{{'COMMON.ENTER' | translate}} email"
+                   [(ngModel)]="school.email"
+                   [ngClass]="{'is-invalid': f.get('email').touched && f.get('email').invalid}"
+                   (blur)="onBlurEventRemoveAllSpace($event)"
+                   id="email"/>
+            <span class="cross-validation-error-message alert error_div"
+                  [ngClass]="{'is-invalid': f.get('email').touched && f.get('email').invalid}"
+                  *ngIf="schoolForm.get('email').errors?.pattern">
+              Email{{'COMMON.INVALIDATE' | translate}}
+            </span>
+            <span class="cross-validation-error-message alert error_div"
+                  [ngClass]="{'is-invalid': f.get('email').touched && f.get('email').invalid}"
+                  *ngIf="schoolForm.get('email').errors?.maxlength">
+              Email {{'COMMON.MAX_LENGHT' | translate:'{length: 250}'}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="principal">
+              {{'MENU.SCHOOL.PRINCIPAL' | translate}} <span>*</span>
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="principal" ng
+                   aria-describedby="principal"
+                   placeholder="{{'COMMON.ENTER' | translate}} {{'MENU.SCHOOL.PRINCIPAL' | translate| lowercase}}"
+                   [(ngModel)]="school.principal" (blur)="onBlurEventTrim($event)"
+                   [ngClass]="{'is-invalid': f.get('principal').touched && f.get('principal').invalid}"
+                   id="principal"/>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('principal').errors?.required">
+              {{'MENU.SCHOOL.PRINCIPAL' | translate}} {{'COMMON.NOT_BLANK' | translate}}
+            </span>
+            <span class="cross-validation-error-message alert error_div"
+                  [ngClass]="{'is-invalid': f.get('principal').touched && f.get('principal').invalid}"
+                  *ngIf="schoolForm.get('principal').errors?.maxlength">
+               {{'MENU.SCHOOL.PRINCIPAL' | translate}} {{'COMMON.MAX_LENGHT' | translate:'{length: 250}'}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="abbreviationName">
+              {{'MENU.SCHOOL.ABBREVIATIONS' | translate}} <span>*</span>
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="abbreviationName" ng
+                   aria-describedby="abbreviationName"
+                   placeholder="{{'COMMON.ENTER' | translate}} {{'MENU.SCHOOL.ABBREVIATIONS' | translate|lowercase}}"
+                   [(ngModel)]="school.abbreviationName" (blur)="onBlurEventTrim($event)"
+                   [ngClass]="{'is-invalid': f.get('abbreviationName').touched && f.get('abbreviationName').invalid}"
+                   id="abbreviationName"/>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('abbreviationName').errors?.required">
+              {{'MENU.SCHOOL.ABBREVIATIONS' | translate}} {{'COMMON.NOT_BLANK' | translate}}
+            </span>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('abbreviationName').errors?.maxlength">
+               {{'MENU.SCHOOL.ABBREVIATIONS' | translate}} {{'COMMON.MAX_LENGHT' | translate:'{length: 250}'}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="provinceId">
+              {{'COMMON.PROVINCE_CITY' | translate}} <span>*</span>
+            </label>
+            <ng-select formControlName="provinceId" [items]="listProvince" [clearable]="false" id="provinceId"
+                       bindLabel="prNameEn" bindValue="id" [(ngModel)]="school.provinceId"
+                       (change)="changeProvince($event)"
+            >
+            </ng-select>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('provinceId').errors?.required">
+             {{'COMMON.PROVINCE_CITY' | translate}}{{'COMMON.NOT_BLANK' | translate}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="principalPhone">
+              {{'MENU.SCHOOL.PRINCIPAL_PHONE' | translate}}
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="principalPhone" ng
+                   aria-describedby="principalPhone"
+                   placeholder="{{'COMMON.ENTER' | translate}} {{'MENU.SCHOOL.PRINCIPAL_PHONE' | translate|lowercase}}"
+                   (blur)="onBlurEventRemoveAllSpace($event)"
+                   [(ngModel)]="school.phonePrincipal"
+                   [ngClass]="{'is-invalid': f.get('principalPhone').touched && f.get('principalPhone').invalid}"
+                   id="principalPhone"/>
+            <span class="cross-validation-error-message alert error_div"
+                  [ngClass]="{'is-invalid': f.get('principalPhone').touched && f.get('principalPhone').invalid}"
+                  *ngIf="schoolForm.get('principalPhone').errors?.maxlength">
+              {{'AUTH.INPUT.PHONE' | translate}} {{'COMMON.MAX_LENGHT' | translate:'{length: 20}'}}
+            </span>
+            <span class="cross-validation-error-message alert error_div"
+                  [ngClass]="{'is-invalid': f.get('principalPhone').touched && f.get('principalPhone').invalid}"
+                  *ngIf="schoolForm.get('principalPhone').errors?.pattern">
+              {{'AUTH.VALIDATION.INVALID_PHONE' | translate}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="levelShool">
+              {{'MENU.SCHOOL.LEVEL' | translate}}
+            </label>
+            <!--<input type="text" class="form-control w-100 input-sm" formControlName="level" ng-->
+            <!--aria-describedby="level"  [ngModel]="school.level"-->
+            <!--[ngClass]="{'is-invalid': f.get('level').touched && f.get('level').invalid}"-->
+            <!--id="level"/>-->
+            <ng-select style="font-size: 12px!important;" [items]="listSchoolLevel" formControlName="levelShool"
+                       bindLabel="name" bindValue="code" id="levelShool"
+                       [searchable]="false" [clearable]="false" [(ngModel)]="school.levelShool" *ngIf="langKey === 'vn'">
+            </ng-select>
+            <ng-select style="font-size: 12px!important;" [items]="listSchoolLevel" formControlName="levelShool"
+                       bindLabel="nameLA" bindValue="code" id="levelShoolLA"
+                       [searchable]="false" [clearable]="false" [(ngModel)]="school.levelShool" *ngIf="langKey === 'la'">
+            </ng-select>
+            <ng-select style="font-size: 12px!important;" [items]="listSchoolLevel" formControlName="levelShool"
+                       bindLabel="nameEN" bindValue="code" id="levelShoolEN"
+                       [searchable]="false" [clearable]="false" [(ngModel)]="school.levelShool" *ngIf="langKey === 'en'">
+            </ng-select>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="districtId">
+              {{'COMMON.DISTRICT' | translate}}
+            </label>
+            <!--<input type="text" class="form-control w-100 input-sm" formControlName="district" ng-->
+            <!--aria-describedby="district" placeholder="Nhập Quận, Huyện" -->
+            <!--[ngModel]="school.districtId"-->
+            <!--[ngClass]="{'is-invalid': f.get('district').touched && f.get('district').invalid}"-->
+            <!--id="district"/>-->
+            <ng-select formControlName="districtId" [items]="listDistrict" [clearable]="false" id="districtId"
+                       bindLabel="drNameEn" bindValue="drId" [(ngModel)]="school.districtId"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="website">
+              {{'COMMON.WEBSITE' | translate}}
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="website" ng
+                   aria-describedby="website" placeholder="{{'COMMON.ENTER' | translate}} website"
+                   [(ngModel)]="school.website"
+                   [ngClass]="{'is-invalid': f.get('website').touched && f.get('website').invalid}"
+                   (blur)="onBlurEventTrim($event)"
+                   id="website"/>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('website').errors?.maxlength">
+             Website {{'COMMON.MAX_LENGHT' | translate:'{length: 250}'}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="foundedDate">
+              {{'MENU.SCHOOL.FOUNDED_DATE' | translate}}
+            </label>
+            <input type="date" class="form-control w-100 input-sm" formControlName="foundedDate" ng
+                   aria-describedby="foundedDate" [(ngModel)]="school.foundedDate"
+                   [ngClass]="{'is-invalid': f.get('foundedDate').touched && f.get('foundedDate').invalid}"
+                   id="foundedDate"/>
+          </div>
+          <div class="col-md-4 col-sm-12 div-inline-grid-ct">
+            <label for="address">
+              {{'COMMON.ADDRESS' | translate}}
+            </label>
+            <input type="text" class="form-control w-100 input-sm" formControlName="address" ng
+                   aria-describedby="address"
+                   placeholder="{{'COMMON.ENTER' | translate}} {{'COMMON.ADDRESS' | translate|lowercase}}"
+                   [(ngModel)]="school.address"
+                   (blur)="onBlurEventTrim($event)"
+                   [ngClass]="{'is-invalid': f.get('address').touched && f.get('address').invalid}"
+                   id="address"/>
+            <span class="text-left cross-validation-error-message alert error_div"
+                  *ngIf="schoolForm.get('address').errors?.maxlength">
+              {{'COMMON.ADDRESS' | translate}} {{'COMMON.MAX_LENGHT' | translate:'{length: 2000}'}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer "
+         class=" w-100 m-auto text-center justify-content-center bottom-0 position-fixed modal-footer  footer-custom">
+      <div class=" w-25 text-center m-auto">
+        <button type="reset" class="btn  btn_cancel" *ngIf="isEdit"
+                (click)="onUpdateOrCancel(0)">{{'COMMON.CANCEL' | translate}}</button>
+        <button type="button" type="submit" class="btn  btn_send w-auto" *ngIf="isEdit"
+                [disabled]="loading||overSize||schoolForm.invalid"
+                (keyup.enter)="onSubmit()"> {{'COMMON.OK' | translate}}
+          <!--<i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="loading"></i>-->
+        </button>
+        <button type="button" class="btn  btn-update" *ngIf="!isEdit" (click)="onUpdateOrCancel(0)">
+          {{'COMMON.UPDATE' | translate}}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

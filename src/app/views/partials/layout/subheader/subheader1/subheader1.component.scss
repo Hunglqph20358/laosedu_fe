@@ -1,0 +1,51 @@
+:host {
+	.kt-subheader__desc {
+		margin: 0;
+	}
+}
+
+select{
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 12px 8px 16px;
+width: 123px;
+height: 36px;
+background: #FFFFFF;
+border: 1px solid #D8DAE5;
+box-sizing: border-box;
+border-radius: 8px;
+margin-left:auto;
+
+-webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("../../../../../../assets/media/img/sebuton.svg");
+  background-repeat: no-repeat;
+  background-position-x: 93%;
+  background-position-y: 5px;
+  outline: none;
+  cursor: pointer;
+  option{
+    cursor: pointer;
+    padding: 10px;
+  }
+}
+.breadcrumb-item a,.item-home{
+	color:#3366FF !important;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+}
+.breadcrumb.breadcrumb-dot .breadcrumb-item:after{
+	content: url("../../../../../../assets/media/img/arrl.svg") !important;
+	width: 11px !important;
+    background: transparent;
+    margin-top: -14px;
+    margin-left: 14px;
+}
+
+.breadcrumb-item.item-home {
+  cursor: default;
+}

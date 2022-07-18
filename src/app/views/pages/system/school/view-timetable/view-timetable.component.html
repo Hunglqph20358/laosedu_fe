@@ -1,0 +1,144 @@
+<div class="position-relative" style="top: 45%" *ngIf="!dataGrid.morning || dataGrid.morning.length === 0">
+  <div class="position-absolute w-100">
+    <div class="row mx-0 text-center">
+      <div class="col-12">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5.69873 25H30.2467V48H7.45215C6.98712 48 6.54113 47.8136 6.2123 47.4818C5.88347 47.15 5.69873 46.7 5.69873 46.2308V25Z"
+            fill="#C1C4D6"></path>
+          <path
+            d="M30.2466 25H42.5206V46.2308C42.5206 46.7 42.3358 47.15 42.007 47.4818C41.6782 47.8136 41.2322 48 40.7671 48H30.2466V25Z"
+            fill="#8F95B2"></path>
+          <path d="M30.2466 25L35.726 31.1923H48L42.5206 25H30.2466Z" fill="#D8DAE5"></path>
+          <path d="M30.4658 25L24.9863 31.1923H0L5.47945 25H30.4658Z" fill="#D8DAE5"></path>
+          <path
+            d="M24 20C29.5228 20 34 15.5228 34 10C34 4.47715 29.5228 0 24 0C18.4772 0 14 4.47715 14 10C14 15.5228 18.4772 20 24 20Z"
+            fill="#C1C4D6"></path>
+          <path
+            d="M23.7475 6.84449L24.0657 7.3131L24.3827 6.84449C24.5962 6.62203 24.8523 6.44481 25.1358 6.32338C25.4192 6.20196 25.7242 6.13881 26.0325 6.13771C26.3409 6.13661 26.6463 6.19756 26.9306 6.31696C27.2149 6.43635 27.4723 6.61173 27.6874 6.83266L27.7514 6.89359C28.2155 7.3479 28.4821 7.9666 28.4937 8.61593C28.5053 9.26526 28.2608 9.89307 27.8132 10.3636L27.7514 10.4267L24.0657 14.0274L20.4712 10.4267C20.2361 10.1965 20.0493 9.92169 19.9217 9.61834C19.7942 9.31499 19.7285 8.98923 19.7285 8.66017C19.7285 8.3311 19.7942 8.00534 19.9217 7.70199C20.0493 7.39864 20.2361 7.1238 20.4712 6.89359C20.6743 6.66067 20.9242 6.4731 21.2045 6.34306C21.4848 6.21301 21.7894 6.14342 22.0984 6.13879C22.4074 6.13416 22.7139 6.1946 22.998 6.31618C23.2821 6.43776 23.5375 6.61777 23.7475 6.84449Z"
+            fill="white"></path>
+          <defs>
+            <clipPath id="clip0">
+              <rect width="48" height="48" fill="white"></rect>
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <div class="col-12">
+        <p style="margin-top: 6px;">{{noRowsTemplate}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <div class="menu-action-subject" style="display: flex; align-items: center">
+      <h3 class="pl-3">{{'SCHEDULE_TIMETABLE.VIEW' | translate}} {{className}}</h3>
+      <div class="list-action-subject">
+        <button class="btn-action-subject gray index-focus" tabindex="0" (click)="exportFile()" style="width: 118px">
+          <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2663 6.91638V8.97918C10.2659 9.31941 10.1306 9.64561 9.89001 9.88619C9.64943 10.1268 9.32324 10.2621 8.98301 10.2625H1.28329C0.943053 10.2621 0.616861 10.1268 0.376279 9.88619C0.135697 9.64561 0.000373641 9.31941 0 8.97918V4.2738C0.000373641 3.93356 0.135697 3.60737 0.376279 3.36679C0.616861 3.12621 0.943053 2.99088 1.28329 2.99051H2.88667C1.18204 4.36568 0.702899 6.42116 1.57344 8.59526C1.67972 8.86413 1.87368 9.08921 2.1239 9.23404C2.37412 9.37886 2.66591 9.43493 2.95199 9.39315C3.23806 9.35137 3.50163 9.2142 3.69999 9.00387C3.89834 8.79354 4.01984 8.52239 4.04479 8.23436C4.08697 7.7477 5.73954 6.54585 7.27179 6.27435V6.81278C7.27595 7.06469 7.35366 7.30989 7.49536 7.51822C7.63707 7.72654 7.83658 7.88889 8.06935 7.9853C8.30212 8.08171 8.558 8.10798 8.8055 8.06086C9.053 8.01374 9.28133 7.8953 9.4624 7.72011L10.2663 6.91638Z"
+              fill="white"/>
+            <path
+              d="M11.7499 4.22322L8.85785 7.11523C8.79754 7.17376 8.72142 7.21335 8.63887 7.22913C8.55633 7.24491 8.47097 7.23617 8.39333 7.20401C8.31569 7.17185 8.24916 7.11767 8.20195 7.04814C8.15474 6.97862 8.12892 6.89679 8.12766 6.81276V5.37741C7.17482 5.2759 5.66469 5.741 4.50336 6.53237C3.71345 7.07135 3.23598 7.66482 3.19295 8.16026C3.18293 8.25514 3.14163 8.344 3.07553 8.41281C3.00944 8.48163 2.92233 8.52649 2.82792 8.54033C2.73352 8.55417 2.63719 8.5362 2.55413 8.48925C2.47107 8.44229 2.40599 8.36903 2.36917 8.28101C1.8449 6.95495 1.87916 5.76539 2.4711 4.74526C3.31533 3.28993 5.21772 2.31416 8.12766 1.84255V0.42392C8.12894 0.339903 8.15479 0.258099 8.202 0.188593C8.24922 0.119087 8.31574 0.064918 8.39338 0.0327649C8.47101 0.000611686 8.55635 -0.00811995 8.63889 0.00764641C8.72142 0.0234128 8.79753 0.062988 8.85785 0.121492L11.7499 3.01346C11.9101 3.17396 12.0002 3.39151 12.0002 3.61834C12.0002 3.84517 11.9101 4.06272 11.7499 4.22322Z"
+              fill="white"/>
+          </svg>
+          {{'SCHEDULE_TIMETABLE.EXCEL' | translate}}
+        </button>
+      </div>
+    </div>
+    <div class="row search-subject m-0" [formGroup]="form" *ngIf="form" (ngSubmit)="searchEvent()">
+      <div class="col-10 p-0 align-items-start">
+        <div class="col-md-3">
+          <label>{{'SCHEDULE_TIMETABLE.SEMESTER' | translate}}</label>
+          <ng-select [items]="listSemester" bindLabel="label" bindValue="semester" formControlName="semester"
+                     [clearable]="false">
+          </ng-select>
+        </div>
+        <div class="col-md-3">
+          <label class="required">{{'SCHEDULE_TIMETABLE.APPLY_DATE' | translate}}</label>
+          <input type="date" style=" font-size: 12px !important; width: 100%" class="form-control"
+                 dateFormat="dd-MM-yyyy"
+                 formControlName="applyDate" (blur)="changeApplyDate()" (keyup)="keyUpDate($event)">
+          <div style="color: red" *ngIf="this.showErr">{{messageErr}}</div>
+
+        </div>
+      </div>
+<!--      <div class="col-md-2 pr-0" style="margin-top: 26px">-->
+<!--        <button class="index-focus w-100" #searchSchTime [indexFocus]="searchSchTime" tabindex="0" [disabled]="isUpdate"-->
+<!--                (click)="searchEvent()">{{'SCHEDULE_TIMETABLE.SEARCH' | translate}}</button>-->
+<!--      </div>-->
+    </div>
+  </div>
+  <div class="col-12 pl-0 overflow-table">
+
+  <table class="w-100 mt-3">
+    <thead style="height: 64px">
+    <tr>
+      <th class="td-header pl-2 text-center" style="max-width: 100px !important; min-width: 100px !important; text-transform: uppercase">{{'TEACHING_TIMETABLE.PERIOD' | translate}}
+      </th>
+      <th class="td-header text-center"
+          style="max-width: 60px !important; min-width: 60px; text-transform: uppercase !important;">{{'TEACHING_TIMETABLE.LESSON' | translate}}
+      </th>
+      <ng-container *ngIf="dataGrid && dataGrid.morning && dataGrid?.morning[0] && dataGrid?.morning[0]?.dayList">
+        <th *ngFor="let item of dataGrid?.morning[0]?.dayList" class="td-header pl-2" style="max-width: 200px !important; min-width: 200px !important; margin-left: 10%">
+          <label class="w-100 day mb-0">{{item.dayName}}</label>
+          <label class="w-100 date mb-0">{{'PARENTS.DAY' | translate}}&nbsp;{{item.date}}</label>
+        </th>
+      </ng-container>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of dataGrid.morning; let i = index; let even = even; let odd = odd">
+      <td *ngIf="i === 0" [attr.rowspan]="dataGrid.morning.length"
+          [class]="'cell-merge-t1'"  [style.padding-left]="dataGrid.morning[0].dayList && dataGrid.morning[0].dayList.length === 5 ? '4.4%' :( dataGrid.morning[0].dayList && dataGrid.morning[0].dayList.length === 7 ? '4.4%' :  '4%')"
+          [matTooltipPosition]="'right'" [matTooltipClass]="'tooltip-class'" [matTooltip]="item.dayName"><label class="rotate" style="color: #C95B2C; text-transform: uppercase">{{'TEACHING_TIMETABLE.MORNING' | translate}}</label></td>
+      <td class="th-body cell-body text-center lessonCode color-lesson-teacher-subject"
+          [ngClass]="{'cell-even':even, 'cell-odd': odd}">{{item.lessonCode}}</td>
+      <th *ngFor="let it of item.dayList" class="th-body cell-body"
+          [ngClass]="{'cell-even':even, 'cell-odd': odd}">
+        <div class="d-flex panel" *ngIf="it.subjectName">
+          <div [class]="'left-'+it.dayCode"></div>
+          <div [class]="'right-'+it.dayCode">
+            <label class="d-flex w-100  ml-2 mt-2 mb-0"  [matTooltipClass]="'tooltip-class'" [matTooltip]="it.subjectName">
+              <p class="name">{{'TEACHING_TIMETABLE.SUBJECT' | translate}} &nbsp;</p>
+              <p class="text color-lesson-teacher-subject">{{it.subjectName}}</p>
+            </label>
+            <label class="d-flex w-100  ml-2 mb-0" [matTooltipClass]="'tooltip-class'"  [matTooltip]="it.teacherName">
+              <p class="name">{{'PARENTS.TEACHER' | translate}}: &nbsp;</p>
+              <p class="text color-lesson-teacher-subject">{{it.teacherName}}</p>
+            </label>
+          </div>
+        </div>
+      </th>
+    </tr>
+    <tr class="tr-between"></tr>
+    <tr *ngFor="let item of dataGrid.afternoon; let i = index; let even = even; let odd = odd; let last = last">
+      <td *ngIf="i === 0" [attr.rowspan]="dataGrid.morning.length"
+          [class]="'cell-merge-t2'" [style.padding-left]="dataGrid.morning[0].dayList && dataGrid.morning[0].dayList.length === 5 ? '4.4%' :( dataGrid.morning[0].dayList && dataGrid.morning[0].dayList.length === 7 ? '4.4%' :  '4%')"
+          [matTooltipPosition]="'right'" [matTooltipClass]="'tooltip-class'" [matTooltip]="item.dayName"><label class="rotate" style="color: #2952CC; text-transform: uppercase">{{'TEACHING_TIMETABLE.AFTERNOON' | translate}}</label></td>
+      <td class="th-body cell-body text-center lessonCode color-lesson-teacher-subject"
+          [ngClass]="{'cell-even':even, 'cell-odd': odd, 'end': last }">{{item.lessonCode}}</td>
+      <th *ngFor="let it of item.dayList" class="th-body cell-body"
+          [ngClass]="{'cell-even':even, 'cell-odd': odd, 'end': last}">
+        <div class="d-flex panel" *ngIf="it.subjectName">
+          <div [class]="'left-'+it.dayCode"></div>
+          <div [class]="'right-'+it.dayCode">
+            <label class="d-flex w-100  ml-2 mt-2 mb-0" [matTooltipClass]="'tooltip-class'" [matTooltip]="it.subjectName">
+              <p class="name">{{'TEACHING_TIMETABLE.SUBJECT' | translate}} &nbsp;</p>
+              <p class="text color-lesson-teacher-subject">{{it.subjectName}}</p>
+            </label>
+            <label class="d-flex w-100  ml-2 mb-0" [matTooltipClass]="'tooltip-class'"  [matTooltip]="it.teacherName">
+              <p class="name">{{'PARENTS.TEACHER' | translate}}: &nbsp;</p>
+              <p class="text color-lesson-teacher-subject">{{it.teacherName}}</p>
+            </label>
+          </div>
+        </div>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+

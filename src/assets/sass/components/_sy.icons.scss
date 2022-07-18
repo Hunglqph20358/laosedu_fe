@@ -1,0 +1,38 @@
+.sy-ic {
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  @for $i from 1 through 50 {
+    &.ic-size-#{$i} {
+      width: #{$i}px;
+      height: #{$i}px;
+    }
+  }
+  @for $i from 1 through 50 {
+    &.ic-h-#{$i} {
+      height: #{$i}px;
+    }
+  }
+  @for $i from 1 through 50 {
+    &.ic-ml-#{$i} {
+      margin-left: #{$i}px;
+    }
+  }
+  @for $i from 1 through 50 {
+    &.ic-mr-#{$i} {
+      margin-right: #{$i}px;
+    }
+  }
+}
+
+$svg-icons: 'export', 'import', 'delete', 'edit', 'download', 'plus', 'cancel',
+  'register', 'first', 'first-disabled', 'last', 'last-disabled', 'prev',
+  'prev-disabled', 'next', 'next-disabled', 'checkbox-check', 'checkbox-uncheck';
+
+@each $svg-icon in $svg-icons {
+  .ic-svg-#{$svg-icon} {
+    background-image: url('/assets/media/icons/#{$svg-icon}.svg');
+  }
+}

@@ -1,0 +1,276 @@
+//.info-basic{
+//  display: flex;
+//  img{
+//    border-radius: 20px;
+//    margin: 8px;
+//  }
+//}
+//.name-techer{
+//  font-style: normal;
+//  font-weight: 600;
+//  font-size: 20px;
+//  color: #101840;
+//}
+//.info-basic-gv {
+//  display: flex;
+//  justify-content: space-between;
+//  flex-wrap: wrap;
+//  div{
+//    width: 50%;
+//    font-style: normal;
+//    font-weight: 500;
+//    font-size: 12px;
+//    color: #8F95B2;
+//    margin-top: 10px;
+//  }
+//  div.value-ifgv.code{
+//    color: #3366FF;
+//    font-weight: 500;
+//  }
+//  div.staust{
+//    color: #52BD94;
+//    font-weight: 600;
+//  }
+//}
+//.info-basic-gv.one-column {
+//  margin-top: 30px;
+//}
+//
+//.info-basic-gv.one-column div{
+//  width: 30%;
+//}
+//.info-basic-gv.one-column div.bold{
+//  font-weight: 600;
+//  font-size: 12px;
+//  color: #101840;
+//  width: 70%;
+//}
+
+.info-basic{
+  display: flex;
+
+  .avatar {
+    width: 27%;
+    max-width: 80px;
+    max-height: 80px;
+  }
+
+  .info-basic-avatar {
+    width: 65%;
+    margin-left: 27px;
+  }
+
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    margin: 0 8px;
+  }
+}
+
+.overflow-dot {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.name-student{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: #101840;
+  width: 1000px;
+}
+.info-basic-gv {
+  display: flex;
+  .text {
+    font-family: Inter;
+    font-style: normal;
+    line-height: 18px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    max-width: 140px;
+
+  }
+  .info-basic-gv-key {
+    div {
+      font-weight: 500;
+      color: #8F95B2;
+    }
+  }
+  .info-basic-gv-value {
+    margin-left: 8px;
+    div {
+      font-weight: 600;
+      color: #101840;
+    }
+
+    .value-ifgv {
+      min-height: 18px;
+    }
+
+    .value-ifgv.code{
+      color: #3366FF;
+      font-weight: 500;
+    }
+    .value-ifgv.status{
+      color: #52BD94;
+      font-weight: 600;
+    }
+  }
+}
+.info-basic-gv.one-column {
+  margin-top: 30px;
+}
+
+.title-tab{
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #101840;
+  svg{
+    margin-right: 15px;
+  }
+}
+.list-item-hs{
+  display: flex;
+  padding: 10px 0px;
+  border-bottom: 1px solid #E6E8F0;
+  font-weight: 500;
+   font-size: 14px;
+   justify-content: space-between;
+  .name-item{
+    color: #8F95B2;
+    width: 82%;
+  }
+  .value-item{
+    color: #101840;
+    width: 70%;
+    font-weight: 600;
+  }
+}
+.detail-hs1 .bold{
+  color: #101840;
+}
+.detail-hs1 .blue{
+  color: #3366FF
+}
+
+
+//custom radio button
+
+/* The container */
+.container-radio {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  font-weight: 600;
+  font-size: 12px;
+  color: #474D66;
+}
+
+/* Hide the browser's default checkbox */
+.container-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 1px solid #D8DAE5;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container-radio:hover input ~ .checkmark {
+
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-radio input:checked ~ .checkmark {
+
+  background:url('../../../../../../assets/media/img/radiocheck.svg');
+  background-repeat: no-repeat;
+  background-position-x: 28%;
+  background-position-y: 0px;
+  outline: none;
+  border: none;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.container-radio:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container-radio input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-radio .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.container-radio{
+  color: #101840;
+  font-size:14px
+}
+.no-boder{
+  border-bottom: none;
+}
+
+// Tooltip
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.my-custom-tooltip {
+  max-width: unset !important;
+}
+

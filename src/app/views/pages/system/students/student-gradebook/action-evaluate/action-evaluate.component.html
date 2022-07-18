@@ -1,0 +1,29 @@
+<div class="action-eval">
+  <div class="student-name" [class.style-ca-nam]="this.rowSelect.semesterSelected === this.fullYearSemester || isUpdate">
+    <span  [ngClass]="rowSelect?.id !== null && rowSelect?.status !== 0 ? 'evaluate' : 'not-evaluate'"
+      [matTooltip]="studentName"
+    >
+      {{studentName}}
+    </span>
+  </div>
+  <div class="button-eva"
+       [class.button-eva-first]="this.rowIndex === 1"
+       [class.hide]="this.rowSelect.semesterSelected === this.fullYearSemester || isUpdate"
+       (click)="showPopup()"
+  >
+    <button>
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0)">
+          <path d="M5.83384 3.69043C4.63914 3.69043 3.66711 4.66246 3.66711 5.85716C3.66711 7.05186 4.63914 8.02389 5.83384 8.02389C7.02855 8.02389 8.00058 7.05186 8.00058 5.85716C8.00058 4.66246 7.02855 3.69043 5.83384 3.69043ZM6.76887 5.44181L5.70817 6.60852C5.66251 6.65852 5.59884 6.68785 5.5315 6.69019C5.52884 6.69019 5.52584 6.69019 5.52317 6.69019C5.4585 6.69019 5.3965 6.66518 5.34983 6.62052L4.74381 6.03717C4.64448 5.94116 4.64114 5.78316 4.73681 5.68349C4.83282 5.58449 4.99115 5.58115 5.09049 5.67649L5.51117 6.0815L6.39886 5.10514C6.4922 5.00247 6.6502 4.9958 6.75221 5.08814C6.85421 5.18181 6.86154 5.33981 6.76887 5.44181Z" fill="#F26522"/>
+          <path d="M1.52515 4.29346L1.18147 6.40019C1.1478 6.6052 1.36648 6.76087 1.54915 6.6592L3.00053 5.85684C3.00053 4.29446 4.27157 3.02342 5.83395 3.02342C6.00529 3.02342 6.17263 3.04142 6.33563 3.07042L6.59631 2.80341C6.73798 2.65841 6.65664 2.4124 6.4553 2.38173L4.45657 2.07605L3.56055 0.16666C3.47821 -0.00867847 3.19054 -0.00867847 3.1082 0.16666L2.2115 2.07639L0.212774 2.38173C0.0111009 2.41273 -0.0695683 2.65874 0.0717695 2.80341L1.52515 4.29346Z" fill="#F26522"/>
+        </g>
+        <defs>
+          <clipPath id="clip0">
+            <rect width="8" height="8" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+      {{'GRADEBOOK.EVALUATE.EVALUATE_TITTLE_LOWER'|translate}}
+    </button>
+  </div>
+</div>

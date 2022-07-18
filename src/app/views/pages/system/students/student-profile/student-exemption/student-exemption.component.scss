@@ -1,0 +1,80 @@
+:host ::ng-deep {
+  
+  .grid-exemption {
+
+    .tab-content {
+      background-color: white;
+      padding: 24px;
+    }
+
+    .nav.nav-tabs.justify-content-start {
+      margin-left: 0;
+    }
+
+    .nav-link.active {
+      border-bottom: none !important;
+    }
+
+    .nav-link.active:hover {
+      border: none !important;
+    }
+
+  }
+
+  .ag-overlay {
+    padding-top: 56px;
+  }
+}
+
+
+.title-tab {
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #101840;
+  svg {
+    margin-right: 15px;
+  }
+}
+
+.year {
+  width: 172px;
+  height: 64px;
+  position: relative;
+  background-color: #F5F6FA;
+
+  > div {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    div {
+      font-family: Inter;
+      font-style: normal;
+      
+      font-size: 14px;
+    }
+
+    .class-year-text {
+      font-weight: bold;
+      color: #101840;
+    }
+
+    .class-name-text {
+      font-weight: 600;
+      color: #696F8C;
+    }
+  }
+}
+
+.float {
+  z-index: 3;
+  position: absolute;
+}
+
+.selected .float div {
+  color: #f26522
+}

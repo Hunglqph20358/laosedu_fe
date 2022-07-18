@@ -1,0 +1,71 @@
+<div class="create-group" style="padding: 20px 0px 20px 20px">
+  <div class="create-title">
+    <div class="group-title" style="display: flex;">
+      <div class="d-flex align-items-center" style="flex: 1;  padding: 0 0 19px 0; border-bottom: 1px solid #E6E8F0;box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);">
+        <img style="border-radius: 50%; height: 42px; width: 42px; object-fit: cover" [src]="dataDetail.senderAvatar">
+        <div style="flex: 1; display: flex; flex-direction: column; margin-left: 10px">
+          <label class="f14 fw600 px-0" style="color: #101840">{{dataDetail.senderName}}</label>
+          <label class="f10 fw-500 mb-0" style="color: #8A94A6">{{'PARENTS.AT_TIME2'|translate}} &nbsp;{{dataDetail.sentDate}}</label>
+        </div>
+        <div style="    transform: translateY(-11px);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="cursor: pointer;" (click)="ref.close()">
+            <rect width="24" height="24" rx="12" fill="#F4F6FA"/>
+            <rect x="15.8887" y="7" width="1.57133" height="12.5707" rx="0.785667" transform="rotate(45 15.8887 7)" fill="#8F95B2"/>
+            <rect x="17.0005" y="15.8887" width="1.57133" height="12.5707" rx="0.785667" transform="rotate(135 17.0005 15.8887)" fill="#8F95B2"/>
+          </svg>
+        </div>
+      </div>
+      <div style="width: 20px"></div>
+    </div>
+    <div style="display: flex">
+      <div class="col-12 r-body pr-0" style="overflow-y: scroll; max-height: 450px; flex: 1">
+        <ng-container *ngIf="dataDetail && dataDetail.pathFile">
+          <button *ngFor="let file of dataDetail.lstFile"
+                  class="f14 gray index-focus btn-download pl-0 pr-7 text-left mt-2 d-flex align-items-center col-12" tabindex="0"
+                  (click)="downloadFile(file.path)">
+            <svg style="min-width: 20px" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M11.7379 0.761748H5.08493C3.00493 0.753748 1.29993 2.41175 1.25093 4.49075V15.2037C1.20493 17.3167 2.87993 19.0677 4.99293 19.1147C5.02393 19.1147 5.05393 19.1157 5.08493 19.1147H13.0739C15.1679 19.0297 16.8179 17.2997 16.8029 15.2037V6.03775L11.7379 0.761748Z"
+                    stroke="#474D66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11.4756 0.75V3.659C11.4756 5.079 12.6236 6.23 14.0436 6.234H16.7986" stroke="#474D66"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11.2887 13.3584H5.88867" stroke="#474D66" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+              <path d="M9.2437 9.60596H5.8877" stroke="#474D66" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+            <span class="mx-3 name-file" [matTooltipClass]="'tooltip-class'"  [matTooltip]="getFileName(file.path)">{{getFileName(file.path)}}</span>
+            <span class=" size-file" >({{file.sizeStr}})</span>
+            <svg style="min-width: 20px" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1.67578L5.96464 5.9992L11 1.67578" stroke="#696F8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="dataDetail && dataDetail.title" >
+          <label class="r-b-title my-5 col-12 pl-0 title-content">{{dataDetail.title}}</label>
+          <div class="r-b-text pr-2 content-text" [innerHTML]="dataDetail.contentWeb"></div>
+        </ng-container>
+        <div class="no-notification-item" *ngIf="dataDetail.contentWeb === '' || dataDetail.contentWeb === null">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.69873 25H30.2467V48H7.45215C6.98712 48 6.54113 47.8136 6.2123 47.4818C5.88347 47.15 5.69873 46.7 5.69873 46.2308V25Z" fill="#C1C4D6"/>
+            <path d="M30.2466 25H42.5206V46.2308C42.5206 46.7 42.3358 47.15 42.007 47.4818C41.6782 47.8136 41.2322 48 40.7671 48H30.2466V25Z" fill="#8F95B2"/>
+            <path d="M30.2466 25L35.726 31.1923H48L42.5206 25H30.2466Z" fill="#D8DAE5"/>
+            <path d="M30.4658 25L24.9863 31.1923H0L5.47945 25H30.4658Z" fill="#D8DAE5"/>
+            <path d="M24 20C29.5228 20 34 15.5228 34 10C34 4.47715 29.5228 0 24 0C18.4772 0 14 4.47715 14 10C14 15.5228 18.4772 20 24 20Z" fill="#C1C4D6"/>
+            <path d="M23.7475 6.84449L24.0657 7.3131L24.3827 6.84449C24.5962 6.62203 24.8523 6.44481 25.1358 6.32338C25.4192 6.20196 25.7242 6.13881 26.0325 6.13771C26.3409 6.13661 26.6463 6.19756 26.9306 6.31696C27.2149 6.43635 27.4723 6.61173 27.6874 6.83266L27.7514 6.89359C28.2155 7.3479 28.4821 7.9666 28.4937 8.61593C28.5053 9.26526 28.2608 9.89307 27.8132 10.3636L27.7514 10.4267L24.0657 14.0274L20.4712 10.4267C20.2361 10.1965 20.0493 9.92169 19.9217 9.61834C19.7942 9.31499 19.7285 8.98923 19.7285 8.66017C19.7285 8.3311 19.7942 8.00534 19.9217 7.70199C20.0493 7.39864 20.2361 7.1238 20.4712 6.89359C20.6743 6.66067 20.9242 6.4731 21.2045 6.34306C21.4848 6.21301 21.7894 6.14342 22.0984 6.13879C22.4074 6.13416 22.7139 6.1946 22.998 6.31618C23.2821 6.43776 23.5375 6.61777 23.7475 6.84449Z" fill="white"/>
+            <defs>
+              <clipPath id="clip0">
+                <rect width="48" height="48" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+          <p style='margin-top: 6px;'>{{'PARENTS.NO_INFO'|translate}}</p>
+        </div>
+      </div>
+      <div style="width: 13px"></div>
+    </div>
+<!--    <div class="buttons text-center pb-5">-->
+<!--      <button style="background: #E6E8F0"class="btn text-nowrap" (click)="ref.close()">Huỷ bỏ</button>-->
+<!--    </div>-->
+  </div>
+</div>

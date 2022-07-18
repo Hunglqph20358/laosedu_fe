@@ -1,0 +1,70 @@
+ <div class="modal-dialog-custom">
+    <div class="modal-header" style="    flex-direction: column;">
+      <h4 class="modal-title" style="text-align: center;">{{'SCHEDULE_TIMETABLE.IMPORT.TITLE' | translate}}</h4>
+      <p class="des w-100">{{'SCHEDULE_TIMETABLE.IMPORT.DESC' | translate}}</p>
+    </div>
+    <div class="row m-0" [formGroup]="form" *ngIf="form">
+      <div class="col-md-6">
+        <label >{{'SCHEDULE_TIMETABLE.YEARS' | translate}}</label>
+        <ng-select [items]="listYears" bindLabel="name" bindValue="name" formControlName="years" [readonly]="true" [clearable]="false">
+        </ng-select>
+      </div>
+      <div class="col-md-6">
+        <label >{{'SCHEDULE_TIMETABLE.SEMESTER' | translate}}</label>
+        <ng-select [items]="listSemester" bindLabel="label" bindValue="semester" formControlName="semester" [clearable]="false"></ng-select>
+      </div>
+      <div class="col-md-6">
+        <label class="required">{{'SCHEDULE_TIMETABLE.GRADE_LEVEL' | translate}}</label>
+        <ng-select [items]="listGradeLevels" bindLabel="name" bindValue="code" formControlName="gradeLevel" [clearable]="false"></ng-select>
+        <div style="color: red" *ngIf="!form.value.gradeLevel && isSubmit">{{'SCHEDULE_TIMETABLE.MSG.GRADE_BLANK' | translate}}</div>
+      </div>
+      <div class="col-md-6">
+        <label class="required">{{'SCHEDULE_TIMETABLE.APPLY_DATE' | translate}}</label>
+        <input type="date" style=" font-size: 12px !important;" class="form-control" dateFormat="dd-MM-yyyy"
+               formControlName="applyDate" style="width: 100%" (blur)="changeApplyDate()" (keyup)="keyUpDate($event)">
+        <div style="color: red" *ngIf="this.showErr">{{messageErr}}</div>
+      </div>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="title-list-file">
+          <p>{{'SCHEDULE_TIMETABLE.IMPORT.FILE_LIST' | translate}}</p>
+          <div>
+            <p>{{'TEACHER_RATING.IMPORT.TEMPLATE' | translate}}</p>
+            <a (click)="exportTemplate()" tabindex="0" class="index-focus i-btn" (keydown.enter)="exportTemplate()"  style="cursor: pointer;">[{{'TEACHER_RATING.IMPORT.CLICK_DOWNLOAD' | translate}}]</a>
+          </div>
+        </div>
+        <div class="upload-file">
+          <input #file type="file" [disabled]="fileName"  id="upload-file" style="display: none;" (change)="upload(file.files)" accept=".xls,.xlsx">
+          <label for="upload-file"  tabindex="0" class="index-focus file i-btn" (keydown.enter)="file.click()" >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.69882 7.5628L6.29258 5.45342C6.16212 5.25771 5.83801 5.25771 5.70755 5.45342L4.30131 7.5628C4.22954 7.67061 4.2227 7.80931 4.2838 7.92364C4.3449 8.03797 4.46403 8.10938 4.59381 8.10938H4.94537V10.5703C4.94537 10.7646 5.10261 10.9219 5.29693 10.9219H6.70318C6.8975 10.9219 7.05474 10.7646 7.05474 10.5703V8.10938H7.4063C7.53607 8.10938 7.65521 8.03797 7.71633 7.92364C7.77746 7.80931 7.77056 7.67061 7.69882 7.5628Z" fill="white"/>
+              <path d="M10.206 4.11183C10.1751 3.69169 10.0045 3.29975 9.70413 2.99935C9.24981 2.54503 8.56588 2.40917 7.96511 2.57689C7.38742 1.64796 6.39362 1.07812 5.29689 1.07812C3.64824 1.07812 2.29041 2.34532 2.14861 3.98642C0.918471 4.29713 0 5.41738 0 6.70314C0 8.25393 1.28515 9.51564 2.83594 9.51564H4.2422V8.75245C3.99774 8.66627 3.79004 8.49152 3.66369 8.25496C3.48001 7.91197 3.50026 7.49725 3.71588 7.17315L5.12249 5.06342C5.31439 4.77537 5.64261 4.60372 6.00001 4.60372C6.35741 4.60372 6.68563 4.77537 6.87754 5.06342L8.28379 7.1728C8.49974 7.49725 8.51999 7.91197 8.33631 8.25496C8.20996 8.49152 8.00226 8.66627 7.7578 8.75245V9.51564H9.16406C10.7148 9.51564 12 8.25393 12 6.70314C12 5.54286 11.2722 4.53645 10.206 4.11183Z" fill="white"/>
+            </svg>
+            {{'TEACHER_RATING.IMPORT.DOWNLOAD' | translate}}
+          </label>
+          <span class="dingdang">{{'TEACHER_RATING.IMPORT.VALIDATE' | translate}}</span>
+        </div>
+        <div class="info-file" *ngIf="fileName">
+          <div class="file-name" title="{{fileName}}">{{fileName}}</div>
+          <div class="delete-file index-focus i-btn" tabindex="0" (keydown.enter)="removeFile()" (click)="removeFile()">{{'TEACHER_RATING.IMPORT.DELETE' | translate}}</div>
+        </div>
+        <div class="prosess-bar" *ngIf="fileName"></div>
+        <div class="size-file" *ngIf="fileSize">
+          {{fileSize / 1024 | number}} KB {{'STUDENT.OF' | translate}} {{fileSize / 1024 | number}} {{'TEACHER.IMPORT.UPLOAD_PRESENT' | translate}}
+        </div>
+        <div class="list-file-result" *ngIf="resultImport">
+          <p>{{'TEACHER_RATING.IMPORT.SUCCESS' | translate}}:<i>{{resultImport.totalSuccess}}/{{resultImport.total}}</i>{{'TEACHER_RATING.IMPORT.RECORD' | translate}}</p>
+          <a class="index-focus" tabindex="0" (keydown.enter)="exportDataErrors()" (click)="exportDataErrors()" style="cursor: pointer;" *ngIf="resultImport.totalFail > 0">[{{'TEACHER_RATING.IMPORT.CLICK_DOWNLOAD_ERROR' | translate}}]</a>
+        </div>
+        <p class="import-er" *ngIf="resultImport">{{'TEACHER_RATING.IMPORT.ERROR' | translate}}:<i>{{resultImport.totalFail}}/{{resultImport.total}}</i>{{'TEACHER_RATING.IMPORT.RECORD' | translate}}</p>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray index-focus i-btn" tabindex="0"  (click)="cancelImport()" >{{'TEACHER_RATING.IMPORT.CANCEL' | translate}}</button>
+        <button type="button" class="btn-md btn-or index-focus i-btn" tabindex="0" [disabled]="isShowImport" (click)="importFile()">Import</button>
+      </div>
+    </div>
+  </div>

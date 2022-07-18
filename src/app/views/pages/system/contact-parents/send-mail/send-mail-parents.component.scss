@@ -1,0 +1,287 @@
+.tree-view {
+  border: 1px solid #d8dae5;
+  border-radius: 10px;
+}
+.create-group-btn {
+  margin: 16px 6px 0;
+  font-weight: 600;
+  line-height: 16px;
+  padding: 10px;
+  border: 1px dashed #3366ff;
+  font-size: 12px;
+  color: #3366ff;
+  border-radius: 5px;
+  background: #f3f6ff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.font-size-18 {
+  font-size: 18px;
+}
+
+.list-recipient {
+  height: 41px;
+  display: flex;
+  padding: 6px 10px;
+  border: 1px solid #d8dae5;
+  border-radius: 4px;
+  span {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    &.see-more {
+      text-overflow: inherit;
+      overflow: inherit;
+      color: #3366ff;
+      cursor: pointer;
+    }
+  }
+  .group-item {
+    background: #f4f6fa;
+    color: #101840;
+    padding: 2px 5px;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+}
+
+.upload-btn-area {
+  border: 1px solid #d8dae5;
+  border-radius: 4px;
+  .upload-btn {
+    border: none;
+    margin: 5px;
+    padding: 5px 20px;
+    background-color: #3366ff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.upload-btn-area .upload-btn:hover {
+  opacity: 0.7 !important;
+}
+
+.list-file-area {
+  max-height: 100px;
+  overflow: auto;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #a5a5a54a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+button {
+  font-size: 12px;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+.file-attachment-text {
+  font-family: Inter !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px !important;
+  line-height: 16px;
+  color: #696f8c;
+}
+.file-attachment-name {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #474d66;
+}
+.btn-md {
+  width: 105px;
+  height: 32px;
+  left: 726px;
+  top: 774px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  border: none;
+}
+.btn-gray {
+  width: 113px;
+  height: 40px;
+  background: #e6e8f0;
+  margin-right: 10px;
+  color: #696f8c;
+}
+.btn-or {
+  width: 93px;
+  height: 40px;
+  background: #f26522;
+}
+:host::ng-deep {
+  /* custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #e6e8f0;
+    border-radius: 20px;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+
+  .tree-view-2 {
+    .select-all-title {
+      margin: 0 !important;
+    }
+
+    .create-group-btn {
+      margin: 0 !important;
+    }
+
+    .dropdown-divider {
+      margin-right: -7px !important;
+    }
+  }
+
+  .tree-view-1 {
+    padding-bottom: 16px;
+    .btn {
+      margin-right: -6px;
+    }
+  }
+
+  .tree-view {
+    padding-right: 7px;
+  }
+
+  .ng-value-label ng-star-inserted {
+    font-size: 12px;
+    font-weight: 400;
+    color: #101840;
+    line-height: 16px !important;
+  }
+  .ng-value-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: #101840 !important;
+    line-height: 16px !important;
+  }
+}
+.group-namegv {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  color: #101840;
+}
+.title-mail-box {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #101840;
+}
+
+::ng-deep {
+  select[disabled] {
+    cursor: default !important;
+  }
+}
+
+#loadpagepr {
+  position: absolute !important;
+  top: -25px !important;
+  height: calc(100% + 25px);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+
+  #loadpage {
+    position: sticky;
+    top: 50%;
+  }
+}
+
+.group-namegv {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  color: #101840;
+
+  .ng-select .ng-select-container {
+    color: #101840;
+  }
+}
+
+// .page-loading-class {
+//   height: 125%;
+//   display: flex;
+//   justify-content: center;
+//   .bee-spinner-sc {
+//     position: sticky !important;
+//     top: 50%;
+//   }
+// }
+
+.required {
+  color: red;
+}
+
+.class1{
+  background: #F26522;
+  width: 93px;
+  height: 40px;
+  font-weight: 600;
+}
+
+.class2{
+  background: #F26522;
+  width: 93px;
+  height: 40px;
+  font-weight: 600;
+  opacity: 0.7 !important;
+}
+
+.class2:hover{
+  cursor: default !important;
+}
+
+.btn:disabled {
+  cursor: default;
+}
+
+@media only screen and (max-width: 1550px) {
+ #send-mail{
+   height: auto !important;
+ }
+}
+@media only screen and (max-width: 1710px) {
+  #send-mail{
+    height: auto !important;
+  }
+}

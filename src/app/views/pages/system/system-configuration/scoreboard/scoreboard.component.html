@@ -1,0 +1,194 @@
+<div class="system-scoreboard">
+  <div class="row">
+    <div class="menu-action-dv">
+      <h3>{{ 'SCOREBOARD.TITLE' | translate }}</h3>
+      <div class="list-action-dv">
+        <button class="btn-action-dv blue" (click)="createScore()" tabindex="0" style="border: none">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" >
+            <rect x="5" width="2" height="12" rx="1" fill="white" />
+            <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="white" />
+          </svg>
+          <a style="
+  height: 16px;
+  left: 36.73%;
+  right: 16.33%;
+  top: calc(50% - 16px/2);
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: #FFFFFF;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 0px 8px;">{{'SCOREBOARD.CREATE_NEW' | translate}}</a>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!---->
+  <form>
+    <div class="row mb-2" style="margin-left: 30px;">
+      <div class="select">
+        <div class="select-abc">
+          <label class="hocky">{{'SCOREBOARD.GRADE' | translate}}</label>
+          <span style="color: #ff0000; margin-left: 2px"> *</span>
+          <ng-select [items]="listGradeLevel" style="font-size: 12px"
+                     bindLabel="name" bindValue="id"
+                     [(ngModel)]="gradeLevel"
+                     (change)="selectGrade($event)"
+                     [ngModelOptions]="{standalone: true}" [clearable]="false" [searchable]="false">
+            <ng-template ng-option-tmp let-item="item">
+              <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.name}}</div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+      <div class="select-abc">
+<!--        <label class="hocky">Ngày áp dụng</label>-->
+        <label class="hocky">{{'SCOREBOARD.APPLY_DATE' | translate}}</label>
+        <input type="date"style=" font-size: 12px !important;" class="form-control" name="applyDate"
+               [(ngModel)]="dateApply" style="width: 100%" (keyup)="checkApplyDate($event)" (ngModelChange)="changeApplyDate($event)" >
+        <div style="color: red" *ngIf="this.showErr">{{messageErr}}</div>
+      </div>
+    </div>
+  </form>
+  <!---->
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-between align-items-center">
+      <div>
+        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px;"xmlns:xlink="http://www.w3.org/1999/xlink">
+          <title>Stockholm-icons / Design / Rectangle</title>
+          <desc>Created with Sketch.</desc>
+          <defs></defs>
+          <g id="Stockholm-icons-/-Design-/-Rectangle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <rect id="bound" x="0" y="0" width="4px" height="20px"></rect>
+            <rect id="Rectangle" fill="#000000" x="4" y="4" width="4px" height="20px" rx="2"></rect>
+          </g>
+        </svg>
+<!--        <label class="cacmon">CÁC MÔN TÍNH ĐIỂM</label>-->
+        <label class="cacmon">{{'SCOREBOARD.SUBJECT_SCORE' | translate}}</label>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-between align-items-center">
+      <div >
+        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px;" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+          <title>Stockholm-icons / Design / Rectangle</title>
+          <desc>Created with Sketch.</desc>
+          <defs></defs>
+          <g id="Stockholm-icons-/-Design-/-Rectangle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <rect id="bound" x="0" y="0" width="4px" height="20px"></rect>
+            <rect id="Rectangle" fill="#000000" x="4" y="4" width="4px" height="20px" rx="2"></rect>
+          </g>
+        </svg>
+<!--        <label class="cacmon">CÁC MÔN XẾP LOẠI</label>-->
+        <label class="cacmon">{{'SCOREBOARD.SUBJECT_GRADING' | translate}}</label>
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div class="row" style="margin-top: -30px">
+    <div class="col-md-6 d-flex justify-content-between align-items-center">
+      <div class="choosesubject">
+<!--        <label class="monhoc">Môn học</label>-->
+        <label class="monhoc">{{'SCOREBOARD.SUBJECT' | translate}}</label>
+        <span style="color: #ff0000; margin-left: 2px">  *</span>
+        <ng-select class="subjectclick" [items]="listSubjectLeft" style="font-size: 12px"
+                   bindLabel="name" bindValue="id"
+                   [(ngModel)]="subjectIdLeft"
+                   (ngModelChange)="selectSubjectLeft()"
+                   [ngModelOptions]="{standalone: true}" [clearable]="false">
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+            <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"> {{item.name}} </div>
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-between align-items-center">
+      <div class="choosesubject">
+        <label class="monhoc">{{'SCOREBOARD.SUBJECT' | translate}}</label>
+        <span style="color: #ff0000; margin-left: 2px">  *</span>
+        <ng-select class="subjectclick" [items]="listSubjectRight" bindLabel="name" bindValue="id"
+                   [(ngModel)]="subjectIdRight" style="font-size: 12px"
+                   (ngModelChange)="selectSubjectRight()"
+                   [ngModelOptions]="{standalone: true}" [clearable]="false">
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+            <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.name}}</div>
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div class="row" style="margin-top: 5px;">
+    <div class="col-6 table-school">
+      <div class="table-school table-class-room">
+      <ag-grid-angular [suppressRowTransform]="true"
+                       #agGridLeft
+                       [suppressRowClickSelection]="true"
+                       style="width: 100%; height: 350px;"
+                       class="ag-theme-balham conf_score-left"
+                       [rowData]="listConfScoreDetails"
+                       [columnDefs]="columnCalcuScore"
+                       [headerHeight]="headerHeight"
+                       [rowHeight]="rowHeight"
+                       [suppressMovableColumns]="true"
+                       (gridReady)="onGridReadyLeft($event)"
+                       [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                       [debounceVerticalScrollbar]="true"
+                       (gridSizeChanged)="gridSizeChangedLeft($event)">
+<!--                       [suppressAutoSize]="true"-->
+<!--
+>-->
+      </ag-grid-angular>
+    </div>
+      <div *ngIf="this.checkButtonUpdateLeft() === true">
+        <button class="btn-action-dv blue" style=" margin-top: 35px; margin-bottom: 20px" (click)="openAddDialog('score')" style="margin-top: 50px;width: 117px; height: 40px; margin-bottom: 20px;border:none;" >
+          {{'SCOREBOARD.UPDATE' | translate}}
+        </button>
+      </div>
+<!--      <div *ngIf="this.checkButtonUpdateLeft() === false" disabled="true">-->
+<!--        <button class="btn-action-dv blue" style="border:none;margin-top: 50px;width: 117px; height: 40px; margin-bottom: 20px; cursor: not-allowed;-->
+<!--        pointer-events: none;-->
+<!--" disabled="true">-->
+<!--          Cập nhật-->
+<!--        </button>-->
+<!--      </div>-->
+    </div>
+    <div class="col-6">
+      <div class="table-school table-class-room">
+      <ag-grid-angular [suppressRowTransform]="true"
+                       #agGridRight
+                       [suppressRowClickSelection]="true" style="width: 100%; height: 350px;"
+                       class="ag-theme-balham conf_score-right"
+                       [rowData]="listConfGradingDetails"
+                       [columnDefs]="columnLevelSubject"
+                       [headerHeight]="headerHeight"
+                       [rowHeight]="rowHeight"
+                       [tooltipShowDelay]="0"
+                       [defaultColDef]="defaultColDef"
+                       (gridReady)="onGridReadyRight($event)"
+                       [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                       [suppressMovableColumns]="true"
+                       (gridSizeChanged)="gridSizeChangedRight($event)"
+                       [debounceVerticalScrollbar]="true">
+      </ag-grid-angular>
+      </div>
+      <div *ngIf="this.checkButtonUpdateRight() === true">
+        <button class="btn-action-dv blue"  (click)="openAddDialog('gradelevel')" style="margin-top: 50px;width: 117px; height: 40px; margin-bottom: 20px;border:none">
+          {{'SCOREBOARD.UPDATE' | translate}}
+        </button>
+      </div>
+<!--      <div *ngIf="this.checkButtonUpdateRight() === false" disabled="true">-->
+<!--        <button class="btn-action-dv blue" style="border: none; margin-top: 50px;width: 117px; height: 40px; margin-bottom: 20px; cursor: not-allowed;pointer-events: none;"  disabled="true" >-->
+<!--          Cập nhật-->
+<!--        </button>-->
+<!--      </div>-->
+    </div>
+  </div>
+</div>

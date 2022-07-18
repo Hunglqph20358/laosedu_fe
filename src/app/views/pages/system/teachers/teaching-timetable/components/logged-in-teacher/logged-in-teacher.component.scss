@@ -1,0 +1,64 @@
+.logged-in-teacher {
+  display: flex;
+
+  &__avatar {
+    flex: 0 0 80px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__details {
+    flex: 1;
+    padding: 0 16px;
+    align-self: center;
+  }
+
+  &__full-name {
+    font-weight: 600;
+    line-height: 30px;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+  }
+
+  &__key,
+  &__value {
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+
+  &__key {
+    color: #8F95B2;
+  }
+
+  &__value {
+    color: #101840;
+    padding-left: 8px;
+    font-weight: 600;
+
+    &--blue {
+      color: #3366FF;
+      font-weight: 500;
+    }
+
+    &--status {
+      font-weight: 700;
+    }
+  }
+
+  &__table-alike {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    display: table;
+
+    > div {
+      display: table-row;
+
+      > div {
+        display: table-cell;
+      }
+    }
+  }
+}

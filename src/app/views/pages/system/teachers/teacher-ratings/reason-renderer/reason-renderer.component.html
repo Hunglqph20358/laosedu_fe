@@ -1,0 +1,34 @@
+<div [class.reason]="isShow">
+    <p class="d-flex align-items-center">
+      <span class="fas fa-circle">&nbsp;</span>
+       {{value}}
+    </p>
+    <div class="text-show-reason" (click)="showPopup(showReason)">
+      <p>{{textShowReason}}</p>
+    </div>
+</div>
+
+<ng-template #showReason>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header" style="flex-direction: column;">
+      <h4 *ngIf="isApprove" class="modal-title" style="text-align: center; color: #101840; text-transform: uppercase;">{{ 'TEACHER_RATING.REASON_REJECT_APPROVE' | translate}}</h4>
+      <h4 *ngIf="!isApprove" class="modal-title" style="text-align: center; color: #101840; text-transform: uppercase;">{{ 'TEACHER_RATING.REASON_REJECT_RATE' | translate}}</h4>
+    </div>
+
+    <div class="modal-body">
+      <div class="info">
+        <span *ngIf="isApprove" class="basic" style="white-space: nowrap;">{{ 'TEACHER_RATING.APPROVER' | translate }}: </span>
+        <span *ngIf="!isApprove" class="basic" style="white-space: nowrap;">{{ 'TEACHER_RATING.RATER' | translate }}: </span>
+        <span class="basic user">{{person}}</span>
+      </div>
+      <div class="info">
+        <span *ngIf="isApprove" class="basic reason-text">{{ 'TEACHER_RATING.REASON_REJECT_APPROVE' | translate}}</span>
+        <span *ngIf="!isApprove" class="basic reason-text">{{ 'TEACHER_RATING.REASON_REJECT_RATE' | translate}}</span>
+      </div>
+      <textarea readonly>{{reason}}</textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-action-subject blue index-focus" (click)="modalRef.hide()"> {{ 'COMMON.EXIT' | translate }}</button>
+    </div>
+  </div>
+</ng-template> 

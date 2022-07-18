@@ -1,0 +1,6 @@
+<input *ngIf="avgScore !== null" class="input-score" disabled
+       [(ngModel)]="avgScore"
+/>
+<div style="text-align: center;width: 100% !important;" *ngIf="avgScore === null">
+  -
+</div>

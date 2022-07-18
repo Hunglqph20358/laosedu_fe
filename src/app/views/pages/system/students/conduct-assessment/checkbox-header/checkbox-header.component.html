@@ -1,0 +1,74 @@
+<div class="header-checkbox">
+  <mat-checkbox style="width: 100%;font-weight: 600;font-size: 10px;display: flex;justify-content: center;"
+                [(ngModel)]="checked"
+                (change)="changeChecked()"
+                [disabled]="params.api.stas || params.api.conditionForCheckboxHeader"
+                [ngStyle]="{'opacity': (params.api.stas || params.api.conditionForCheckboxHeader) ? '0.6':'1'}"
+  >
+    <span style="max-width: 80px; overflow: hidden;text-overflow: ellipsis;
+      white-space: nowrap;color: #8F95B2 !important;
+      font-style: normal !important;
+      font-size: 10px !important;
+      font-weight: 600 !important;
+      font-family: Inter">
+      {{params.displayName}}
+    </span>
+  </mat-checkbox>
+</div>
+
+<!--<div class="header-checkbox">-->
+<!--  <mat-checkbox style="font-weight: 600;-->
+<!--  font-size: 10px;-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  letter-spacing: 0.06em;-->
+<!--  text-transform: uppercase;-->
+<!--  color: #8f95b2;"-->
+<!--                *ngIf="params.column.colId==='conductGood'"-->
+<!--                [(ngModel)]="params.api.checkBoxHeader2" (change)="this.refresh(this.params)"-->
+<!--                [disabled]="params.api.stas || params.api.conditionForCheckboxHeader"-->
+<!--                [ngStyle]="{'opacity': (params.api.stas || params.api.conditionForCheckboxHeader) ? '0.6':'1'}"-->
+<!--  >{{params.displayName}}</mat-checkbox>-->
+<!--</div>-->
+
+<!--<div class="header-checkbox" style="display: flex; align-items: center;overflow: hidden;-->
+<!--                              text-overflow: ellipsis "-->
+<!--&gt;-->
+<!--  <mat-checkbox style="font-weight: 600;-->
+<!--  font-size: 10px;-->
+<!--  /*display: flex;*/-->
+<!--  /*align-items: center;*/-->
+<!--  letter-spacing: 0.06em;-->
+<!--  text-transform: uppercase;-->
+<!--  color: #8f95b2;"-->
+<!--                *ngIf="params.column.colId==='conductMedium'"-->
+<!--                [(ngModel)]="params.api.checkBoxHeader3"-->
+<!--                (change)="this.refresh(this.params)"-->
+<!--                [disabled]="params.api.stas || params.api.conditionForCheckboxHeader"-->
+<!--                [ngStyle]="{'opacity': (params.api.stas || params.api.conditionForCheckboxHeader) ? '0.6':'1'}"-->
+<!--  >-->
+<!--    <span style="width: 100%; overflow: hidden;-->
+<!--        text-overflow: ellipsis;-->
+<!--        white-space: nowrap;"-->
+<!--    >-->
+<!--      {{params.displayName}}-->
+<!--    </span>-->
+<!--  </mat-checkbox>-->
+<!--</div>-->
+
+<!--<div class="header-checkbox">-->
+<!--  <mat-checkbox style="font-weight: 600;-->
+<!--  font-size: 10px;-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  letter-spacing: 0.06em;-->
+<!--  text-transform: uppercase;-->
+<!--  color: #8f95b2;"-->
+<!--                *ngIf="params.column.colId==='conductWeak'"-->
+<!--                [(ngModel)]="params.api.checkBoxHeader4" (change)="this.refresh(this.params)"-->
+<!--                [disabled]="params.api.stas || params.api.conditionForCheckboxHeader"-->
+<!--                [ngStyle]="{'opacity': (params.api.stas || params.api.conditionForCheckboxHeader) ? '0.6':'1'}"-->
+<!--  >{{params.displayName}}</mat-checkbox>-->
+<!--</div>-->
+
+<!--[disabled]="checkbox === true"-->

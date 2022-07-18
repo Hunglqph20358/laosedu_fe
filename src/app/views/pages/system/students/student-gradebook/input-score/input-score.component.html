@@ -1,0 +1,13 @@
+<input class="input-score" [id]="rowIndex+scoreName"
+       [ngClass]="isUpdate ? 'white' : 'transparent'" type="textbox"
+       *ngIf="(!isUpdate && (scoreValue !== undefined && scoreValue !== null && scoreValue !== '')) || isUpdate"
+       [(ngModel)]="scoreValue"
+       (keyup.enter)= "changeAvgScore('enter')"
+       (blur)="changeAvgScore('click')"
+       [disabled]="!isUpdate || disableScore"
+       ktNumberic
+/>
+<div *ngIf="!isUpdate && (scoreValue === undefined || scoreValue === null || scoreValue === '') "
+      style="color: #101840;text-align: center;width: 100%;">
+  -
+</div>

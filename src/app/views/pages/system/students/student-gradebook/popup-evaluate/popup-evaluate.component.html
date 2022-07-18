@@ -1,0 +1,29 @@
+<div class="modal-dialog-custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-align: center;">{{'GRADEBOOK.EVALUATE.EVALUATE_TITTLE'| translate}}</h4>
+        <p class="des">{{'GRADEBOOK.EVALUATE.EVALUATE_DESC'|translate}}<br>
+          <span style="font-weight: 600;  color: #101840;">{{infoStudent.studentCode}} - {{infoStudent.studentName}}</span>
+        </p>
+      </div>
+      <div class="modal-body">
+       <textarea [placeholder]= "placeholder"
+         name=""
+         id=""
+         [(ngModel)]="evaluate"
+         [disabled] = "this.infoStudent.semesterSelected !==
+         this.infoStudent.semesterNow ||
+         !this.infoStudent.isTouch"
+       ></textarea>
+      </div>
+      <div class="modal-footer"  *ngIf="this.infoStudent.semesterSelected === this.infoStudent.semesterNow && this.infoStudent.isTouch">
+        <button class="btn-md btn-gray" (click)="onDismiss()" tabIndex="0">{{'COMMON.CANCEL'|translate}}</button>
+        <button type="submit" class="btn-md btn-or" (click)="onConfirm()" tabIndex="0">{{'COMMON.OK'|translate}}</button>
+      </div>
+
+      <div class="modal-footer" *ngIf="this.infoStudent.semesterSelected !== this.infoStudent.semesterNow || !this.infoStudent.isTouch">
+        <button class="btn-md btn-gray" (click)="onDismiss()" tabIndex="0">{{'COMMON.EXIT'|translate}}</button>
+      </div>
+
+    </div>
+</div>

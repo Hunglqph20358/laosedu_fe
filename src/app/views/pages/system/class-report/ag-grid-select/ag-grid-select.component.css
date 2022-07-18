@@ -1,0 +1,32 @@
+.select-op{
+  position: absolute;
+  width: 129px;
+  height: 32px;
+  left: 9px;
+
+  background: #F4F6FA;
+
+  border: 1px solid #D8DAE5;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+select option:first-child{
+  color: green;
+}
+
+.overflow-dots {
+  overflow: hidden; 
+  text-overflow: ellipsis;  
+  white-space: nowrap;
+}
+
+.select-score {
+  width: 129px;
+  box-sizing: border-box;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #101840;
+}

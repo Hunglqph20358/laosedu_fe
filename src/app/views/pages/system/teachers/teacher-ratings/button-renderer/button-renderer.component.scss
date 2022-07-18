@@ -1,0 +1,15 @@
+a,span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 98%;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+a {
+    color: #3366FF;
+}
+
+span {
+    color: black
+}

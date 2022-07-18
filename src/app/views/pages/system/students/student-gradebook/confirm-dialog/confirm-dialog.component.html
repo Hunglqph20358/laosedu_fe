@@ -1,0 +1,14 @@
+<div class="modal-dialog-custom">
+  <div class="modal-content">
+    <div class="modal-header" style="border-bottom: 0">
+      <h4 class="modal-title" style="text-align: center;">{{title}}</h4>
+    </div>
+    <div>
+      <span class="modal-msg">{{message}}</span>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-md btn-gray" (click)="onDismiss()">{{'COMMON.CANCEL'|translate}}</button>
+      <button type="submit" class="btn-md btn-or" (click)="onConfirm()">{{'COMMON.AGREE'|translate}}</button>
+    </div>
+  </div>
+</div>

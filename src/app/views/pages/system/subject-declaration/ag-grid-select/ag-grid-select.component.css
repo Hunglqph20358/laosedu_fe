@@ -1,0 +1,11 @@
+.select-op{
+  position: absolute;
+  width: 100px;
+  height: 32px;
+  left: 10px;
+  top: 12px;
+  background: #FFFFFF;
+  border: 1px solid #D8DAE5;
+  box-sizing: border-box;
+  border-radius: 4px;
+}

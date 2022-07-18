@@ -1,0 +1,18 @@
+<ng-select
+    appendTo="body"
+    class="select-score"
+    [items]="dataSelect"
+    bindLabel="name"
+    bindValue="code"
+    placeholder="{{ 'TEACHER.PLACEHOLDER_SELECT' | translate }}"
+    [disabled]="isDisabled"
+    [(ngModel)]="value"
+    (change)="refresh()"
+    [searchable]="false"
+    [clearable]="false"
+    [matTooltip]="ability"
+>
+  <ng-template ng-option-tmp let-item="item">
+    <div [matTooltip]="item.name" class="overflow-dots">{{item.name}}</div>
+  </ng-template>
+</ng-select>

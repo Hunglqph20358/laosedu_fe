@@ -1,0 +1,71 @@
+:host {
+	.aside {
+		height: 100%;
+
+		.aside-menu {
+			margin: 0;
+		}
+	}
+
+  #kt-aside {
+    display: flex;
+    justify-content: left;
+    padding: 0 25px;
+    align-items: center;
+  }
+
+	// fixed text line break issue on minimized aside hover
+	.menu-text {
+		white-space: nowrap;
+	}
+  .menu-nav {
+    // background: #C95B2C;
+    background:#c95b2c;
+    box-shadow: 0 3px 6px #00000029;
+    border-right: 0;
+    overflow: initial;
+  }
+  #kt_aside_menu_wrapper{
+    // background: #C95B2C;
+    background:#c95b2c;
+    box-shadow: 0 3px 6px #00000029;
+    border-right: 0;
+  }
+  .aside-menu .menu-nav > .menu-item > .menu-link .menu-text ,
+  .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-link .menu-text{
+    color: #fff;
+  }
+}
+
+.close-menu-wrapper {
+  margin: 0 0 27px 20px;
+}
+.close-menu {
+  margin-left: 16px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.22em;
+  color: #FFFFFF;
+  opacity: 0.65;
+}
+.highlight-submenu {
+  background: #ffffff69 !important;
+}
+.vuong-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background: #c95b2c;
+}
+.in-vuong {
+  position: fixed;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 0 0 0 16px;
+}

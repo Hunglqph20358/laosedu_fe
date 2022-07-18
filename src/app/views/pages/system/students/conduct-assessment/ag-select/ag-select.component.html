@@ -1,0 +1,30 @@
+
+<!-- <select [(ngModel)]="params.value" (change)="this.refresh(this.params)"
+[disabled]="(params.data.abilityName === null ||
+params.data.abilityName.toString().trim().length === 0) ||
+(params.data.conductExcellent === false && params.data.conductGood === false && params.data.conductMedium === false && params.data.conductWeak === false)"
+class="selectpicker select-op" style="text-overflow: ellipsis">
+  <option  value="" disabled selected>Lựa chọn</option>
+  <option value="{{i.value}}" *ngFor="let i of listCompetition">{{i.name}}</option>
+</select> -->
+
+<ng-select
+    class="select-score"
+    [items]="listCompetition"
+    bindLabel="name"
+    bindValue="value"
+    [placeholder]="select"
+    [(ngModel)]="params.data.competitionCode"
+    [disabled]="isUpdate || params.data.disableSelect === true"
+
+    [searchable]="false"
+    [clearable]="false"
+     appendTo="body"
+    [matTooltip]="conductName"
+
+>
+  <ng-template ng-option-tmp let-item="item">
+    <div [matTooltip]="item.name"  style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.name}}</div>
+  </ng-template>
+</ng-select>
+

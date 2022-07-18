@@ -1,0 +1,258 @@
+:host ::ng-deep {
+
+  .tab-container {
+    padding: 24px 24px 0;
+  }
+
+  .student-score {
+    background: #F5F6FA;
+    padding: 6px 24px 24px 24px;
+  }
+
+  .ag-body-viewport {
+    overflow: auto !important;
+  }
+
+  .grid-rank .ag-header-cell,
+  .ag-pinned-right-header,
+  .ag-pinned-left-header {
+    background: #F4F6FA;
+  }
+
+  .ag-center-cols-viewport {
+    overflow-x: hidden !important;
+  }
+
+  .grid-semester {
+
+    .has-background {
+      background-color: #EDEFF5;;
+    }
+  
+    .ag-header-row-column-group {
+      height: 24px !important;
+      border-bottom: 1px solid #D8DAE5; 
+    }
+  
+    .ag-header-row-column {
+      top: 24px !important;
+      height: 40px !important;
+    }
+  
+    .ag-header-cell-label {
+      justify-content: center;
+    }
+
+    .grid-semester-custom-subheader {
+      border-top: none !important;
+    }
+
+    .ag-header-group-text {
+      color: #474D66;
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+   
+  }
+
+  .grid-score {
+
+    .ag-body-horizontal-scroll {
+      max-height: 15% !important;
+      min-height: 10% !important;
+
+      .ag-horizontal-left-spacer,
+      .ag-horizontal-right-spacer {
+        border: none !important;
+      }
+
+      .ag-body-horizontal-scroll-viewport {
+        height: 100% !important;
+        max-height: 100% !important;
+        min-height: 100% !important;
+      }
+    }
+    
+
+    .hide-child-column {
+      display: none;
+      border: none;
+    }
+
+    .ag-header-cell {
+      border: none !important;
+    }
+
+    .ag-pinned-right-header,
+    .ag-pinned-left-header {
+
+      .ag-header-row-column {
+        top: 50% !important;
+        transform: translateY(-50%);
+      }
+
+    }
+
+    .ag-header-group-text {
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 16px;
+      color: #474D66;
+    }
+
+    .grid-score-header {
+      background: #EDEFF5;
+      border-bottom: 1px solid #D8DAE5;
+      text-transform: uppercase;
+    }
+
+    .grid-score-subheader {
+      background: #EDEFF5;
+    }
+
+    .just-has-one-subject {
+      top: 0px;
+      position: fixed;
+      background: #F4F6FA;
+
+      .ag-header-cell-text {
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        height: auto;
+        white-space: pre-wrap;
+        text-align: center;
+      }
+    }
+  }
+
+  .ag-pinned-right-header,
+  .ag-pinned-left-header,
+  .ag-cell-value {
+    border: none !important;
+  }
+
+  .ag-overlay {
+    padding-top: 64px;
+  }
+
+  .ag-header-cell-text {
+    display: block !important;
+    height: auto;
+  }
+
+  .header-subject-name .ag-header-cell-label{
+    justify-content: left;
+  }
+
+  .ag-body-horizontal-scroll {
+    display: flex;
+  }
+
+  .ag-header-cell-label {
+    justify-content: center;
+  }
+
+  .header-evaluate {
+
+    .ag-header-cell-text {
+      white-space: pre-wrap;
+    }
+
+    .ag-header-cell-label {
+      justify-content: left;
+    }
+  }
+
+}
+
+.ngbTabTitle {
+  display: flex;
+  position: relative;
+}
+
+.ngbTabTitle.border-bottom {
+  border-bottom: 1px solid #E6E8F0;
+}
+
+.ngbTabContent {
+  background: white;
+  padding: 24px;
+  border-radius: 0 8px 8px 8px;
+  border: 1px solid #FAFBFF;;
+}
+
+.title-tab {
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #101840;
+  margin-left: 10px;
+  margin-bottom: 15px
+}
+
+.year {
+  width: 172px;
+  height: 64px;
+  position: relative;
+  background-color: #F5F6FA;
+
+  > div {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    div {
+      font-family: Inter;
+      font-style: normal;
+      
+      font-size: 14px;
+    }
+
+    .class-year-text {
+      font-weight: bold;
+      color: #101840;
+    }
+
+    .class-name-text {
+      font-weight: 600;
+      color: #696F8C;
+    }
+  }
+}
+  
+.float {
+  z-index: 3;
+  position: absolute;
+}
+
+.selected .float div {
+  color: #f26522
+}
+
+.semester {
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #101840!important;
+  margin-right: 20px;
+  cursor: pointer;
+
+  &.selected {
+    color: #f26522!important;
+    border-bottom: 2px solid #f26522!important;
+  }
+}
+
+.mw-85 {
+  max-width: 85%;
+  margin: auto;
+}

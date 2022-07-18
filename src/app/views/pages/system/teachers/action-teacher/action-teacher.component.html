@@ -1,0 +1,542 @@
+<div class="action-shool" [class.display-none-three-dot]=
+  "teacher.statusStr === 'Đã nghỉ việc' || teacher.statusStr === 'Đã nghỉ hưu' || teacher.statusStr === 'ອອກວຽກ' || teacher.statusStr === 'ບຳນານ'"  *ngIf="isRole === false">
+  <div class="title-action"><i class="fa fa-ellipsis-v"></i></div>
+  <ul [class.five-row-last]="this.rowIndex > 4">
+    <li class="btn-action-sc ac1" (click)="openUpdate()">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#F26522"/>
+      </svg>
+      {{ 'TEACHER.CREATE.UPDATE_PROFILE' | translate }}
+    </li>
+    <li class="btn-action-sc ac2" (click)="openModal(templateKhenthuong, 1)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#3366FF"/>
+      </svg>
+      {{ 'TEACHER.REWARD_DISCIPLINE.TITLE_REWARD_UPDATE' | translate }}
+    </li>
+    <li class="btn-action-sc ac3" (click)="openModal(templateKyluat, 2)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#D14343"/>
+      </svg>
+      {{ 'TEACHER.REWARD_DISCIPLINE.TITLE_DISCIPLINE_UPDATE' | translate }}
+    </li>
+    <li class="btn-action-sc ac4" (click)="openModal(templateNghihuu, 3)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#474D66"/>
+      </svg>
+      {{ 'TEACHER.LEAVEJOB.UPDATE_RETIREMENT' | translate }}
+    </li>
+    <li class="btn-action-sc ac5" (click)="openModal(templateNghiviec, 4)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#F3A412"/>
+      </svg>
+      {{ 'TEACHER.LEAVEJOB.UPDATE_QUITJOB' | translate }}
+    </li>
+    <li class="btn-action-sc ac6" (click)="openModal(templateTamnghi, 5)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#897AE3"/>
+      </svg>
+      {{ 'TEACHER.LEAVEJOB.UPDATE_BREAK' | translate }}
+    </li>
+    <li class="btn-action-sc ac7" (click)="openModal(templateChuyendonvi, 6)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#25CBD6"/>
+      </svg>
+      {{ 'TEACHER.JOB_TRANSFER.TRANSFER2' | translate }}
+    </li>
+    <li class="btn-action-sc ac8" (click)="openModal(templateLuongphucap, 7)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#52BD94"/>
+      </svg>
+      {{ 'TEACHER.SALARY.TITLE_UPDATE2' | translate }}
+    </li>
+  </ul>
+</div>
+
+
+<!--xoa-->
+<ng-template #template>
+
+  <div class="modal-content">
+    <div class="modal-header" style="    flex-direction: column;">
+      <h4 class="modal-title" style="text-align: center;">XOÁ ĐƠN VỊ</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <p class="des" style="text-align: center;">Bạn có chắc chắn muốn xoá đơn vị đã chọn?</p>
+
+    </div>
+    <div class="modal-footer">
+
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!--cập nhật khen thưởng-->
+<ng-template #templateKhenthuong>
+  <div [ngClass]="{'page-overlay-wrapper' : this.hide === false}">
+    <div class="bee-spinner"></div>
+  </div>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER.REWARD_DISCIPLINE.TITLE_REWARD_UPDATE' | translate }}</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'TEACHER.TITLE_TEACHER' | translate }}: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+
+          <h4 class="modal-title" style="text-align: left">{{ 'TEACHER.REWARD_DISCIPLINE.INFOR_REWARD' | translate }}</h4>
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.TYPE_REWARD' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdType" (keyup)="validateHT()">
+          <small class="error-validate" *ngIf="this.errorKhenThuong.ht.error">{{this.errorKhenThuong.ht.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.YEAR2' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdYear" disabled="true" readonly="true" style="background-color: #F4F6FA">
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.TIME_REWARD' | translate }} <span>*</span></label>
+          <input type="date" [(ngModel)]="rewardDisciplineModel.dateRd" (change)="validateDate()">
+          <small class="error-validate" *ngIf="this.errorKhenThuong.date.error">{{this.errorKhenThuong.date.message}}</small>
+<!--          <kt-dialog-date (dateOutput)="getValueDate($event)"-->
+<!--                          [dateValue]="rewardDisciplineModel.dateRd"-->
+<!--                          [messageNull]="messageErrorKhenThuongNull"-->
+<!--                          [messageIllegal]="messageErrorKhenThuongIllegal"-->
+<!--          ></kt-dialog-date>-->
+          <small class="error-validate" *ngIf="this.errorKhenThuong.date.error">{{this.errorKhenThuong.date.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.ADDRESS_REWARD' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdAddress" (keyup)="validateDiaChi()" >
+          <small class="error-validate" *ngIf="this.errorKhenThuong.diachi.error">{{this.errorKhenThuong.diachi.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.CONTENT_REWARD' | translate }}</label>
+          <textarea name="rdContent" [(ngModel)]="rewardDisciplineModel.rdContent" (keyup)="validateND()"></textarea>
+            <small class="error-validate" *ngIf="this.errorKhenThuong.noidung.error" >{{this.errorKhenThuong.noidung.message}}</small>
+        </div>
+      </div>
+
+    </div>
+      <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button class="btn-md btn-or" (click)="this.bouns()">{{ 'COMMON.OK' | translate }}
+          <i class="position-absolute ml-10 mt-3 spinner spinner-right spinner-md spinner-light" *ngIf="loading"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--cập nhật kỷ luật-->
+<ng-template #templateKyluat>
+  <div [ngClass]="{'page-overlay-wrapper' : this.hide === false}">
+    <div class="bee-spinner"></div>
+  </div>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER.REWARD_DISCIPLINE.TITLE_DISCIPLINE_UPDATE' | translate }}</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'TEACHER.TITLE_TEACHER' | translate }}: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left">{{ 'TEACHER.REWARD_DISCIPLINE.INFOR_DISCIPLINE' | translate }}</h4>
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.TYPE_DISCIPLINE' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdType" (keyup)="validateKLHT()">
+            <small class="error-validate" *ngIf="this.errorKyLuat.ht.error" >{{this.errorKyLuat.ht.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.YEAR2' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdYear" disabled="true" style="background-color: #F4F6FA">
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.TIME_DISCIPLINE' | translate }} <span>*</span></label>
+          <input type="date" [(ngModel)]="rewardDisciplineModel.dateRd" name="dateRd" (change)="validateKLDate()">
+            <small class="error-validate" *ngIf="this.errorKyLuat.date.error">{{this.errorKyLuat.date.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.ADDRESS_DISCIPLINE' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdAddress" required name="rdAddress" ktSystems="250"  #diachi="ngModel" (keyup)="validateKLDiaChi()">
+          <small class="error-validate" *ngIf="this.errorKyLuat.diachi.error" >{{this.errorKyLuat.diachi.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.REWARD_DISCIPLINE.CONTENT_DISCIPLINE' | translate }}</label>
+          <textarea name="rdContent" [(ngModel)]="rewardDisciplineModel.rdContent" (keyup)="validateKLND()"></textarea>
+          <small class="error-validate" *ngIf="this.errorKyLuat.noidung.error" >{{this.errorKyLuat.noidung.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" (click)="discipline()">{{ 'COMMON.OK' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--cập nhật nghi huu-->
+<ng-template #templateNghihuu>
+  <div [ngClass]="{'page-overlay-wrapper' : this.hide === false}">
+    <div class="bee-spinner"></div>
+  </div>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER.LEAVEJOB.UPDATE_RETIREMENT' | translate }}</h4>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'TEACHER.TITLE_TEACHER' | translate }}: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left; text-transform: uppercase">{{ 'TEACHER.LEAVEJOB.INFOR_RETIREMENT' | translate }}</h4>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.LEAVEJOB.DECISION_RETIREMENT' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="leaveJob.decision" required name="decision" ktSystems="250"  #qd="ngModel"  (change)="leaveJob.decision=leaveJob.decision.trim()" (keyup)="validateNVQD(1)" >
+          <small class="error-validate" *ngIf="errorNV.qd.error === true" >{{errorNV.qd.message}}</small>
+        </div>
+
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.LEAVEJOB.DATE_RETIREMENT' | translate }} <span>*</span></label>
+          <input type="date" [(ngModel)]="leaveJob.dateLeave" name="dateLeave" max="3000-05-05"  ktSystems  #dateLeave="ngModel" (change)="validateNVNN(1)">
+            <small class="error-validate" *ngIf="this.errorNV.date.error == true" >{{errorNV.date.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.LEAVEJOB.NOTE' | translate }}</label>
+          <textarea name="description" [(ngModel)]="leaveJob.description" ktSystems="250"  #description="ngModel" (change)="leaveJob.description = leaveJob.description.trim()" (keyup)="validateNVGC(1)"></textarea>
+            <small class="error-validate" *ngIf="errorNV.gc.error" >{{errorNV.gc.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" (click)="this.quiJob(1)">{{ 'COMMON.OK' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--cập nhật nghi viec-->
+<ng-template #templateNghiviec>
+  <div [ngClass]="{'page-overlay-wrapper' : this.hide === false}">
+    <div class="bee-spinner"></div>
+  </div>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER.LEAVEJOB.UPDATE_QUITJOB' | translate }}</h4>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'TEACHER.TITLE_TEACHER' | translate }}: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left">{{ 'TEACHER.LEAVEJOB.INFOR_QUITJOB' | translate }}</h4>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.LEAVEJOB.DECISION_QUITJOB' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="leaveJob.decision" required name="decision" ktSystems="250"  #qd="ngModel"  (change)="leaveJob.decision=leaveJob.decision.trim()"  (keyup)="validateNVQD(0)" >
+            <small class="error-validate" *ngIf="errorNV.qd.error" >{{errorNV.qd.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.LEAVEJOB.DATE_QUITJOB' | translate }} <span>*</span></label>
+          <input type="date" [(ngModel)]="leaveJob.dateLeave" name="dateLeave" max="3000-05-05"  ktSystems  #dateLeave="ngModel" (change)="validateNVNN(0)">
+          <small class="error-validate" *ngIf="errorNV.date.error" >{{errorNV.date.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.LEAVEJOB.REASON_QUITJOB' | translate }} <span>*</span></label>
+          <textarea name="reason" [(ngModel)]="leaveJob.reason" required name="reason" ktSystems="250"  #ld="ngModel"  (change)="leaveJob.reason=leaveJob.reason.trim()" (keyup)="validateNVLD(0)"></textarea>
+            <small class="error-validate" *ngIf="errorNV.ld.error" >{{errorNV.ld.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.LEAVEJOB.NOTE' | translate }}</label>
+          <textarea name="description" [(ngModel)]="leaveJob.description" ktSystems="250"  #description="ngModel" (change)="leaveJob.description = leaveJob.description.trim()" (keyup)="validateNVGC(0)"></textarea>
+            <small class="error-validate" *ngIf="errorNV.gc.error" >{{errorNV.gc.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" (click)="this.quiJob(0)">{{ 'COMMON.OK' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--cập nhật tam nghi-->
+<ng-template #templateTamnghi>
+  <div [ngClass]="{'page-overlay-wrapper' : this.hide === false}">
+    <div class="bee-spinner"></div>
+  </div>
+  <div class="modal-content modal-dialog-custom" >
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER.LEAVEJOB.UPDATE_BREAK' | translate }}</h4>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'TEACHER.TITLE_TEACHER' | translate }}: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left">{{ 'TEACHER.LEAVEJOB.INFOR_BREAK' | translate }}</h4>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.LEAVEJOB.DATE_QUITJOB' | translate }} <span>*</span></label>
+          <input type="date" [(ngModel)]="leaveJob.dateLeave" name="dateLeave" max="3000-05-05"  ktSystems  #dateLeave="ngModel" (change)="validateNVNN(2)">
+          <small class="error-validate" *ngIf="errorNV.date.error" >{{errorNV.date.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.LEAVEJOB.TIME_BREAK' | translate }} <span>*</span></label>
+          <div class="inner-nghi">
+            <input type="number" [(ngModel)]="leaveJob.breakTime" required name="breakTime" min="1" #breakTime="ngModel"  (keyup)="validateNVTGTN()" oninput="this.value = this.value.replace(/[^0-9.]/g)">
+            <span>{{ 'TEACHER.LEAVEJOB.MONTH' | translate }}</span>
+          </div>
+            <small class="error-validate" *ngIf="errorNV.tt.error">{{this.errorNV.tt.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.LEAVEJOB.REASON_BREAK' | translate }} <span>*</span></label>
+          <textarea name="reason" [(ngModel)]="leaveJob.reason" required ktSystems="250"  #reason="ngModel"  (change)="leaveJob.reason=leaveJob.reason.trim()"  (keyup)="validateNVLD(2)"></textarea>
+            <small class="error-validate" *ngIf="errorNV.ld.error" >{{errorNV.ld.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.LEAVEJOB.NOTE' | translate }}</label>
+          <textarea name="description" [(ngModel)]="leaveJob.description" ktSystems="250"  #description="ngModel" (change)="leaveJob.description = leaveJob.description.trim()" (keyup)="validateNVGC(2)"></textarea>
+            <small class="error-validate" *ngIf="errorNV.gc.error" >{{errorNV.gc.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" (click)="this.quiJob(2)">{{ 'COMMON.OK' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--ck don vi phong ban-->
+<ng-template #templateChuyendonvi>
+  <div [ngClass]="{'page-overlay-wrapper' : this.hide === false}">
+    <div class="bee-spinner"></div>
+  </div>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER.JOB_TRANSFER.TRANSFER' | translate }}</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'TEACHER.TITLE_TEACHER' | translate }}: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-6">
+          <div class="info-dv">
+            <div class="name-dv">{{ 'TEACHER.DEPT_PARENT' | translate }}:</div>
+            <div class="value-dv">{{this.teacher.unitName}}</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info-dv">
+            <div class="name-dv">{{ 'TEACHER.POSITION' | translate }}:</div>
+            <div class="value-dv">{{this.teacher.positionName}}</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info-dv">
+            <div class="name-dv">{{ 'TEACHER.CREATE.DEPT_CHILD' | translate }}:</div>
+            <div class="value-dv">{{this.teacher.deptName}}</div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="thongtinck">{{ 'TEACHER.JOB_TRANSFER.INFOR_TRANSFER' | translate }}</div>
+        </div>
+        <div class="col-md-12">
+          <div class="type-action">
+            <label class="container-radio">{{ 'TEACHER.JOB_TRANSFER.TRANSFER_NOT_DIFFERENT' | translate }}
+              <input type="radio" name="aa" checked="true" [value]="0"  (change)="changeValue()" [(ngModel)]="chuyen">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container-radio">{{ 'TEACHER.JOB_TRANSFER.TRANSFER_DIFFERENT' | translate }}
+              <input type="radio" name="aa" [value]="1" [(ngModel)]="chuyen" (change)="changeValue()">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.JOB_TRANSFER.DECISION' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="jobTransferHistory.code" required name="code" ktSystems="250"  #code="ngModel" (keyup)="validateDVQD()">
+            <small class="error-validate" *ngIf="errorDV.qd.error" >{{errorDV.qd.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.JOB_TRANSFER.DATE_TRANSFER' | translate }} <span>*</span></label>
+          <input type="date" [(ngModel)]="jobTransferHistory.dateTransfer" name="dateTransfer" max="3000-05-05"  ktSystems  #dateTransfer="ngModel" (change)="validateDVDate()">
+          <small class="error-validate" *ngIf="errorDV.date.error === true">{{errorDV.date.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.JOB_TRANSFER.DEPT_PARENT' | translate }} <span>*</span></label>
+          <ng-select [items]="listDeptParent" bindLabel="name" bindValue="id"
+                     [(ngModel)]="jobTransferHistory.newDepartmentId"
+                     [ngModelOptions]="{standalone: true}" (change)="changedeptParent()" [clearable]="false" required name="newDepartment" #dv="ngModel" [disabled]="chuyen === 0">
+          </ng-select>
+          <div *ngIf="dv.invalid && (dv.dirty || dv.touched)">
+            <small class="error-validate" *ngIf="dv.errors.required" >Đơn vị chuyển không được bỏ trống</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.DEPT_CHILD' | translate }} <span>*</span></label>
+          <ng-select [items]="listDept" bindLabel="name" bindValue="id" placeholder="Lựa chọn"
+                     [(ngModel)]="jobTransferHistory.newDeptId"
+                     [ngModelOptions]="{standalone: true}" [clearable]="false" required name="newDept" #khoa="ngModel">
+          </ng-select>
+          <div *ngIf="khoa.invalid && (khoa.dirty || khoa.touched)">
+            <small class="error-validate" *ngIf="khoa.errors.required" >Khoa/Ban không được bỏ trống</small>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.JOB_TRANSFER.REASON' | translate }} <span>*</span></label>
+          <textarea name="" [(ngModel)]="jobTransferHistory.reason" required name="reason" ktSystems="250"  #ld="ngModel" (keyup)="validateDVLD()"></textarea>
+          <small class="error-validate" *ngIf="errorDV.ld.error">{{errorDV.ld.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.LEAVEJOB.NOTE' | translate }}</label>
+          <textarea name="description" [(ngModel)]="jobTransferHistory.description" ktSystems="500"  #description="ngModel" (keyup)="validateDVGC()"></textarea>
+            <small class="error-validate" *ngIf="errorDV.gc.error" >{{errorDV.gc.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" (click)="changeDepartment()">{{ 'COMMON.OK' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+
+<!--cập nhật THONG TIN LUONG PHU CAP-->
+<ng-template #templateLuongphucap>
+  <div [ngClass]="{'page-overlay-wrapper' : this.hide === false}">
+    <div class="bee-spinner"></div>
+  </div>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">{{ 'TEACHER.SALARY.TITLE_UPDATE' | translate }}</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">{{ 'TEACHER.TITLE_TEACHER' | translate }}: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <div class="thongtinck" style="text-transform: uppercase">{{ 'TEACHER.SALARY.INFOR_SALARY' | translate }}</div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.SALARY.DATE_SALARY' | translate }}</label>
+          <input type="date" [(ngModel)]="salaryAllowances.datePay" name="datePay" max="3000-05-05"  ktSystems  #datePay="ngModel">
+          <div *ngIf="datePay.touched || datePay.dirty">
+            <small class="error-validate" *ngIf="isDate(salaryAllowances.datePay) == false" >Ngày hưởng không hợp lệ</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.SALARY.SALARY_LEVEL' | translate }} <span>*</span></label>
+          <ng-select [items]="salaryLeavel" bindLabel="name" bindValue="id" placeholder="Lựa chọn"
+                     [(ngModel)]="salaryAllowances.salaryLevelId"
+                     [ngModelOptions]="{standalone: true}" (change)="validateBL()" [clearable]="true"></ng-select>
+            <small class="error-validate" *ngIf="this.errorPhuCap.bl.error" >{{this.errorPhuCap.bl.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.SALARY.RANK_NAME' | translate }} <span>*</span></label>
+          <ng-select [items]="this.rankSalary" bindLabel="name" bindValue="id" [(ngModel)]="salaryAllowances.rankId"
+                     [ngModelOptions]="{standalone: true}" [(ngModel)]="salaryAllowances.rankId" (change)="changeRankSalary()"  [clearable]="true"></ng-select>
+            <small class="error-validate" *ngIf="this.errorPhuCap.hn.error" >{{this.errorPhuCap.hn.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.SALARY.COEFFICIENT' | translate }} <span>*</span></label>
+          <input type="text" [(ngModel)]="salaryAllowances.coefficient" (keyup)="validateHS()">
+          <small class="error-validate" *ngIf="this.errorPhuCap.hs.error">{{this.errorPhuCap.hs.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{ 'TEACHER.SALARY.EXCEED_FRAME' | translate }}</label>
+          <input type="text" [(ngModel)]="salaryAllowances.exceedFrame">
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.SALARY.NOTE' | translate }}</label>
+          <textarea name="" id="" [(ngModel)]="salaryAllowances.description" (keyup)="validateGC()"></textarea>
+            <small class="error-validate" *ngIf="this.errorPhuCap.gc.error" >{{this.errorPhuCap.gc.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <div class="thongtinck" style="text-transform: uppercase">{{ 'TEACHER.SALARY.INFOR_ALLOWANCES' | translate }}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="">{{ 'TEACHER.SALARY.ALLOWANCES_MODE' | translate }}</label>
+          <input type="text" [(ngModel)]="salaryAllowances.allowanceMode" (keyup)="validateTT()"  >
+            <small class="error-validate" *ngIf="this.errorPhuCap.tt.error" >{{this.errorPhuCap.tt.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button type="button" class="btn-md btn-or" (click)="updateSalary()">{{ 'COMMON.OK' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

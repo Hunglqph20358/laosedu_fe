@@ -1,0 +1,146 @@
+.create-group {
+  width: 800px;
+  background: #FFFFFF;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+}
+
+.group-title {
+  width: 100%;
+
+  &__content {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600 !important;
+    line-height: 30px;
+    margin: 0;
+  }
+}
+
+.group-search-box {
+  padding: 16px 20px;
+  display: flex;
+  border-bottom: 1px solid #E6E8F0;
+  box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);
+}
+
+.group-body {
+  padding: 16px 20px;
+  border-bottom: 1px solid #E6E8F0;
+  box-shadow: 0 2px 4px rgba(28, 41, 90, 0.0367952);
+}
+
+.tree-view {
+  border: 1px solid #D8DAE5;
+  border-radius: 10px;
+  padding: 16px 16px 16px 0;
+}
+
+.list-teacher-details {
+  border: 1px solid #D8DAE5;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.btn-change {
+  position: absolute;
+  top: 50%;
+  left: -37px;
+  cursor: pointer;
+}
+
+.group-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.tableListNull {
+  height: 252px !important;
+}
+
+button{
+  font-size: 12px;
+}
+.no-notification-item {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.r-body {
+  padding-right: 16px;
+
+  .btn-download {
+    border: none;
+    background: none;
+  }
+  .r-b-title{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #101840;
+  }
+}
+.size-file{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #8F95B2;
+  min-width: 82px;
+}
+.name-file{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #474D66;
+}
+.title-content {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px !important;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #101840;
+}
+.content-text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #474D66;
+}
+:host::ng-deep {
+
+  ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #E6E8F0;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+}

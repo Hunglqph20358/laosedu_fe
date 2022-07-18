@@ -1,0 +1,50 @@
+.teaching-timetable-filter {
+
+  &__datepicker {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #D8DAE5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 36px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #474D66;
+
+    &--required {
+      &:after {
+        content: " *";
+        display: inline;
+        color: red;
+      }
+    }
+  }
+}
+.padding-bottom{
+  padding-bottom: 18px;
+}
+:host::ng-deep {
+  .ng-select.ng-select-single .ng-select-container {
+    height: 32px;
+  }
+
+  .ng-select .ng-arrow-wrapper{
+    background: #F4F6FA;
+    border-radius: 4px;
+    margin-right: 5px;
+    padding: 3px;
+  }
+
+  //.ng-dropdown-panel,
+  //.scroll-host {
+  //  width: 192px;
+  //}
+}

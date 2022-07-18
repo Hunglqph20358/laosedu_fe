@@ -1,0 +1,28 @@
+<!--<div class="dialog-confirm-delete">-->
+<!--  <div class="header-card">-->
+<!--    {{title}}-->
+<!--  </div>-->
+<!--  <div class="row content-card">-->
+<!--    <p>{{message}}</p>-->
+<!--  </div>-->
+<!--  <div class="border"></div>-->
+<!--  <div>-->
+<!--    <button class="btn-md btn-gray" (click)="onDismiss()">Hủy bỏ</button>-->
+<!--    <button class="btn-md btn-or" (click)="onConfirm()">Đồng ý</button>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="modal-dialog-custom">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0">
+        <h4 class="modal-title" style="text-align: center;">{{title}}</h4>
+      </div>
+      <div>
+        <span class="modal-msg">{{message}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-md btn-gray" (click)="onDismiss()">{{'ATTENDANCE_STUDENT.CANCEL'|translate}}</button>
+        <button type="submit" class="btn-md btn-or" (click)="onConfirm()">{{'ATTENDANCE_STUDENT.AGREE'|translate}}</button>
+      </div>
+    </div>
+</div>

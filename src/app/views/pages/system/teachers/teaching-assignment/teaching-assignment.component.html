@@ -1,0 +1,342 @@
+<div [ngClass]="{'page-loading-class' : loading}" >
+  <div  class="bee-spinner-sc"></div>
+</div>
+<div class="sy default-layout">
+  <div class="sy-heading">
+    <h3 class="sy-heading-text">{{'TEACHER_ASSIGNMENT.LIST_TEACHER_ASSGINMENT' | translate}}</h3>
+    <div class="heading-list-actions">
+      <button class="btn-action-dv gray" (click)="openImportDialog()">
+        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-import"></span>
+        {{'TEACHER_ASSIGNMENT.IMPORT_FILE' | translate}}
+      </button>
+      <button class="btn-action-dv gray" (click)="exportData()">
+        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-export"></span>
+        {{'TEACHER_ASSIGNMENT.EXPORT_EXCEL' | translate}}
+      </button>
+    </div>
+  </div>
+  <hr class="sy-line"/>
+  <div class="sy-main-content">
+    <form class="sy-form search-form">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-3">
+              <label>{{'TEACHER_ASSIGNMENT.GRADE' | translate}}</label>
+              <ng-select
+                [items]="listGradeLevel"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'TEACHER_ASSIGNMENT.GRADE_NAME' | translate}}"
+                [(ngModel)]="selectedGradeLevel"
+                [ngModelOptions]="{ standalone: true }"
+                (ngModelChange)="onChangeGradeLevel($event)"
+                [searchable]="false"
+                [clearable]="false"
+                class="sy-select"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div [title]="item.name">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+            <div class="col-md-3">
+              <label>{{'TEACHER_ASSIGNMENT.CLASS' | translate}}</label>
+              <ng-select
+                [items]="listClass"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'TEACHER_ASSIGNMENT.CHOOSE' | translate}}"
+                [(ngModel)]="selectedClassId"
+                [ngModelOptions]="{ standalone: true }"
+                (ngModelChange)="onChangeClass($event)"
+                [searchable]="true"
+                [clearable]="false"
+                class="sy-select"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div title="{{ item.name }}">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+            <div class="col-md-3">
+              <label>{{'TEACHER_ASSIGNMENT.SUBJECT' | translate}}</label>
+              <input
+                class="sy-input"
+                type="text"
+                name="subjectName"
+                [(ngModel)]="subjectName"
+                placeholder="{{'TEACHER_ASSIGNMENT.SEARCH_INFOR' | translate}}"
+              />
+            </div>
+            <div class="col-md-3">
+              <label>{{'TEACHER_ASSIGNMENT.TEACHER' | translate}}</label>
+              <input
+                class="sy-input"
+                type="text"
+                name="teacherName"
+                [(ngModel)]="teacherName"
+                placeholder="{{'TEACHER_ASSIGNMENT.SEARCH_INFOR' | translate}}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="search-action">
+            <button
+              class="sy-btn-action active large btn-search btn-ac-hv" style="width: 100%;"
+              (click)="findTeachingAssignment(1)"
+            >
+            {{'TEACHER_ASSIGNMENT.SEARCH' | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="sy-table table-school table-class-room">
+      <ag-grid-angular
+        style="width: 100%; height: 575px"
+        class="ag-theme-balham"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [getRowStyle]="rowStyle"
+        [rowHeight]="ROW_HEIGHT"
+        [headerHeight]="HEADER_HEIGHT"
+        [context]="context"
+        (gridReady)="onGridReady($event)"
+        (gridSizeChanged)="gridSizeChanged($event)"
+        [overlayNoRowsTemplate]="noRowsTemplate"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="'multiple'"
+        [tooltipShowDelay]="0"
+      >
+      </ag-grid-angular>
+    </div>
+    <div *ngIf="total > 0" class="sy-paging w-100">
+      <span class="sy-paging-result"
+      >{{ first }}-{{ last }} {{'COMMON.OF' | translate}} {{ total }} {{'COMMON.RESULT' | translate}}</span
+      >
+      <ul class="sy-pages">
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-first-disabled]="currentPage === 1"
+          [class.ic-svg-first]="currentPage !== 1"
+          [class.disabled]="currentPage === 1"
+          (click)="goToPage(1)"
+        ></li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-prev-disabled]="currentPage === 1"
+          [class.ic-svg-prev]="currentPage !== 1"
+          [class.disabled]="currentPage === 1"
+          (click)="goToPage(currentPage - 1)"
+        ></li>
+        <li
+          class="sy-page"
+          [class.sy-highlight]="i === currentPage"
+          [class.sy-dots]="i === '...'"
+          *ngFor="let i of rangeWithDots"
+          (click)="i !== '...' && goToPage(i)"
+        >
+          {{ i }}
+        </li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-next-disabled]="currentPage === totalPage"
+          [class.ic-svg-next]="currentPage !== totalPage"
+          [class.disabled]="currentPage === totalPage"
+          (click)="goToPage(currentPage + 1)"
+        ></li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-last-disabled]="currentPage === totalPage"
+          [class.ic-svg-last]="currentPage !== totalPage"
+          [class.disabled]="currentPage === totalPage"
+          (click)="goToPage(totalPage)"
+        ></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalUpdateTeachingAssignment>
+  <form class="sy-form">
+    <div class="modal-content modal-dialog-custom">
+      <div class="modal-header">
+        <h4 class="modal-title">{{'TEACHER_ASSIGNMENT.UPDATE_TEACHER_ASSIGNMENT' | translate}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label"
+              >{{'TEACHER_ASSIGNMENT.YEAR' | translate}} <span class="sy-required">*</span></label
+              >
+              <ng-select
+                name="year"
+                placeholder="{{'TEACHER_ASSIGNMENT.CHOOSE' | translate}}"
+                [(ngModel)]="currentYear"
+                [clearable]="false"
+                [readonly]="true"
+              >
+              </ng-select>
+              <!-- <div style="color: red" *ngIf="messageMaMonHoc.status == 'true'">
+                {{ messageMaMonHoc.message }}
+              </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label"
+              >{{'TEACHER_ASSIGNMENT.GRADE' | translate}} <span class="sy-required">*</span></label
+              >
+              <ng-select
+                [items]="listGradeLevel"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'TEACHER_ASSIGNMENT.GRADE_NAME' | translate}}"
+                [(ngModel)]="selectedGradeLevel"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="false"
+                [clearable]="false"
+                [readonly]="true"
+                class="sy-select"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div title="{{ item.name }}">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+              <!-- <div style="color: red" *ngIf="messageTenMonHoc.status == 'true'">
+                {{ messageTenMonHoc.message }}
+              </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label"
+              >{{'TEACHER_ASSIGNMENT.CLASS' | translate}} <span class="sy-required">*</span></label
+              >
+              <ng-select
+                [items]="listClass"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'TEACHER_ASSIGNMENT.CHOOSE' | translate}}"
+                [(ngModel)]="selectedClassId"
+                [ngModelOptions]="{ standalone: true }"
+                [clearable]="false"
+                [readonly]="true"
+                class="sy-select"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <span [title]="item.name">{{ item.name }}</span>
+                </ng-template>
+              </ng-select>
+              <!-- <div style="color: red" *ngIf="messageKhoi.status == 'true'">
+                {{ messageKhoi.message }}
+              </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label"
+              >{{'TEACHER_ASSIGNMENT.SUBJECT' | translate}} <span class="sy-required">*</span></label
+              >
+              <ng-select
+                [items]="listEditingSubjects"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'TEACHER_ASSIGNMENT.CHOOSE' | translate}}"
+                [(ngModel)]="editingSubjectCode"
+                [clearable]="false"
+                [ngModelOptions]="{ standalone: true }"
+                [readonly]="true"
+              >
+                <ng-template
+                  ng-option-tmp
+                  let-item="item"
+                  let-search="searchTerm"
+                >
+                  <div title="{{ item.name }}">
+                    {{ item.code }} | {{ item.name }}
+                  </div>
+                </ng-template>
+              </ng-select>
+              <!-- <div style="color: red" *ngIf="messageKhoa.status == 'true'">
+                {{ messageKhoa.message }}
+              </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label"
+              >{{'TEACHER_ASSIGNMENT.TEACHER_ASSIGN' | translate}} <span class="sy-required">*</span></label
+              >
+              <ng-select
+                      (search)="searchTeachers($event)"
+                [items]="listEditingTeachers"
+                bindLabel="nameCode"
+                bindValue="code"
+                placeholder="{{'TEACHER_ASSIGNMENT.CHOOSE' | translate}}"
+                [(ngModel)]="editingTeacherCode"
+                [ngModelOptions]="{ standalone: true }"
+                [clearable]="false"
+              >
+                <ng-template
+                  ng-option-tmp
+                  let-item="item"
+                  let-search="searchTerm">
+                  <div title="{{ item.nameCode }}">
+                    {{ item.nameCode }}
+                  </div>
+                </ng-template>
+              </ng-select>
+              <!-- <div style="color: red" *ngIf="messageLoaiMonHoc.status == 'true'">
+                {{ messageLoaiMonHoc.message }}
+              </div> -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group" >
+              <label class="sy-label"
+              >{{'TEACHER_ASSIGNMENT.ASSIGN_TEACHING' | translate}} <span class="sy-required">*</span></label
+              >
+              <ng-select
+                [items]="listEditingSemesters"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'TEACHER_ASSIGNMENT.CHOOSE' | translate}}"
+                [(ngModel)]="editingSemesters"
+                [ngModelOptions]="{ standalone: true }"
+                [clearable]="false"
+                [multiple]="true"
+                (add)="onAddEditingSemesters($event)"
+              >
+              </ng-select>
+              <div
+                style="color: red; margin-top: 4px"
+                *ngIf="errorMessages.editingSemesters !== ''"
+              >
+                {{ errorMessages.editingSemesters }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-actions">
+          <button type="button" class="btn-search sy-btn-action btn-ac-hv" (click)="cancel()">
+            {{'TEACHER_ASSIGNMENT.CANCEL' | translate}}
+          </button>
+          <button
+            type="button"
+            class="btn-search sy-btn-action active btn-ac-hv"
+            (click)="updateTeachingAssignment()"
+          >
+          {{'TEACHER_ASSIGNMENT.SAVE' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>

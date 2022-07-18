@@ -1,0 +1,52 @@
+<div class="action-manage-contact">
+  <div class="title-action"><i class="fa fa-ellipsis-v"></i></div>
+  <ul [class.last-ele]="rowIndex === 10 || rowIndex === 6 || rowIndex === 7 || rowIndex === 8 || rowIndex === 9">
+    <li
+      *ngIf="showRegister"
+      class="btn-action-sc edit"
+      (click)="openModalUpdate()"
+    >
+      <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-register"></span>
+      {{'MANAGE_CONTACT.REGISTER_PACKAGE' | translate}}
+    </li>
+    <li
+      *ngIf="showCancel"
+      class="focus-button btn-action-sc delete"
+      (click)="openModalDelete(deteleContactPackageModal)"
+    >
+      <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-cancel"></span>
+      {{'MANAGE_CONTACT.CANCEL_SERVICE' | translate}}
+    </li>
+  </ul>
+</div>
+
+
+
+
+<!--up-->
+<ng-template #deteleContactPackageModal>
+  <div class="modal-confirm">
+    <div class="modal-body">
+      <h4 class="modal-title">{{'MANAGE_CONTACT.CONFIRM_CANCEL_TITLE' | translate}}</h4>
+      <p class="des">
+        {{'MANAGE_CONTACT.CONFIRM_CANCEL_MESAGE' | translate}}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-actions">
+        <button type="button" class="focus-button sy-btn-action" (click)="modalRef.hide()"
+                tabIndex="0" >
+          {{'MANAGE_CONTACT.CANCEL' | translate}}
+        </button>
+        <button
+          type="button"
+          class="focus-button sy-btn-action active"
+          (click)="deteleContactPackage()"
+          tabIndex="0"
+        >
+          {{'MANAGE_CONTACT.AGREE' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

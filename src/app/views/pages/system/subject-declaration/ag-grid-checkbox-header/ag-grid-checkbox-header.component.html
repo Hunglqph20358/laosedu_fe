@@ -1,0 +1,21 @@
+<div class="header-checkbox">
+    <mat-checkbox  *ngIf="params.column.colId == 'allYear'"
+               [(ngModel)]="params.api.checkAll" (change)="this.refresh(this.params)" [disabled]="params.api.stas">{{params.displayName}}</mat-checkbox>
+</div>
+<div class="header-checkbox">
+    <mat-checkbox  *ngIf="params.column.colId == 'flgSemester1'"
+                   [(ngModel)]="params.api.checkSemester1" (change)="this.refresh(this.params)" [disabled]="params.api.stas">{{params.displayName}}</mat-checkbox>
+</div>
+<div class="header-checkbox">
+    <mat-checkbox  *ngIf="params.column.colId == 'flgSemester2'"
+                   [(ngModel)]="params.api.checkSemester2" (change)="this.refresh(this.params)" [disabled]="params.api.stas">{{params.displayName}}</mat-checkbox>
+</div>
+<div class="header-checkbox">
+    <mat-checkbox  *ngIf="params.column.colId == 'flgSemester3'"
+                   [(ngModel)]="params.api.checkSemester3" (change)="this.refresh(this.params)" [disabled]="params.api.stas">{{params.displayName}}</mat-checkbox>
+</div>
+<div class="header-checkbox">
+    <mat-checkbox  *ngIf="params.column.colId == 'flgSemester4'"
+                   [(ngModel)]="params.api.checkSemester4" (change)="this.refresh(this.params)" [disabled]="params.api.stas">{{params.displayName}}</mat-checkbox>
+</div>
+

@@ -1,0 +1,13 @@
+<!--<select [(ngModel)]="params.value" (change)="this.onClick(this.params)" class="select-op">-->
+<!--  <option *ngFor="let item of listItem" [value]="isTeacher ? item.teacherCode : item.subjectCode">-->
+<!--    {{isTeacher ? item.teacherName : item.nameSubject}}-->
+<!--  </option>-->
+<!--</select>-->
+<ng-select class="select-op index-focus" [class.cl-disable]="isTeacher" [matTooltip]="tooltip()" tabindex="0"
+           (change)="this.onClick(this.params)"  [items]="listItem" [bindLabel]="isTeacher ? 'teacherName' : 'nameSubject'"
+           [bindValue]="isTeacher ? 'teacherCode' : 'subjectCode'" [(ngModel)]="params.value" [disabled]="isTeacher"
+           [clearable]="false">
+  <ng-template ng-option-tmp let-item="item">
+    <div title="{{ isTeacher ? item.teacherName : item.nameSubject }}">{{ isTeacher ? item.teacherName : item.nameSubject}}</div>
+  </ng-template>
+</ng-select>
