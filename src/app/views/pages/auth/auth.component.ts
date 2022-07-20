@@ -11,6 +11,7 @@ import {NotiService} from "../../../core/service/service-model/notification.serv
 import {Subject} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
 import {StorageSessionService} from "../../../core/auth/_services/storage.session.service";
+import {CommonFunction} from '../../../core/service/utils/common-function';
 
 @Component({
   selector: 'kt-auth',
@@ -65,7 +66,6 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     // this.translationService.setLanguage(this.translationService.getSelectedLanguage());
     this.headerLogo = this.layoutConfigService.getLogo();
-
     this.splashScreenService.hide();
     this.schoolInfo = null;
     // localStorage.setItem('language', 'la')

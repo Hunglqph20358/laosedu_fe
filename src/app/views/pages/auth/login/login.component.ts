@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.schoolInfo !== null) {
       this.storageSessionService.set(this.storageSessionService.SCHOOL_INFO, this.schoolInfo);
     }
-
+    sessionStorage.setItem(environment.authTokenKey,null);
     this.otp = '';
     this.passwordReset = '';
     this.accountName = '';
@@ -264,10 +264,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       phone: controls.phone.value,
       password: controls.password.value
     };
-
     const user = CommonFunction.getCurrentUser();
-    localStorage.setItem('currentUser', JSON.stringify(CommonFunction.getCurrentUser().currentUser));
     if (user) {
+      localStorage.setItem('currentUser', JSON.stringify(CommonFunction.getCurrentUser().currentUser));
       const role = user.currentUser.authorities;
       if (role && role.length === 0) {
         this.notiService.showNoti(this.translate.instant('AUTH.LOGIN.MESSAGE.NO_PERMISSION'), 'warning');
@@ -283,6 +282,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       // this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
       this.loading = false;
     }
+    this.cdr.markForCheck();
     this.cdr.detectChanges();
   }
 

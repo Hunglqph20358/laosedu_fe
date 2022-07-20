@@ -7,6 +7,7 @@ import {environment} from '../../../../environments/environment';
 import {NavigationEnd, Router} from '@angular/router';
 import {NotiService} from '../../service/service-model/notification.service';
 import {TranslateService} from "@ngx-translate/core";
+import {CommonFunction} from '../../service/utils/common-function';
 
 const API_USERS_URL = 'api/users';
 const API_REQUEST_OTP_URL = 'user/requestOTP';
@@ -46,8 +47,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`${this.API}authenticate`, {username: username, password: password})
-      .pipe(map(user => {
+    const user = CommonFunction.getCurrentUser();
         // login successful if there's a jwt token in the response
         if (user && user.jwttoken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -56,13 +56,15 @@ export class AuthService {
           this.currentUser = JSON.stringify(user.currentUser);
         }
         return user;
-      }));
   }
 
   public logout() {
-    sessionStorage.removeItem(environment.authTokenKey);
+    sessionStorage.setItem(environment.authTokenKey,null);
+    // sessionStorage.removeItem(environment.authTokenKey);
     // remove user from local storage to log user out
     localStorage.removeItem(CURRENT_NAME);
+    // localStorage.removeItem('language')
+    // localStorage.removeItem(CURRENT_NAME);
     this.router.navigate(['/auth/login'], {queryParams: {returnUrl: this.returnUrl}});
     // document.location.reload();
   }
