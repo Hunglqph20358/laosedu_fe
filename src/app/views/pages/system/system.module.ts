@@ -35,7 +35,6 @@ import {SystemConfigurationComponent} from './system-configuration/system-config
 import {TeachersComponent} from './teachers/teachers.component';
 import {StudentsComponent} from './students/students.component';
 import {ContactComponent} from './contact/contact.component';
-import {OfficialLetterDocumentComponent} from './official-letter-document/official-letter-document.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {AngularFileUploaderModule} from 'angular-file-uploader';
 import {AgGridModule} from 'ag-grid-angular';
@@ -94,13 +93,10 @@ import {ViewFileComponent} from './teachers/teacher-profile/view-file/view-file.
 import {AccountManagementComponent} from './account-management/account-management.component';
 import {ConductAssessmentComponent} from './students/conduct-assessment/conduct-assessment.component';
 import {ConductAssessmentModule} from './students/conduct-assessment/conduct-assessment.module';
-import {DownloadButtonRenderComponent} from './official-letter-document/download-button-render/download-button-render.component';
-import {ActionOfficalLetterDocumentComponent} from './official-letter-document/action-offical-letter-document/action-offical-letter-document.component';
 import {AccountManagementModule} from './account-management/account-management.module';
 import {ChangePasswordComponent} from "../auth/change-password/change-password.component";
 import {AcademicAbilitiesComponent} from "./academic-abilities/academic-abilities.component";
 import {AcademicAbilitiesModule} from "./academic-abilities/academic-abilities.module";
-import {CreateOfficalLetterComponent} from './official-letter-document/create-offical-letter/create-offical-letter.component';
 import {ListTeacherSendMailComponent} from "./contact/send-mail/list-teacher-send-mail/list-teacher-send-mail.component";
 import {ReportsComponent} from './reports/reports.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
@@ -244,7 +240,7 @@ const routes: Routes = [
   },
   {
     path: 'official-letter-document',
-    component: OfficialLetterDocumentComponent,
+    component: AttendanceStudentComponent,
     canActivate: [AuthGuard],
     data: {roles: [ADMIN, HT, HP, GV_BM, GV_CN, TK]},
   },
@@ -435,7 +431,6 @@ const routes: Routes = [
     ButtonRendererComponent2,
     TeachersComponent,
     StudentsComponent,
-    OfficialLetterDocumentComponent,
     ContactComponent,
     ReportsComponent,
     DiligenceComponent,
@@ -471,11 +466,8 @@ const routes: Routes = [
     ViewFileComponent,
     AccountManagementComponent,
     ConductAssessmentComponent,
-    DownloadButtonRenderComponent,
-    ActionOfficalLetterDocumentComponent,
     ChangePasswordComponent,
     AcademicAbilitiesComponent,
-    CreateOfficalLetterComponent,
     ListTeacherSendMailComponent,
     ListTeacherSendMailParentsComponent,
     ClassReportComponent,
@@ -572,11 +564,8 @@ const routes: Routes = [
     ViewDetailGroupComponent,
     CreateGroupComponent,
     ViewFileComponent,
-    DownloadButtonRenderComponent,
-    ActionOfficalLetterDocumentComponent,
     AccountManagementComponent,
     ChangePasswordComponent,
-    CreateOfficalLetterComponent,
     ListTeacherSendMailComponent,
     ListTeacherSendMailParentsComponent,
 	ReasonRendererComponent,

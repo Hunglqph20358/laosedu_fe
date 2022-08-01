@@ -1,4 +1,3 @@
-import { DownloadButtonRenderComponent } from './../../official-letter-document/download-button-render/download-button-render.component';
 import {
   Component,
   OnInit,
@@ -82,7 +81,7 @@ export class ConductAssessmentComponent implements OnInit {
 
     this.rowData1 = [];
     this.frameworkComponents = {
-      buttonRenderer: DownloadButtonRenderComponent,
+      buttonRenderer: '',
     };
   }
 

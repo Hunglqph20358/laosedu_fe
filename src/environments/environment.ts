@@ -8,8 +8,8 @@ export const environment = {
   authTokenKey: 'authce9d77b308c149d5992a80073637e4d5',
 
   AUTH_SERVER: 'http://13.212.112.239:8083/api/',
-    API_GATEWAY_ENDPOINT: 'http://13.212.112.239:8083/api/',
-  // API_GATEWAY_ENDPOINT: 'http://localhost:8080/api/',
+    // API_GATEWAY_ENDPOINT: 'http://13.212.112.239:8083/api/',
+  API_GATEWAY_ENDPOINT: 'http://localhost:8080/api/',
 
   // SCHOOL_NAME: 'Trường THPT Chuyên Nguyễn Huệ',
   SCHOOL_NAME: 'ໂຮງຮຽນມິດຕະພາບລາວ-ຫວຽດນາມ',
