@@ -2,7 +2,6 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ConfigPointLockService} from '../../../../../core/service/service-model/config-point-lock.service';
-import {SelectActionComponent} from '../../class-room/select-action/select-action.component';
 import {DateLockPointComponent} from '../date-lock-point/date-lock-point.component';
 import {ToastrService} from 'ngx-toastr';
 import {CellPosition} from 'ag-grid-community';

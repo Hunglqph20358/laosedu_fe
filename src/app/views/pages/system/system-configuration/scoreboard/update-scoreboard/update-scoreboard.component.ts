@@ -7,7 +7,6 @@ import {
 import {ConfScoreDetailsService} from '../../../../../../core/service/service-model/conf-score-details.service';
 import {ToastrService} from 'ngx-toastr';
 import {TableS} from 'src/app/core/service/model/tabe.model';
-import {DeleteClassRoomComponent} from '../../../class-room/delete-class-room/delete-class-room.component';
 import {SubjectService} from '../../../../../../core/service/service-model/subject.service';
 import {TableGradingModel} from '../../../../../../core/service/model/tableGrading.model';
 import {DatePipe} from '@angular/common';
@@ -438,21 +437,7 @@ export class UpdateScoreboardComponent implements OnInit {
   }
 
   deleteItem(item: any, id: number) {
-    console.log(this.listConfScoreDetailsTemp);
-    const dataConfirm = {title: this.translate.instant('SCOREBOARD.TITLE_CONFIRM_DELETE'), message: this.translate.instant('SCOREBOARD.CONFIRM_DELETE')}
-    this.matDialog.open(DeleteClassRoomComponent, {
-      data: dataConfirm,
-      disableClose: true,
-      hasBackdrop: true,
-      width: '420px'
-    }).afterClosed().subscribe(res => {
-      if (res.event === 'confirm') {
-        if(item.id !== null){
-          this.listDelete.push(item.id);
-        }
-        this.listConfScoreDetailsTemp.splice(id, 1);
-      }
-    })
+
   }
 
   addColumn() {

@@ -3,7 +3,6 @@ import {ParentService} from "../../../../core/service/service-model/parents.serv
 import {LstReceivedStudent, ParentInfo, Schedule} from "../../../../core/service/model/parent-info.model";
 import {Router} from "@angular/router";
 import {ClassroomService} from "../../../../core/service/service-model/classroom.service";
-import {ListTeacherSendMailParentsComponent} from "../contact-parents/send-mail/list-teacher-send-mail-parents/list-teacher-send-mail-parents.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NotificationDetailComponent} from "./notification-detail/notification-detail.component";
 import {URL_AVATAR_STUDENT} from "../../../../helpers/constants";

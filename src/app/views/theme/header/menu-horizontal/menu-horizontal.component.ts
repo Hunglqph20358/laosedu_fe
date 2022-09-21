@@ -32,7 +32,6 @@ import {SchoolServices} from '../../../pages/system/school/school.service';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {StorageSessionService} from '../../../../core/auth/_services/storage.session.service';
 import {InboxManagementService} from '../../../pages/system/school/inbox-management.service';
-import {ClassRoomService} from '../../../pages/system/class-room/class-room.service';
 import {ClassroomService} from '../../../../core/service/service-model/classroom.service';
 
 @Component({

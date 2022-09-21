@@ -4,9 +4,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {forkJoin} from 'rxjs';
 import {TeacherService} from '../../../../../core/service/service-model/teacher.service';
 import {TranslateService} from '@ngx-translate/core';
-import {TooltipComponent} from '../../class-room/tooltip/tooltip.component';
 import {ICellRendererParams} from 'ag-grid-community';
-import {SelectActionComponent} from '../../class-room/select-action/select-action.component';
 import {ClassroomService} from '../../../../../core/service/service-model/classroom.service';
 import {CommonServiceService} from '../../../../../core/service/utils/common-service.service';
 import {constant} from '@progress/kendo-data-query/dist/npm/funcs';
@@ -204,7 +202,7 @@ export class TeacherRatingsComponent implements OnInit {
         tooltipField: 'deptName'
       },
       {
-        headerName: this.trans('GRID.STATUS'), 
+        headerName: this.trans('GRID.STATUS'),
         headerTooltip: this.trans('GRID.STATUS'),
         cellStyle: params => {
           const statusCode = params.data.statusCode;
@@ -319,12 +317,12 @@ export class TeacherRatingsComponent implements OnInit {
     ).subscribe(([resRate, resScoreRating, resDept]) => {
       this.listDept = resDept;
       this.listRate = resRate.map( rate => {
-        if (this.translate.currentLang != 'vn') 
+        if (this.translate.currentLang != 'vn')
           rate.name = rate[`name${this.translate.currentLang.toUpperCase()}`]
         return rate
       });
       this.listScoreRating = resScoreRating.map(score => {
-        if (this.translate.currentLang != 'vn') 
+        if (this.translate.currentLang != 'vn')
           score.name = score[`name${this.translate.currentLang.toUpperCase()}`]
         return score
       });

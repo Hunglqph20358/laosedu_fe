@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
-import {DeleteClassRoomComponent} from "../../class-room/delete-class-room/delete-class-room.component";
 import {ConfigPointLockService} from "../../../../../core/service/service-model/config-point-lock.service";
 import {ToastrService} from "ngx-toastr";
 import {UpdateConfLockComponent} from "../update-conf-lock/update-conf-lock.component";

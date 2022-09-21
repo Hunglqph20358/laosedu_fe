@@ -7,14 +7,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {PartialsModule} from '../partials/partials.module';
 // Pages
 import {CoreModule} from '../../core/core.module';
-import {ClassRoomComponent} from './system/class-room/class-room.component';
 import {NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
 import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
 import {BodyModule, GridModule, PagerModule, SharedModule} from '@progress/kendo-angular-grid';
 import {ButtonModule} from '@progress/kendo-angular-buttons';
 import {DialogModule} from '@progress/kendo-angular-dialog';
 import {SystemModule} from './system/system.module';
-import {ClassRoomModule} from './system/class-room/class-room.module';
 import {AgGridModule} from 'ag-grid-angular';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -27,7 +25,7 @@ import {DiligenceModule} from './system/diligence/diligence.module';
 import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
-  declarations: [ClassRoomComponent],
+  declarations: [],
   exports: [],
 
     imports: [
@@ -45,7 +43,6 @@ import {TranslateModule} from "@ngx-translate/core";
         DiligenceModule,
         DialogModule,
         SystemModule,
-        ClassRoomModule,
         ConfigPointLockModule,
         SharedModule,
         BodyModule,

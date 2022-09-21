@@ -6,7 +6,6 @@ import {TableS} from '../../../../../../core/service/model/tabe.model';
 import {ScoreBoardService} from '../../../../../../core/service/service-model/score-board.service';
 import {TableGradingModel} from '../../../../../../core/service/model/tableGrading.model';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {DeleteClassRoomComponent} from '../../../class-room/delete-class-room/delete-class-room.component';
 import {GradeLevelService} from 'src/app/core/service/service-model/grade-level.service';
 import {ToastrService} from 'ngx-toastr';
 import {DatePipe, formatDate} from '@angular/common';
@@ -449,20 +448,7 @@ export class CreateScoreboardComponent implements OnInit {
   }
 
   deleteItem(i: number) {
-    const dataConfirm = {title: this.translate.instant('SCOREBOARD.TITLE_CONFIRM_DELETE'), message: this.translate.instant('SCOREBOARD.CONFIRM_DELETE')}
-    this.matDialog.open(DeleteClassRoomComponent, {
-      data: dataConfirm,
-      disableClose: true,
-      hasBackdrop: true,
-      width: '420px'
-    }).afterClosed().subscribe(res => {
-      if (res.event === 'confirm') {
-        if (this.selected === 0)
-          this.listConfScoreDetailsTemp.splice(i, 1);
-        else
-          this.listConfGradeDetails.splice(i, 1);
-      }
-    })
+
   }
 
   // Validate cell table

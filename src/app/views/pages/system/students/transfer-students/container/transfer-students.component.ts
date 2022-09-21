@@ -18,7 +18,6 @@ import {SearchState} from '../shared/models/search-state';
 import {ClassroomService} from '../../../../../../core/service/service-model/classroom.service';
 import {SchoolYearModel} from '../../../school-year/school-year.model';
 import {TransferStudentNotifyComponent} from '../components/transfer-student-notify/transfer-student-notify.component';
-import {DeleteClassRoomComponent} from '../../../class-room/delete-class-room/delete-class-room.component';
 import {MatDialog} from '@angular/material/dialog';
 import {SchoolYearService} from '../../../school-year/school-year.service';
 

@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {SystemComponent} from './system.component';
 import {CommonModule} from '@angular/common';
-import {ClassRoomComponent} from './class-room/class-room.component';
 import {PanelBarModule, TabStripModule} from '@progress/kendo-angular-layout';
 import {ButtonsModule} from '@progress/kendo-angular-buttons';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -34,7 +33,6 @@ import {SchoolComponent} from './school/school.component';
 import {SystemConfigurationComponent} from './system-configuration/system-configuration.component';
 import {TeachersComponent} from './teachers/teachers.component';
 import {StudentsComponent} from './students/students.component';
-import {ContactComponent} from './contact/contact.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {AngularFileUploaderModule} from 'angular-file-uploader';
 import {AgGridModule} from 'ag-grid-angular';
@@ -64,7 +62,6 @@ import {ActionStudentComponent} from './students/action-student/action-student.c
 import 'ag-grid-enterprise';
 import {SubjectDeclarationModule} from './subject-declaration/subject-declaration.module';
 import {StudentProfileComponent} from './students/student-profile/student-profile.component';
-import {TooltipComponent} from './class-room/tooltip/tooltip.component';
 import {CreateUpdateTeachersComponent} from './teachers/create-update-teachers/create-update-teachers.component';
 import {CreateUpdateStudentComponent} from './students/create-update-students/create-update-student.component';
 import {NzTreeSelectModule} from 'ng-zorro-antd/tree-select';
@@ -80,15 +77,8 @@ import {AttendanceStudentComponent} from './attendance-student/attendance-studen
 import {AttendanceStudentModule} from './attendance-student/attendance-student.module';
 import {CoreModule} from '../../../core/core.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {SendMailComponent} from "./contact/send-mail/send-mail.component";
 import {DefaultTreeviewI18n, TreeviewModule} from "ngx-treeview";
 import {EditorModule} from "@progress/kendo-angular-editor";
-import {TreeViewComponent} from './contact/tree-view/tree-view.component';
-import {ContactGroupComponent} from './contact/contact-group/contact-group.component';
-import {GroupActionComponent} from './contact/contact-group/group-action/group-action.component';
-import {ViewDetailGroupComponent} from './contact/contact-group/view-detail-group/view-detail-group.component';
-import {CreateGroupComponent} from "./contact/contact-group/create-group/create-group.component";
-import {BtnCellRendererComponent} from "./contact/contact-group/create-group/btn-cell-renderer.component";
 import {ViewFileComponent} from './teachers/teacher-profile/view-file/view-file.component';
 import {AccountManagementComponent} from './account-management/account-management.component';
 import {ConductAssessmentComponent} from './students/conduct-assessment/conduct-assessment.component';
@@ -97,14 +87,11 @@ import {AccountManagementModule} from './account-management/account-management.m
 import {ChangePasswordComponent} from "../auth/change-password/change-password.component";
 import {AcademicAbilitiesComponent} from "./academic-abilities/academic-abilities.component";
 import {AcademicAbilitiesModule} from "./academic-abilities/academic-abilities.module";
-import {ListTeacherSendMailComponent} from "./contact/send-mail/list-teacher-send-mail/list-teacher-send-mail.component";
 import {ReportsComponent} from './reports/reports.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ViewTimetableComponent} from './school/view-timetable/view-timetable.component';
 import {ClassReportComponent} from "./class-report/class-report.component";
 import {ClassReportModule} from "./class-report/class-report.module";
-import {SendMailParentsComponent} from "./contact-parents/send-mail/send-mail-parents.component";
-import {ListTeacherSendMailParentsComponent} from "./contact-parents/send-mail/list-teacher-send-mail-parents/list-teacher-send-mail-parents.component";
 import {DiligenceComponent} from './diligence/diligence.component';
 import {DiligenceModule} from './diligence/diligence.module';
 import {ReasonRendererComponent} from './teachers/teacher-ratings/reason-renderer/reason-renderer.component';
@@ -113,14 +100,9 @@ import {AngularEditorModule} from "@kolkov/angular-editor";
 import {AuthGuard} from "../../../core/auth";
 import {InboxAdminComponent} from './school/inbox-admin/inbox-admin.component';
 import {ModalSeeMoreTeacherComponent} from './school/inbox-admin/modal-see-more-teacher/modal-see-more-teacher.component';
-import {ContactGroupParentsComponent} from "./contact-parents/contact-group-parents/contact-group-parents.component";
-import {CreateGroupParentsComponent} from "./contact-parents/contact-group-parents/create-group-parents/create-group-parents.component";
-import {GroupActionParentsComponent} from "./contact-parents/contact-group-parents/group-action-parents/group-action-parents.component";
-import {ViewDetailGroupParentsComponent} from "./contact-parents/contact-group-parents/view-detail-group-parents/view-detail-group-parents.component";
 import {ModalSeeMoreComponent} from './school/inbox-teacher/modal-see-more-teacher/modal-see-more.component';
 import {InboxTeacherComponent} from './school/inbox-teacher/inbox-teacher.component';
 import {PartialsModule} from "../../partials/partials.module";
-import { BtnDeleteComponent } from './contact-parents/send-mail/list-teacher-send-mail-parents/btn-delete/btn-delete.component';
 import {TooltipTeacherComponent} from './teachers/teacher-profile/tooltip-teacher/tooltip-teacher.component';
 import { ButtonRendererComponent2 } from './teachers/teacher-ratings/button-renderer-2/button-renderer.component2';
 import {TeachingTimetableComponent} from "./teachers/teaching-timetable/container/teaching-timetable.component";
@@ -153,12 +135,6 @@ const routes: Routes = [
   {
     path: 'school/subject-declaration',
     component: SubjectDeclarationComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [ADMIN, HT]},
-  },
-  {
-    path: 'school/class-room',
-    component: ClassRoomComponent,
     canActivate: [AuthGuard],
     data: {roles: [ADMIN, HT]},
   },
@@ -331,30 +307,6 @@ const routes: Routes = [
     data: {roles: [HT, GV_CN]},
   },
   {
-    path: 'contact/send-mail',
-    component: SendMailComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [ADMIN,HT]},
-  },
-  {
-    path: 'contact/contact-group',
-    component: ContactGroupComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [ADMIN, HT]},
-  },
-  {
-    path: 'contact-parents/send-mail',
-    component: SendMailParentsComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [ADMIN, GV_CN, HT]},
-  },
-  {
-    path: 'contact-parents/contact-group',
-    component: ContactGroupParentsComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [ADMIN, GV_CN, HT]},
-  },
-  {
     path: 'account/account-management',
     component: AccountManagementComponent,
   },
@@ -402,7 +354,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  providers: [ColumnResizingService, TreeViewComponent, DefaultTreeviewI18n,
+  providers: [ColumnResizingService, DefaultTreeviewI18n,
     {
       provide: NgbDateParserFormatter,
       useFactory: () => { return new NgbDateMomentParserFormatter("DD/MM/YYYY") }
@@ -431,7 +383,6 @@ const routes: Routes = [
     ButtonRendererComponent2,
     TeachersComponent,
     StudentsComponent,
-    ContactComponent,
     ReportsComponent,
     DiligenceComponent,
     ActionShoolComponent,
@@ -454,28 +405,14 @@ const routes: Routes = [
     SystemsDirective,
     ModalImportComponent,
     AttendanceStudentComponent,
-    SendMailComponent,
-    SendMailParentsComponent,
-    TreeViewComponent,
-    ContactGroupComponent,
-    GroupActionComponent,
-    ViewDetailGroupComponent,
-    CreateGroupComponent,
-    BtnCellRendererComponent,
     AttendanceStudentComponent,
     ViewFileComponent,
     AccountManagementComponent,
     ConductAssessmentComponent,
     ChangePasswordComponent,
     AcademicAbilitiesComponent,
-    ListTeacherSendMailComponent,
-    ListTeacherSendMailParentsComponent,
     ClassReportComponent,
-    ReasonRendererComponent,	ContactGroupParentsComponent,
-    CreateGroupParentsComponent,
-    GroupActionParentsComponent,
-    ViewDetailGroupParentsComponent,
-    BtnDeleteComponent,
+    ReasonRendererComponent,
 	TooltipTeacherComponent,
 	DialogDateComponent,
 	Date2Component  ],
@@ -495,7 +432,7 @@ const routes: Routes = [
         NgSelectModule,
         NzTreeSelectModule,
         AngularFileUploaderModule,
-        AgGridModule.withComponents([TooltipComponent, BtnCellRendererComponent]),
+        AgGridModule.withComponents([]),
         ModalModule.forRoot(),
         NgxsModule.forRoot([], {
             developmentMode: !environment.production,
@@ -560,18 +497,10 @@ const routes: Routes = [
     ActionTeacherComponent,
     ActionStudentComponent,
     ImportTeachingAssignmentComponent,
-    GroupActionComponent,
-    ViewDetailGroupComponent,
-    CreateGroupComponent,
     ViewFileComponent,
     AccountManagementComponent,
     ChangePasswordComponent,
-    ListTeacherSendMailComponent,
-    ListTeacherSendMailParentsComponent,
 	ReasonRendererComponent,
-    CreateGroupParentsComponent,
-    GroupActionParentsComponent,
-    ViewDetailGroupParentsComponent,
     ButtonRendererComponent2,
 	TooltipTeacherComponent,
     TransferStudentNotifyComponent
