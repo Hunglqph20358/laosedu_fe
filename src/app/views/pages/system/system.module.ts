@@ -113,6 +113,7 @@ import {TransferStudentNotifyComponent} from './students/transfer-students/compo
 import { DialogDateComponent } from './share/dialog-date/dialog-date.component';
 import { Date2Component } from './share/date2/date2.component';
 import {NgbDateMomentParserFormatter} from "./share/date2/datePickerFormat";
+import { SubjectSchoolComponent } from './subject-school/subject-school.component';
 
 
 const roleParam = environment.ROLE;
@@ -143,6 +144,9 @@ const routes: Routes = [
     component: SchoolComponent,
     canActivate: [AuthGuard],
     data: {roles: [ADMIN]},
+  },
+  {
+    path: 'school/school-subject', component: SubjectSchoolComponent
   },
   {
     path: 'system-configuration',
@@ -415,7 +419,8 @@ const routes: Routes = [
     ReasonRendererComponent,
 	TooltipTeacherComponent,
 	DialogDateComponent,
-	Date2Component  ],
+	Date2Component,
+	SubjectSchoolComponent  ],
     imports: [
         RouterModule.forChild(routes),
         CommonModule,
